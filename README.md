@@ -29,26 +29,6 @@ Bienvenido/a al repositorio oficial de la página web de **Larrobeltz Saskibaloi
 
 ---
 
-## 🚀 Cómo Desplegar en GitHub Pages
-
-Si deseas publicar o replicar este proyecto en tu propio repositorio de GitHub Pages, sigue estos pasos:
-
-1. **Clonar o subir los archivos a tu repositorio:**
-   Asegúrate de incluir en la raíz del repositorio los archivos principales:
-   * `index.html`
-   * `Logo Larrobeltz.png`
-
-2. **Activar GitHub Pages:**
-   * Ve a la pestaña **Settings** (Configuración) de tu repositorio en GitHub.
-   * En la barra lateral izquierda, selecciona **Pages**.
-   * En **Build and deployment** > **Source**, elige `Deploy from a branch`.
-   * En **Branch**, selecciona `main` (o `master`) y la carpeta `/ (root)`.
-   * Haz clic en **Save**.
-
-3. **¡Listo!** En unos minutos la página estará disponible públicamente en la URL de GitHub Pages.
-
----
-
 ## 📍 Ubicación
 
 * **Campo / Frontón:** Frontón Municipal de Alonsotegi
