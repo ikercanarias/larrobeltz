@@ -1,0 +1,1263 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Larrobeltz Saskibaloi Taldea | Alonsotegi</title>
+  <meta name="description" content="Sitio web oficial del club de baloncesto Larrobeltz Saskibaloi Taldea de Alonsotegi (Bizkaia). Equipos, horarios, historia, cuotas y contacto.">
+  <link rel="icon" type="image/png" href="Logo Larrobeltz.png">
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Google Fonts: Bebas Neue, Teko & Plus Jakarta Sans -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Teko:wght@600;700&display=swap" rel="stylesheet">
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brandRed: '#E50914',
+            darkHeader: '#000000',
+            grayDark: '#2F3642',
+            grayLight: '#374151',
+            cardBg: '#1F2937',
+            cardAltBg: '#1F242D',
+          },
+          fontFamily: {
+            display: ['"Bebas Neue"', '"Teko"', 'sans-serif'],
+            body: ['"Plus Jakarta Sans"', 'sans-serif'],
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    body { font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif; background-color: #374151; color: #FFFFFF; }
+    .font-display { font-family: 'Bebas Neue', 'Teko', sans-serif; letter-spacing: 0.04em; }
+    ::-webkit-scrollbar { width: 8px; }
+    ::-webkit-scrollbar-track { background: #1f2937; }
+    ::-webkit-scrollbar-thumb { background: #4b5563; border-radius: 4px; }
+    ::-webkit-scrollbar-thumb:hover { background: #E50914; }
+  </style>
+</head>
+<body class="bg-[#374151] text-white antialiased selection:bg-[#E50914] selection:text-white">
+
+  <!-- HEADER / NAVEGACIÓN (Cabecera en negro puro #000000) -->
+  <header id="navbar" class="fixed top-0 left-0 right-0 z-50 bg-[#000000] border-b border-white/10 shadow-2xl transition-all duration-200">
+    <!-- Fila 1: Logo del club + Selector de idioma y botón Inscribirse -->
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-15 sm:h-16">
+        
+        <!-- Logo y Nombre del Club -->
+        <a href="#inicio" class="flex items-center gap-3 group py-1" aria-label="Larrobeltz Saskibaloi Taldea">
+          <img src="Logo Larrobeltz.png" alt="Logo Larrobeltz" class="w-10 h-10 object-contain rounded-full drop-shadow-md transform group-hover:scale-105 transition-transform">
+          <div class="flex flex-col">
+            <span class="font-display text-2xl sm:text-3xl tracking-wider text-white font-bold leading-none">LARROBELTZ</span>
+            <span class="text-[10px] tracking-widest text-[#E50914] font-bold uppercase mt-0.5">Alonsotegi Saskibaloi Taldea · 2009</span>
+          </div>
+        </a>
+
+        <!-- Zona Derecha: Selector de Idioma (ES / EU) + Botón CTA -->
+        <div class="flex items-center gap-2.5 sm:gap-3">
+          <div class="flex items-center bg-white/10 border border-white/15 rounded-lg p-0.5 shadow-inner" role="group" aria-label="Selector de idioma">
+            <button id="btnLangEs" type="button" onclick="setLanguage('es')" class="px-2.5 py-1 text-xs font-bold rounded bg-[#E50914] text-white transition-all shadow-md">ES</button>
+            <button id="btnLangEu" type="button" onclick="setLanguage('eu')" class="px-2.5 py-1 text-xs font-bold rounded text-neutral-400 hover:text-white transition-all">EU</button>
+          </div>
+
+          <a href="#contacto" data-i18n="nav.joinBtn" class="hidden sm:inline-flex items-center justify-center px-3.5 py-1.5 text-xs font-bold uppercase tracking-wider text-white bg-[#E50914] hover:bg-[#b80710] rounded-lg transition-all shadow-md">
+            Únete al equipo
+          </a>
+
+          <!-- Botón Menú Móvil -->
+          <button id="mobileMenuBtn" type="button" onclick="toggleMobileMenu()" class="lg:hidden p-1.5 text-neutral-300 hover:text-white bg-white/10 rounded-lg border border-white/15" aria-label="Abrir menú">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
+          </button>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Fila 2: Menú Principal Holgado y Bajado (justo debajo de la cabecera, encima de 17 TEMPORADAS) -->
+    <div class="hidden lg:block bg-[#0A0A0C] border-t border-white/10">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <nav class="flex items-center justify-center gap-7 xl:gap-8 h-10">
+          <a href="#inicio" data-i18n="nav.home" class="text-xs uppercase tracking-widest font-bold text-neutral-300 hover:text-white transition-colors py-1 relative whitespace-nowrap after:absolute after:bottom-0 after:left-0 after:right-0 after:h-[2px] after:bg-[#E50914] after:scale-x-0 hover:after:scale-x-100 after:transition-transform">Inicio</a>
+          <a href="#filosofia" data-i18n="nav.philosophy" class="text-xs uppercase tracking-widest font-bold text-neutral-300 hover:text-white transition-colors py-1 relative whitespace-nowrap after:absolute after:bottom-0 after:left-0 after:right-0 after:h-[2px] after:bg-[#E50914] after:scale-x-0 hover:after:scale-x-100 after:transition-transform">Filosofía</a>
+          <a href="#historia" data-i18n="nav.history" class="text-xs uppercase tracking-widest font-bold text-neutral-300 hover:text-white transition-colors py-1 relative whitespace-nowrap after:absolute after:bottom-0 after:left-0 after:right-0 after:h-[2px] after:bg-[#E50914] after:scale-x-0 hover:after:scale-x-100 after:transition-transform">Historia</a>
+          <a href="#equipos" data-i18n="nav.teams" class="text-xs uppercase tracking-widest font-bold text-neutral-300 hover:text-white transition-colors py-1 relative whitespace-nowrap after:absolute after:bottom-0 after:left-0 after:right-0 after:h-[2px] after:bg-[#E50914] after:scale-x-0 hover:after:scale-x-100 after:transition-transform">Equipos</a>
+          <a href="#horarios" data-i18n="nav.schedules" class="text-xs uppercase tracking-widest font-bold text-neutral-300 hover:text-white transition-colors py-1 relative whitespace-nowrap after:absolute after:bottom-0 after:left-0 after:right-0 after:h-[2px] after:bg-[#E50914] after:scale-x-0 hover:after:scale-x-100 after:transition-transform">Horarios</a>
+          <a href="#cuotas" data-i18n="nav.fees" class="text-xs uppercase tracking-widest font-bold text-neutral-300 hover:text-white transition-colors py-1 relative whitespace-nowrap after:absolute after:bottom-0 after:left-0 after:right-0 after:h-[2px] after:bg-[#E50914] after:scale-x-0 hover:after:scale-x-100 after:transition-transform">Cuotas</a>
+          <a href="#normas" data-i18n="nav.rules" class="text-xs uppercase tracking-widest font-bold text-neutral-300 hover:text-white transition-colors py-1 relative whitespace-nowrap after:absolute after:bottom-0 after:left-0 after:right-0 after:h-[2px] after:bg-[#E50914] after:scale-x-0 hover:after:scale-x-100 after:transition-transform">Normas</a>
+          <a href="#contacto" data-i18n="nav.contact" class="text-xs uppercase tracking-widest font-bold text-neutral-300 hover:text-white transition-colors py-1 relative whitespace-nowrap after:absolute after:bottom-0 after:left-0 after:right-0 after:h-[2px] after:bg-[#E50914] after:scale-x-0 hover:after:scale-x-100 after:transition-transform">Contacto</a>
+        </nav>
+      </div>
+    </div>
+
+    <!-- Menú Móvil Desplegable -->
+    <div id="mobileMenu" class="hidden lg:hidden bg-[#000000] border-t border-white/15 px-4 pt-3 pb-5 space-y-2.5">
+      <nav class="flex flex-col space-y-1">
+        <a href="#inicio" onclick="toggleMobileMenu()" data-i18n="nav.home" class="text-sm uppercase tracking-wider font-bold text-neutral-300 hover:text-white hover:bg-white/5 px-3 py-2 rounded-lg transition-colors">Inicio</a>
+        <a href="#filosofia" onclick="toggleMobileMenu()" data-i18n="nav.philosophy" class="text-sm uppercase tracking-wider font-bold text-neutral-300 hover:text-white hover:bg-white/5 px-3 py-2 rounded-lg transition-colors">Filosofía</a>
+        <a href="#historia" onclick="toggleMobileMenu()" data-i18n="nav.history" class="text-sm uppercase tracking-wider font-bold text-neutral-300 hover:text-white hover:bg-white/5 px-3 py-2 rounded-lg transition-colors">Historia</a>
+        <a href="#equipos" onclick="toggleMobileMenu()" data-i18n="nav.teams" class="text-sm uppercase tracking-wider font-bold text-neutral-300 hover:text-white hover:bg-white/5 px-3 py-2 rounded-lg transition-colors">Equipos</a>
+        <a href="#horarios" onclick="toggleMobileMenu()" data-i18n="nav.schedules" class="text-sm uppercase tracking-wider font-bold text-neutral-300 hover:text-white hover:bg-white/5 px-3 py-2 rounded-lg transition-colors">Horarios</a>
+        <a href="#cuotas" onclick="toggleMobileMenu()" data-i18n="nav.fees" class="text-sm uppercase tracking-wider font-bold text-neutral-300 hover:text-white hover:bg-white/5 px-3 py-2 rounded-lg transition-colors">Cuotas</a>
+        <a href="#normas" onclick="toggleMobileMenu()" data-i18n="nav.rules" class="text-sm uppercase tracking-wider font-bold text-neutral-300 hover:text-white hover:bg-white/5 px-3 py-2 rounded-lg transition-colors">Normas</a>
+        <a href="#contacto" onclick="toggleMobileMenu()" data-i18n="nav.contact" class="text-sm uppercase tracking-wider font-bold text-neutral-300 hover:text-white hover:bg-white/5 px-3 py-2 rounded-lg transition-colors">Contacto</a>
+      </nav>
+      <div class="pt-2 border-t border-white/10">
+        <a href="#contacto" onclick="toggleMobileMenu()" data-i18n="nav.joinBtn" class="block w-full text-center py-2 text-xs font-bold uppercase tracking-wider text-white bg-[#E50914] rounded-lg">
+          Únete al equipo
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- HERO SECTION (Espaciado compacto, fondo gris #374151) -->
+  <section id="inicio" class="relative flex flex-col justify-center pt-24 sm:pt-28 pb-8 sm:pb-10 overflow-hidden bg-[#374151]">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-2 sm:py-4 w-full relative z-10">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 items-center w-full">
+        
+        <!-- Columna Izquierda: Titulares y Botones de Acción -->
+        <div class="lg:col-span-7 space-y-4 sm:space-y-5 text-left">
+          
+          <!-- Kicker justo debajo del menú bajado -->
+          <div class="inline-flex items-center gap-2 px-3 py-1 bg-[#1F2937] border border-slate-500/50 rounded text-xs font-bold tracking-widest text-white uppercase shadow-sm">
+            <span class="w-2 h-2 rounded-full bg-[#E50914] animate-pulse"></span>
+            <span data-i18n="hero.pretitle">BALONCESTO · DESDE 2009 EN ALONSOTEGI</span>
+          </div>
+
+          <!-- Titular Principal de Impacto -->
+          <h1 class="font-display text-4xl sm:text-6xl lg:text-7xl xl:text-8xl font-black tracking-tight leading-[0.92] text-white">
+            <span data-i18n="hero.title1">DONDE EL</span> <br>
+            <span class="text-[#E50914] inline-block filter drop-shadow-[0_0_25px_rgba(229,9,20,0.4)]" data-i18n="hero.titleHighlight">BALONCESTO</span> <br>
+            <span data-i18n="hero.title2">SE CONVIERTE EN</span> <br>
+            <span data-i18n="hero.title3">EQUIPO.</span>
+          </h1>
+
+          <p class="text-base sm:text-lg text-slate-100 font-normal max-w-xl leading-relaxed" data-i18n="hero.subtitle">
+            Fomentando el deporte, la actividad física y el desarrollo personal en Alonsotegi a través del baloncesto.
+          </p>
+
+          <div class="flex flex-wrap items-center gap-3 pt-1">
+            <a href="#horarios" class="inline-flex items-center justify-center gap-2 px-5 py-2.5 bg-[#E50914] hover:bg-[#c40811] text-white font-bold text-xs sm:text-sm tracking-wider uppercase rounded-lg transition-all transform hover:-translate-y-0.5 shadow-lg shadow-[#E50914]/25" data-i18n="hero.ctaSchedule">
+              Ver Horarios →
+            </a>
+            <a href="#contacto" class="inline-flex items-center justify-center gap-2 px-5 py-2.5 bg-[#1F2937] hover:bg-[#283243] border border-slate-500/60 text-white font-bold text-xs sm:text-sm tracking-wider uppercase rounded-lg transition-all" data-i18n="hero.ctaContact">
+              Inscripción / Contacto
+            </a>
+          </div>
+
+          <!-- Métricas y Estadísticas del Club -->
+          <div class="pt-4 border-t border-slate-500/50 grid grid-cols-3 gap-4 max-w-lg">
+            <div>
+              <div class="font-display text-3xl sm:text-4xl font-bold text-white tabular-nums">1</div>
+              <div class="font-display text-3xl sm:text-4xl font-bold text-white tabular-nums" data-i18n="hero.statSeasons">Trabajo</div>
+            </div>
+            <div>
+              <div class="font-display text-3xl sm:text-4xl font-bold text-[#E50914] tabular-nums">2</div>
+              <div class="font-display text-3xl sm:text-4xl font-bold text-[#E50914] tabular-nums" data-i18n="hero.statPlayers">Equipo</div>
+            </div>
+            <div>
+              <div class="font-display text-3xl sm:text-4xl font-bold text-white tabular-nums">3</div>
+              <div class="font-display text-3xl sm:text-4xl font-bold text-white tabular-nums" data-i18n="hero.statTeams">Ilusión</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Columna Derecha: Tarjeta del Logo Oficial de Larrobeltz -->
+        <div class="lg:col-span-5 flex justify-center lg:justify-end">
+          <div class="relative group">
+            <div aria-hidden="true" class="absolute -inset-4 rounded-full bg-gradient-to-tr from-[#E50914]/30 via-transparent to-red-500/15 blur-2xl"></div>
+            <div class="relative z-10 p-5 sm:p-7 bg-[#1F2937]/95 backdrop-blur-sm border border-slate-500/60 rounded-3xl shadow-2xl flex flex-col items-center">
+              <img src="Logo Larrobeltz.png" alt="Logo Oficial Larrobeltz" class="w-60 h-60 md:w-72 md:h-72 object-contain rounded-full drop-shadow-md">
+              <div class="mt-4 flex items-center gap-2.5">
+                <span class="font-display text-2xl sm:text-3xl tracking-widest text-[#E50914] font-bold">26/27</span>
+                <span class="text-slate-400">|</span>
+                <span class="text-xs font-semibold uppercase tracking-wider text-slate-100">Alonsotegi Saskibaloia</span>
+              </div>
+              <div class="mt-2 inline-flex items-center gap-2 px-3 py-1 bg-[#E50914]/20 border border-[#E50914]/40 rounded-full text-[11px] font-bold text-white tracking-wider">
+                <span>🏆 AUPA LARROBELTZ 🏀</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- 01 FILOSOFÍA DEL CLUB (Gris grafito #2F3642, compacto) -->
+  <section id="filosofia" class="py-10 sm:py-12 bg-[#2F3642] border-b border-slate-600/60 relative">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex flex-col md:flex-row md:items-end justify-between gap-3 mb-8">
+        <div class="space-y-1.5">
+          <span class="text-xs font-bold tracking-widest text-[#E50914] uppercase block" data-i18n="philo.num">01 / FILOSOFÍA DEL CLUB</span>
+          <h2 class="font-display text-3xl sm:text-4xl lg:text-5xl font-black tracking-tight text-white leading-none">
+            <span data-i18n="philo.title1">MÁS QUE UN CLUB.</span> <br>
+            <span class="text-slate-200" data-i18n="philo.title2">UNA FORMA DE VIVIR.</span>
+          </h2>
+        </div>
+        <p class="max-w-md text-slate-200 text-sm leading-relaxed" data-i18n="philo.lead">
+          Desde Alonsotegi construimos un espacio seguro, cercano e integrador para crecer dentro y fuera de la pista.
+        </p>
+      </div>
+
+      <!-- Tarjetas Misión y Visión -->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-8">
+        <div class="bg-[#E50914] text-white p-6 sm:p-7 rounded-2xl relative overflow-hidden group shadow-lg">
+          <div class="flex items-center justify-between mb-4">
+            <span class="text-xs font-black tracking-widest uppercase bg-black/30 px-3 py-1 rounded" data-i18n="philo.mTag">01 MISIÓN</span>
+            <span class="font-display text-4xl font-bold opacity-50">01</span>
+          </div>
+          <p class="text-base sm:text-lg font-bold leading-snug" data-i18n="philo.mText">
+            Fomentar el deporte, la actividad física y el desarrollo personal en Alonsotegi garantizando un espacio formativo, familiar y accesible.
+          </p>
+        </div>
+
+        <div class="bg-[#1F242D] border border-slate-500/70 text-white p-6 sm:p-7 rounded-2xl relative overflow-hidden shadow-md">
+          <div class="flex items-center justify-between mb-4">
+            <span class="text-xs font-black tracking-widest uppercase bg-white/15 text-slate-100 px-3 py-1 rounded" data-i18n="philo.vTag">02 VISIÓN</span>
+            <span class="font-display text-4xl font-bold text-slate-400">02</span>
+          </div>
+          <p class="text-base sm:text-lg font-medium text-slate-100 leading-snug" data-i18n="philo.vText">
+            Ser un club capaz de ofrecer una estructura completa en todas las categorías base hasta culminar en un equipo sénior propio.
+          </p>
+        </div>
+      </div>
+
+      <!-- 5 Valores del Club -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-3.5">
+        <div class="bg-[#242933] border border-slate-500/50 p-4 rounded-xl shadow-sm">
+          <span class="text-[10px] font-bold text-slate-300 tracking-wider">01</span>
+          <h3 class="text-sm font-bold text-white mb-1 mt-1" data-i18n="val.1.t">FAMILIA Y CERCANÍA</h3>
+          <p class="text-xs text-slate-200" data-i18n="val.1.d">Un trato directo y humano donde cada deportista y sus familias son parte esencial del proyecto.</p>
+        </div>
+        <div class="bg-[#242933] border border-slate-500/50 p-4 rounded-xl shadow-sm">
+          <span class="text-[10px] font-bold text-slate-300 tracking-wider">02</span>
+          <h3 class="text-sm font-bold text-white mb-1 mt-1" data-i18n="val.2.t">EDUCACIÓN Y FORMACIÓN</h3>
+          <p class="text-xs text-slate-200" data-i18n="val.2.d">El baloncesto como herramienta pedagógica para cultivar hábitos saludables, disciplina y resiliencia.</p>
+        </div>
+        <div class="bg-[#242933] border border-slate-500/50 p-4 rounded-xl shadow-sm">
+          <span class="text-[10px] font-bold text-slate-300 tracking-wider">03</span>
+          <h3 class="text-sm font-bold text-white mb-1 mt-1" data-i18n="val.3.t">ILUSIÓN E INCLUSIÓN</h3>
+          <p class="text-xs text-slate-200" data-i18n="val.3.d">Las puertas abiertas para todo el pueblo. Nadie se queda fuera por nivel o procedencia.</p>
+        </div>
+        <div class="bg-[#242933] border border-slate-500/50 p-4 rounded-xl shadow-sm">
+          <span class="text-[10px] font-bold text-slate-300 tracking-wider">04</span>
+          <h3 class="text-sm font-bold text-white mb-1 mt-1" data-i18n="val.4.t">RESPETO Y DEPORTIVIDAD</h3>
+          <p class="text-xs text-slate-200" data-i18n="val.4.d">Respeto al árbitro, al rival, a la grada y al propio equipo como norma sagrada e innegociable.</p>
+        </div>
+        <div class="bg-[#242933] border border-slate-500/50 p-4 rounded-xl shadow-sm">
+          <span class="text-[10px] font-bold text-slate-300 tracking-wider">05</span>
+          <h3 class="text-sm font-bold text-white mb-1 mt-1" data-i18n="val.5.t">COMPROMISO Y SERIEDAD</h3>
+          <p class="text-xs text-slate-200" data-i18n="val.5.d">Rigor y profesionalidad en cada entrenamiento, gestión transparente y puntualidad.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 02 NUESTRA HISTORIA (Gris pizarra #374151, compacto) -->
+  <section id="historia" class="py-10 sm:py-12 bg-[#374151] border-b border-slate-600/60 relative overflow-hidden">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex flex-col md:flex-row md:items-end justify-between gap-3 mb-8">
+        <div class="space-y-1.5">
+          <span class="text-xs font-bold tracking-widest text-[#E50914] uppercase block" data-i18n="hist.num">02 / NUESTRA HISTORIA</span>
+          <h2 class="font-display text-3xl sm:text-4xl lg:text-5xl font-black tracking-tight text-white leading-none">
+            <span data-i18n="hist.title1">DE AQUÍ.</span> <br>
+            <span class="text-[#E50914]" data-i18n="hist.title2">PARA TODOS.</span>
+          </h2>
+        </div>
+        <p class="max-w-md text-slate-100 text-sm leading-relaxed" data-i18n="hist.lead">
+          Casi 17 temporadas manteniendo viva la llama del baloncesto en nuestro pueblo con pasión incombustible.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 items-start">
+        <div class="lg:col-span-7 space-y-4 text-slate-100 text-sm sm:text-base leading-relaxed font-normal">
+          <p data-i18n="hist.p1">
+            Desde 2009, ALONSOTEGIKO LARROBELTZ SASKIBALOI TALDEA hace disfrutar del baloncesto al pueblo de Alonsotegi. Tras la marcha del histórico Gorriak Alonsotegi (que llegó a competir con orgullo en la Liga Vasca Femenina), varios aitas, amas y cuatro chalados apasionados por el balón naranja decidimos que el baloncesto no podía morir en nuestras calles.
+          </p>
+          <p data-i18n="hist.p2">
+            Así nació Larrobeltz: con un equipo sénior masculino y un cadete femenino. A lo largo de casi 17 temporadas, el sénior masculino se consolidó como eje central, combinándose con equipos de cantera escolar. Mantener las categorías escolares en un municipio pequeño siempre exigió un esfuerzo titánico.
+          </p>
+          <p data-i18n="hist.p3">
+            Pero en 2020, tras la pandemia, el rumbo dio un giro decisivo: dijimos adiós al sénior masculino para volcar toda nuestra energía en el deporte base y el baloncesto femenino. La apuesta fue un éxito rotundo: consolidamos 4 y hasta 5 equipos escolares en nuestra temporada más prolífica.
+          </p>
+
+          <!-- Frase célebre de César -->
+          <div class="mt-4 bg-[#1F2937] border border-slate-500/70 rounded-xl p-5 relative shadow-md">
+            <span class="text-xs font-bold uppercase tracking-wider text-[#E50914] block mb-1" data-i18n="hist.quoteTitle">Palabras del Presidente César:</span>
+            <blockquote class="text-white font-medium text-sm sm:text-base italic leading-relaxed" data-i18n="hist.quote">
+              «El baloncesto es la cosa más importante entre las cosas menos importantes». Pero esto a veces no es verdad: en Larrobeltz creemos firmemente en hacer pueblo. Participamos en fiestas locales, Euskaldia, el día del AMPA y colaboramos con la Mancomunidad de las Encartaciones para el impulso del Euskara en el deporte.
+            </blockquote>
+          </div>
+        </div>
+
+        <div class="lg:col-span-5 space-y-3.5">
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+            <div class="bg-[#1F2937] border border-slate-500/60 p-4 rounded-xl shadow-sm">
+              <span class="font-display text-xl font-bold tracking-wider text-white">2009 - 2013</span>
+              <h4 class="text-xs font-bold text-slate-100 uppercase mb-1" data-i18n="hist.m1.t">El Nacimiento</h4>
+              <p class="text-xs text-slate-200" data-i18n="hist.m1.d">Familias unidas para salvar el basket en el pueblo tras la marcha de Gorriak.</p>
+            </div>
+            <div class="bg-[#1F2937] border border-slate-500/60 p-4 rounded-xl shadow-sm">
+              <span class="font-display text-xl font-bold tracking-wider text-white">2020 - Hoy</span>
+              <h4 class="text-xs font-bold text-slate-100 uppercase mb-1" data-i18n="hist.m2.t">Revolución Base</h4>
+              <p class="text-xs text-slate-200" data-i18n="hist.m2.d">Apuesta total por el baloncesto femenino y 5 equipos escolares consolidados.</p>
+            </div>
+          </div>
+
+          <div class="bg-[#2B3240] border border-slate-500/60 p-3.5 rounded-xl flex items-center gap-3">
+            <p class="text-xs text-slate-200 font-medium leading-snug" data-i18n="hist.village">
+              Comprometidos con fiestas locales, Euskaraldia, AMPA y Mancomunidad de las Encartaciones.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 03 EQUIPOS Y CUERPO TÉCNICO (Gris grafito #2F3642, interactivo) -->
+  <section id="equipos" class="py-10 sm:py-12 bg-[#2F3642] border-b border-slate-600/60 relative">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex flex-col md:flex-row md:items-end justify-between gap-3 mb-8">
+        <div class="space-y-1.5">
+          <span class="text-xs font-bold tracking-widest text-[#E50914] uppercase block" data-i18n="teams.num">03 / EQUIPOS Y CUERPO TÉCNICO</span>
+          <h2 class="font-display text-3xl sm:text-4xl lg:text-5xl font-black tracking-tight text-white leading-none" data-i18n="teams.title">
+            LA PISTA ES NUESTRA AULA.
+          </h2>
+        </div>
+        <p class="max-w-md text-slate-200 text-sm leading-relaxed" data-i18n="teams.subtitle">
+          Temporada 2026 / 2027 · Cinco equipos, una misma identidad de juego.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-5 items-start">
+        <!-- Lista de Botones de Equipos -->
+        <div class="lg:col-span-4 flex flex-col gap-2" id="teamsTabList">
+          <!-- Generado o controlado por JS -->
+        </div>
+
+        <!-- Ficha Detallada del Equipo Activo -->
+        <div class="lg:col-span-8 bg-[#1F242D] border border-slate-500/70 rounded-2xl p-6 sm:p-7 shadow-lg" id="teamDetailCard">
+          <!-- Inyectado dinámicamente según selección -->
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 04 HORARIOS (Gris pizarra #374151, tabla completa Frontón de Alonsotegi) -->
+  <section id="horarios" class="py-10 sm:py-12 bg-[#374151] border-b border-slate-600/60 relative">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex flex-col md:flex-row md:items-end justify-between gap-3 mb-6">
+        <div class="space-y-1.5">
+          <span class="text-xs font-bold tracking-widest text-[#E50914] uppercase block" data-i18n="sch.num">04 / HORARIOS</span>
+          <h2 class="font-display text-3xl sm:text-4xl lg:text-5xl font-black tracking-tight text-white leading-none">
+            <span data-i18n="sch.title1">NOS VEMOS EN</span> <br>
+            <span class="text-[#E50914]" data-i18n="sch.title2">LA PISTA.</span>
+          </h2>
+        </div>
+        <div class="flex items-center gap-2 text-slate-100 text-xs sm:text-sm font-semibold bg-[#1F2937] border border-slate-500/60 px-3.5 py-1.5 rounded-xl shadow-sm">
+          <span data-i18n="sch.lead">Frontón Municipal de Alonsotegi · De Lunes a Viernes</span>
+        </div>
+      </div>
+
+      <!-- Tabla Cuadrante Semanal -->
+      <div class="bg-[#1F2937] border border-slate-500/70 rounded-2xl overflow-hidden shadow-xl mb-6">
+        <div class="overflow-x-auto">
+          <table class="w-full text-left border-collapse">
+            <thead>
+              <tr class="bg-[#161C24] border-b border-slate-600/70 text-slate-200 text-xs font-bold uppercase tracking-wider">
+                <th class="py-3.5 px-4 sm:px-6" data-i18n="sch.colTeam">Equipo / Categoría</th>
+                <th class="py-3.5 px-4" data-i18n="sch.dayMon">Lunes</th>
+                <th class="py-3.5 px-4" data-i18n="sch.dayTue">Martes</th>
+                <th class="py-3.5 px-4" data-i18n="sch.dayWed">Miércoles</th>
+                <th class="py-3.5 px-4" data-i18n="sch.dayThu">Jueves</th>
+                <th class="py-3.5 px-4" data-i18n="sch.dayFri">Viernes</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-slate-700/60 text-xs sm:text-sm">
+              <tr class="hover:bg-[#252E3D]/70 transition-colors">
+                <td class="py-3 px-4 sm:px-6 font-display text-lg sm:text-xl font-bold text-white">JUNIOR</td>
+                <td class="py-3 px-4"><span class="font-semibold text-white bg-[#2B3444] px-2 py-1 rounded border border-slate-600/60">19:30 - 21:00</span></td>
+                <td class="py-3 px-4 text-slate-500">—</td>
+                <td class="py-3 px-4"><span class="font-semibold text-white bg-[#2B3444] px-2 py-1 rounded border border-slate-600/60">19:30 - 21:00</span></td>
+                <td class="py-3 px-4 text-slate-500">—</td>
+                <td class="py-3 px-4"><span class="font-semibold text-white bg-[#2B3444] px-2 py-1 rounded border border-slate-600/60">19:30 - 21:00</span></td>
+              </tr>
+              <tr class="hover:bg-[#252E3D]/70 transition-colors">
+                <td class="py-3 px-4 sm:px-6 font-display text-lg sm:text-xl font-bold text-white">INFANTIL A</td>
+                <td class="py-3 px-4 text-slate-500">—</td>
+                <td class="py-3 px-4"><span class="font-semibold text-white bg-[#2B3444] px-2 py-1 rounded border border-slate-600/60">18:30 - 19:45</span></td>
+                <td class="py-3 px-4 text-slate-500">—</td>
+                <td class="py-3 px-4"><span class="font-semibold text-white bg-[#2B3444] px-2 py-1 rounded border border-slate-600/60">17:15 - 18:30</span></td>
+                <td class="py-3 px-4"><span class="font-semibold text-white bg-[#2B3444] px-2 py-1 rounded border border-slate-600/60">18:15 - 19:30</span></td>
+              </tr>
+              <tr class="hover:bg-[#252E3D]/70 transition-colors">
+                <td class="py-3 px-4 sm:px-6 font-display text-lg sm:text-xl font-bold text-white">INFANTIL B</td>
+                <td class="py-3 px-4"><span class="font-semibold text-white bg-[#2B3444] px-2 py-1 rounded border border-slate-600/60">18:00 - 19:30</span></td>
+                <td class="py-3 px-4 text-slate-500">—</td>
+                <td class="py-3 px-4"><span class="font-semibold text-white bg-[#2B3444] px-2 py-1 rounded border border-slate-600/60">18:00 - 19:30</span></td>
+                <td class="py-3 px-4 text-slate-500">—</td>
+                <td class="py-3 px-4"><span class="font-semibold text-white bg-[#2B3444] px-2 py-1 rounded border border-slate-600/60">17:00 - 18:15</span></td>
+              </tr>
+              <tr class="hover:bg-[#252E3D]/70 transition-colors">
+                <td class="py-3 px-4 sm:px-6 font-display text-lg sm:text-xl font-bold text-white">PREMINI</td>
+                <td class="py-3 px-4 text-slate-500">—</td>
+                <td class="py-3 px-4"><span class="font-semibold text-white bg-[#2B3444] px-2 py-1 rounded border border-slate-600/60">17:15 - 18:30</span></td>
+                <td class="py-3 px-4 text-slate-500">—</td>
+                <td class="py-3 px-4"><span class="font-semibold text-white bg-[#2B3444] px-2 py-1 rounded border border-slate-600/60">18:30 - 19:45</span></td>
+                <td class="py-3 px-4 text-slate-500">—</td>
+              </tr>
+              <tr class="hover:bg-[#252E3D]/70 transition-colors">
+                <td class="py-3 px-4 sm:px-6 font-display text-lg sm:text-xl font-bold text-white">ESKOLA</td>
+                <td class="py-3 px-4 text-slate-500">—</td>
+                <td class="py-3 px-4 text-slate-500">—</td>
+                <td class="py-3 px-4 text-slate-500">—</td>
+                <td class="py-3 px-4 text-slate-500">—</td>
+                <td class="py-3 px-4"><span class="font-semibold text-white bg-[#2B3444] px-2 py-1 rounded border border-slate-600/60">16:45 - 17:45</span></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="bg-[#1F2937] border border-slate-500/60 rounded-xl p-3.5 flex items-center gap-3">
+        <p class="text-xs text-slate-200" data-i18n="sch.note">
+          Los horarios pueden ajustarse durante la temporada según convocatorias oficiales de competición y disponibilidad municipal.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 05 CUOTAS ANUALES (Gris grafito #2F3642, tarjetas con precios y descuento familiar) -->
+  <section id="cuotas" class="py-10 sm:py-12 bg-[#2F3642] border-b border-slate-600/60 relative">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex flex-col md:flex-row md:items-end justify-between gap-3 mb-8">
+        <div class="space-y-1.5">
+          <span class="text-xs font-bold tracking-widest text-[#E50914] uppercase block" data-i18n="fees.num">05 / CUOTAS ANUALES</span>
+          <h2 class="font-display text-3xl sm:text-4xl lg:text-5xl font-black tracking-tight text-white leading-none">
+            <span data-i18n="fees.title1">TU LUGAR</span> <br>
+            <span class="text-[#E50914]" data-i18n="fees.title2">ESTÁ AQUÍ.</span>
+          </h2>
+        </div>
+        <p class="max-w-md text-slate-200 text-sm leading-relaxed" data-i18n="fees.subtitle">
+          Temporada 2026 / 2027 · Todo lo que necesitas para disfrutar del baloncesto, con máxima transparencia.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-5 items-stretch mb-6">
+        <!-- Eskola -->
+        <div class="bg-[#242933] border border-slate-500/60 rounded-2xl p-5 sm:p-6 flex flex-col justify-between shadow-md">
+          <div>
+            <span class="text-xs font-bold uppercase tracking-wider text-slate-300">Iniciación</span>
+            <h3 class="font-display text-2xl sm:text-3xl font-bold text-white mb-1">ESKOLA</h3>
+            <p class="text-xs text-slate-200 mb-4" data-i18n="fees.c1.freq">1 día a la semana</p>
+            <div class="mb-5 pb-4 border-b border-slate-600/50 flex items-baseline gap-1.5">
+              <span class="font-display text-4xl sm:text-5xl font-black text-white">70 €</span>
+              <span class="text-xs font-bold text-slate-300 uppercase" data-i18n="fees.perSeason">/ temporada</span>
+            </div>
+            <ul class="space-y-2 mb-5 text-xs text-slate-100 font-medium">
+              <li>✓ 1 sesión semanal de psicomotricidad y juego</li>
+              <li>✓ Material deportivo homologado</li>
+              <li>✓ Seguro de actividad escolar</li>
+              <li>✓ Camiseta oficial del club</li>
+            </ul>
+          </div>
+          <a href="#contacto" class="w-full text-center py-2.5 px-4 rounded-xl text-xs font-bold uppercase tracking-wider bg-[#2B3240] hover:bg-[#343D4E] text-white border border-slate-500/60 transition-colors" data-i18n="fees.enroll">
+            Inscribirse →
+          </a>
+        </div>
+
+        <!-- Deporte Escolar (Destacado) -->
+        <div class="relative bg-[#1F242D] border-2 border-[#E50914] rounded-2xl p-5 sm:p-6 flex flex-col justify-between shadow-xl md:-translate-y-1">
+          <div class="absolute -top-3 left-1/2 transform -translate-x-1/2 bg-[#E50914] text-white text-[10px] font-black uppercase tracking-widest px-3 py-0.5 rounded-full shadow-md" data-i18n="fees.popular">
+            MÁS POPULAR
+          </div>
+          <div>
+            <span class="text-xs font-bold uppercase tracking-wider text-slate-300">Premini e Infantil</span>
+            <h3 class="font-display text-2xl sm:text-3xl font-bold text-white mb-1">DEPORTE ESCOLAR</h3>
+            <p class="text-xs text-slate-200 mb-4" data-i18n="fees.c2.freq">2 - 3 días a la semana</p>
+            <div class="mb-5 pb-4 border-b border-slate-600/50 flex items-baseline gap-1.5">
+              <span class="font-display text-4xl sm:text-5xl font-black text-white">160 €</span>
+              <span class="text-xs font-bold text-slate-300 uppercase" data-i18n="fees.perSeason">/ temporada</span>
+            </div>
+            <ul class="space-y-2 mb-5 text-xs text-slate-100 font-medium">
+              <li>✓ 2 a 3 entrenamientos semanales en pista</li>
+              <li>✓ Equipación de juego oficial</li>
+              <li>✓ Arbitrajes y competición escolar Bizkaia</li>
+              <li>✓ Material deportivo y balones</li>
+              <li>✓ Seguro deportivo escolar Diputación</li>
+            </ul>
+          </div>
+          <a href="#contacto" class="w-full text-center py-2.5 px-4 rounded-xl text-xs font-bold uppercase tracking-wider bg-[#E50914] hover:bg-[#c40811] text-white shadow-md transition-colors" data-i18n="fees.enroll">
+            Inscribirse →
+          </a>
+        </div>
+
+        <!-- Deporte Federado -->
+        <div class="bg-[#242933] border border-slate-500/60 rounded-2xl p-5 sm:p-6 flex flex-col justify-between shadow-md">
+          <div>
+            <span class="text-xs font-bold uppercase tracking-wider text-slate-300">Junior</span>
+            <h3 class="font-display text-2xl sm:text-3xl font-bold text-white mb-1">DEPORTE FEDERADO</h3>
+            <p class="text-xs text-slate-200 mb-4" data-i18n="fees.c3.freq">3 días a la semana</p>
+            <div class="mb-5 pb-4 border-b border-slate-600/50 flex items-baseline gap-1.5">
+              <span class="font-display text-4xl sm:text-5xl font-black text-white">270 €</span>
+              <span class="text-xs font-bold text-slate-300 uppercase" data-i18n="fees.perSeason">/ temporada</span>
+            </div>
+            <ul class="space-y-2 mb-5 text-xs text-slate-100 font-medium">
+              <li>✓ 3 entrenamientos semanales de alta intensidad</li>
+              <li>✓ Ficha federativa oficial Bizkaia Basket</li>
+              <li>✓ Arbitrajes y oficiales de mesa federados</li>
+              <li>✓ Equipación completa de competición</li>
+              <li>✓ Seguro médico federativo obligatorio</li>
+            </ul>
+          </div>
+          <a href="#contacto" class="w-full text-center py-2.5 px-4 rounded-xl text-xs font-bold uppercase tracking-wider bg-[#2B3240] hover:bg-[#343D4E] text-white border border-slate-500/60 transition-colors" data-i18n="fees.enroll">
+            Inscribirse →
+          </a>
+        </div>
+      </div>
+
+      <!-- Descuento 25% por segundo hermano/a -->
+      <div class="bg-[#1F242D] border-2 border-[#E50914]/50 rounded-2xl p-4 sm:p-5 flex flex-col sm:flex-row items-center justify-between gap-4 shadow-md">
+        <div>
+          <span class="font-display text-xl sm:text-2xl font-bold tracking-wide text-white block" data-i18n="fees.discountTitle">FAMILIA LARROBELTZ</span>
+          <p class="text-xs text-slate-200" data-i18n="fees.discountDesc">25% de descuento en la cuota para la segunda/o hija/o inscrita/o en el club.</p>
+        </div>
+        <a href="#contacto" class="shrink-0 px-4 py-2 bg-[#E50914] hover:bg-[#b80710] text-white text-xs font-bold uppercase tracking-wider rounded-lg transition-colors" data-i18n="fees.discountBtn">
+          Consultar descuento
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- 06 NORMAS Y CONVIVENCIA (Gris pizarra #374151, 3 columnas) -->
+  <section id="normas" class="py-10 sm:py-12 bg-[#374151] border-b border-slate-600/60 relative">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex flex-col md:flex-row md:items-end justify-between gap-3 mb-6">
+        <div class="space-y-1.5">
+          <span class="text-xs font-bold tracking-widest text-[#E50914] uppercase block" data-i18n="rules.num">06 / NORMAS Y CONVIVENCIA</span>
+          <h2 class="font-display text-3xl sm:text-4xl lg:text-5xl font-black tracking-tight text-white leading-none">
+            <span data-i18n="rules.title1">COMPETIMOS</span> <br>
+            <span class="text-[#E50914]" data-i18n="rules.title2">CON RESPETO.</span>
+          </h2>
+        </div>
+        <p class="max-w-md text-slate-100 text-sm leading-relaxed" data-i18n="rules.lead">
+          La mejor afición también juega su partido. Estos compromisos garantizan el orgullo de vestir nuestra camiseta.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
+        <div class="bg-[#1F2937] border border-slate-500/60 p-5 rounded-xl shadow-sm">
+          <span class="font-display text-2xl font-bold text-slate-400">01</span>
+          <h3 class="text-sm sm:text-base font-bold text-white mb-3" data-i18n="rules.c1.t">ENTRENAMIENTOS</h3>
+          <ul class="space-y-2 text-xs text-slate-100">
+            <li>✓ Puntualidad: estar 10 minutos antes en pista listos para calentar.</li>
+            <li>✓ Asistir siempre con la ropa deportiva oficial del club y zapatillas adecuadas.</li>
+            <li>✓ Cuidar el material común (balones, conos) y las instalaciones del frontón.</li>
+            <li>✓ Actitud positiva, escucha activa al entrenador/a y afán de superación.</li>
+          </ul>
+        </div>
+        <div class="bg-[#1F2937] border border-slate-500/60 p-5 rounded-xl shadow-sm">
+          <span class="font-display text-2xl font-bold text-slate-400">02</span>
+          <h3 class="text-sm sm:text-base font-bold text-white mb-3" data-i18n="rules.c2.t">PARTIDOS</h3>
+          <ul class="space-y-2 text-xs text-slate-100">
+            <li>✓ Puntualidad estricta en las convocatorias para partidos en casa y desplazamientos.</li>
+            <li>✓ Respeto absoluto a todas las personas: árbitros, mesa, rivales y compañeros/as.</li>
+            <li>✓ Cuidado ejemplar de vestuarios locales y visitantes: los dejamos impecables.</li>
+            <li>✓ Saber ganar con humildad y perder con deportividad y cabeza alta.</li>
+          </ul>
+        </div>
+        <div class="bg-[#1F2937] border border-slate-500/60 p-5 rounded-xl shadow-sm">
+          <span class="font-display text-2xl font-bold text-slate-400">03</span>
+          <h3 class="text-sm sm:text-base font-bold text-white mb-3" data-i18n="rules.c3.t">EN LA GRADA</h3>
+          <ul class="space-y-2 text-xs text-slate-100">
+            <li>✓ La grada es para animar y arropar al equipo, nunca para juzgar arbitrajes ni rivales.</li>
+            <li>✓ Cero insultos, descalificaciones o comentarios despectivos hacia nadie.</li>
+            <li>✓ Los aitas, amas y familiares somos el mayor ejemplo cívico para nuestros txikis.</li>
+            <li>✓ Aplaude el esfuerzo y las buenas jugadas de ambos equipos.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 07 NOVEDADES (Gris grafito #2F3642) -->
+  <section id="novedades" class="py-10 sm:py-12 bg-[#2F3642] border-b border-slate-600/60 relative">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex flex-col md:flex-row md:items-end justify-between gap-3 mb-6">
+        <div class="space-y-1.5">
+          <span class="text-xs font-bold tracking-widest text-[#E50914] uppercase block" data-i18n="news.num">07 / NOVEDADES</span>
+          <h2 class="font-display text-3xl sm:text-4xl lg:text-5xl font-black tracking-tight text-white leading-none" data-i18n="news.title">
+            LO ÚLTIMO DEL CLUB.
+          </h2>
+        </div>
+        <p class="max-w-md text-slate-200 text-sm leading-relaxed" data-i18n="news.subtitle">
+          Actualidad y comunicados oficiales de Larrobeltz Saskibaloi Taldea.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
+        <article class="bg-[#1F242D] border border-slate-500/60 rounded-xl p-5 shadow-sm">
+          <span class="text-[10px] uppercase font-bold text-[#E50914] block mb-1">TEMPORADA 2026/2027</span>
+          <h3 class="font-display text-xl sm:text-2xl font-bold text-white mb-2" data-i18n="news.c1.t">NUEVA JUNTA DIRECTIVA</h3>
+          <p class="text-xs text-slate-100" data-i18n="news.c1.d">Renovamos energías con el presidente César y un equipo comprometido para asegurar el futuro deportivo y social del club.</p>
+        </article>
+        <article class="bg-[#1F242D] border border-slate-500/60 rounded-xl p-5 shadow-sm">
+          <span class="text-[10px] uppercase font-bold text-[#E50914] block mb-1">INSTALACIONES</span>
+          <h3 class="font-display text-xl sm:text-2xl font-bold text-white mb-2" data-i18n="news.c2.t">MÁS HORAS DE PISTA</h3>
+          <p class="text-xs text-slate-100" data-i18n="news.c2.d">Ampliamos disponibilidad horaria en el Frontón Municipal de Alonsotegi para garantizar que todos los equipos entrenen en óptimas condiciones.</p>
+        </article>
+        <article class="bg-[#1F242D] border border-slate-500/60 rounded-xl p-5 shadow-sm">
+          <span class="text-[10px] uppercase font-bold text-[#E50914] block mb-1">EUSKARA ETA KIROLA</span>
+          <h3 class="font-display text-xl sm:text-2xl font-bold text-white mb-2" data-i18n="news.c3.t">IMPULSO AL EUSKARA CON ENKARTERRI</h3>
+          <p class="text-xs text-slate-100" data-i18n="news.c3.d">Colaboramos activamente con la Mancomunidad de las Encartaciones para normalizar e impulsar el uso del euskara en los entrenamientos y torneos.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- 08 CONTACTO Y LOCALIZACIÓN (Gris pizarra #374151, formulario y mapa del Frontón de Alonsotegi) -->
+  <section id="contacto" class="py-10 sm:py-12 bg-[#374151] relative">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex flex-col md:flex-row md:items-end justify-between gap-3 mb-8">
+        <div class="space-y-1.5">
+          <span class="text-xs font-bold tracking-widest text-[#E50914] uppercase block" data-i18n="contact.num">08 / CONTACTO Y LOCALIZACIÓN</span>
+          <h2 class="font-display text-3xl sm:text-4xl lg:text-5xl font-black tracking-tight text-white leading-none">
+            <span data-i18n="contact.title1">HABLAMOS DE</span> <br>
+            <span class="text-[#E50914]" data-i18n="contact.title2">BALONCESTO.</span>
+          </h2>
+        </div>
+        <p class="max-w-md text-slate-100 text-sm leading-relaxed" data-i18n="contact.subtitle">
+          ¿Tienes dudas sobre los equipos, los horarios o cómo formar parte? Escríbenos o visítanos en el frontón. ¡Te esperamos!
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 items-start">
+        <!-- Canales Directos y Mapa -->
+        <div class="lg:col-span-5 space-y-4">
+          <div class="space-y-2.5">
+            <a href="mailto:larrobeltz@bizkaiabasket.com" class="bg-[#1F2937] border border-slate-500/60 p-3.5 rounded-xl flex items-center gap-3 hover:border-[#E50914] transition-all block">
+              <span class="text-sm font-bold text-white">✉ larrobeltz@bizkaiabasket.com</span>
+            </a>
+            <a href="tel:617722185" class="bg-[#1F2937] border border-slate-500/60 p-3.5 rounded-xl flex items-center gap-3 hover:border-[#E50914] transition-all block">
+              <span class="text-sm font-bold text-white">📞 617 72 21 85</span>
+            </a>
+            <a href="https://www.instagram.com/larrobeltz_saskibaloi_taldea/" target="_blank" rel="noreferrer" class="bg-[#1F2937] border border-slate-500/60 p-3.5 rounded-xl flex items-center gap-3 hover:border-[#E50914] transition-all block">
+              <span class="text-sm font-bold text-white">📸 @larrobeltz_saskibaloi_taldea</span>
+            </a>
+          </div>
+
+          <div class="bg-[#1F2937] border border-slate-500/60 rounded-xl p-3 shadow-md">
+            <div class="text-xs font-bold text-white mb-2">📍 Frontón Municipal de Alonsotegi, Bizkaia</div>
+            <div class="h-44 sm:h-52 w-full rounded-lg overflow-hidden border border-slate-600/50">
+              <iframe
+                title="Frontón Municipal de Alonsotegi"
+                src="https://maps.google.com/maps?q=Front%C3%B3n+Municipal+de+Alonsotegi,+Alonsotegi,+Bizkaia&t=&z=16&ie=UTF8&iwloc=&output=embed"
+                width="100%"
+                height="100%"
+                style="border:0;"
+                loading="lazy"
+                referrerpolicy="no-referrer-when-downgrade"
+                class="filter contrast-125 opacity-90 hover:opacity-100 transition-opacity">
+              </iframe>
+            </div>
+          </div>
+        </div>
+
+        <!-- Formulario Funcional -->
+        <div class="lg:col-span-7 bg-[#1F2937] border border-slate-500/70 rounded-2xl p-6 sm:p-7 shadow-lg">
+          <h3 class="font-display text-2xl sm:text-3xl font-bold text-white mb-1" data-i18n="contact.formTitle">Envíanos un mensaje</h3>
+          <p class="text-xs text-slate-200 mb-5" data-i18n="contact.formDesc">Para inscripciones, dudas sobre cuotas o entrenamientos, te responderemos en 24-48 horas.</p>
+
+          <form id="contactForm" onsubmit="handleStaticFormSubmit(event)" class="space-y-4">
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div>
+                <label class="block text-xs font-bold text-slate-200 uppercase mb-1" data-i18n="contact.nameLabel">Tu nombre y apellidos *</label>
+                <input type="text" required class="w-full bg-[#2B3240] border border-slate-500/60 rounded-lg px-3.5 py-2 text-sm text-white placeholder-slate-400 focus:outline-none focus:border-[#E50914]">
+              </div>
+              <div>
+                <label class="block text-xs font-bold text-slate-200 uppercase mb-1" data-i18n="contact.emailLabel">Correo electrónico *</label>
+                <input type="email" required class="w-full bg-[#2B3240] border border-slate-500/60 rounded-lg px-3.5 py-2 text-sm text-white placeholder-slate-400 focus:outline-none focus:border-[#E50914]">
+              </div>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div>
+                <label class="block text-xs font-bold text-slate-200 uppercase mb-1" data-i18n="contact.phoneLabel">Teléfono de contacto</label>
+                <input type="tel" class="w-full bg-[#2B3240] border border-slate-500/60 rounded-lg px-3.5 py-2 text-sm text-white placeholder-slate-400 focus:outline-none focus:border-[#E50914]">
+              </div>
+              <div>
+                <label class="block text-xs font-bold text-slate-200 uppercase mb-1" data-i18n="contact.subjectLabel">Asunto</label>
+                <select class="w-full bg-[#2B3240] border border-slate-500/60 rounded-lg px-3.5 py-2 text-sm text-white focus:outline-none focus:border-[#E50914]">
+                  <option value="Inscripción de jugador/a">Inscripción de jugador/a</option>
+                  <option value="Información sobre horarios y cuotas">Información sobre horarios y cuotas</option>
+                  <option value="Duda o propuesta general">Duda o propuesta general</option>
+                </select>
+              </div>
+            </div>
+
+            <div>
+              <label class="block text-xs font-bold text-slate-200 uppercase mb-1" data-i18n="contact.msgLabel">Tu mensaje *</label>
+              <textarea rows="4" required class="w-full bg-[#2B3240] border border-slate-500/60 rounded-lg px-3.5 py-2 text-sm text-white placeholder-slate-400 focus:outline-none focus:border-[#E50914] resize-none"></textarea>
+            </div>
+
+            <button type="submit" id="btnSubmitForm" class="px-6 py-2.5 bg-[#E50914] hover:bg-[#c40811] text-white font-bold text-xs uppercase tracking-wider rounded-lg transition-all shadow-md" data-i18n="contact.sendBtn">
+              Enviar mensaje →
+            </button>
+          </form>
+
+          <div id="contactSuccess" class="hidden bg-[#2B3240] border border-[#E50914] rounded-xl p-6 text-center space-y-3">
+            <h4 class="font-display text-2xl font-bold text-white" data-i18n="contact.successTitle">¡Mensaje Enviado con Éxito!</h4>
+            <p class="text-xs text-slate-200" data-i18n="contact.successDesc">Eskerrik asko por contactar con Larrobeltz Saskibaloi Taldea. Nos pondremos en contacto contigo pronto.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER (Negro #0A0A0C, logo oficial, lema del club) -->
+  <footer class="bg-[#0A0A0C] border-t border-white/10 text-neutral-300 text-sm">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 sm:py-12">
+      <div class="grid grid-cols-1 md:grid-cols-12 gap-8 items-start">
+        <div class="md:col-span-5 space-y-3">
+          <div class="flex items-center gap-3">
+            <img src="Logo Larrobeltz.png" alt="Logo Larrobeltz" class="w-12 h-12 object-contain rounded-full">
+            <div>
+              <span class="font-display text-2xl font-bold tracking-wider text-white block">LARROBELTZ</span>
+              <span class="text-xs text-[#E50914] font-bold uppercase tracking-widest block">Alonsotegi Saskibaloi Taldea</span>
+            </div>
+          </div>
+          <p class="text-xs text-slate-300 max-w-sm leading-relaxed" data-i18n="footer.desc">
+            Club de baloncesto fundado en 2009 en Alonsotegi. Formación deportiva y desarrollo personal en valores.
+          </p>
+          <div class="pt-1">
+            <span class="font-display text-base tracking-widest text-white/90 font-bold block" data-i18n="footer.slogan">
+              TRABAJO · EQUIPO · ILUSIÓN
+            </span>
+          </div>
+        </div>
+
+        <div class="md:col-span-3 space-y-2.5">
+          <span class="text-xs font-bold uppercase tracking-widest text-white block" data-i18n="footer.navTitle">Navegación</span>
+          <ul class="space-y-1.5 text-xs text-slate-300">
+            <li><a href="#inicio" class="hover:text-white" data-i18n="nav.home">Inicio</a></li>
+            <li><a href="#filosofia" class="hover:text-white" data-i18n="nav.philosophy">Filosofía</a></li>
+            <li><a href="#historia" class="hover:text-white" data-i18n="nav.history">Historia</a></li>
+            <li><a href="#equipos" class="hover:text-white" data-i18n="nav.teams">Equipos</a></li>
+            <li><a href="#horarios" class="hover:text-white" data-i18n="nav.schedules">Horarios</a></li>
+            <li><a href="#cuotas" class="hover:text-white" data-i18n="nav.fees">Cuotas</a></li>
+            <li><a href="#normas" class="hover:text-white" data-i18n="nav.rules">Normas</a></li>
+            <li><a href="#contacto" class="hover:text-white" data-i18n="nav.contact">Contacto</a></li>
+          </ul>
+        </div>
+
+        <div class="md:col-span-4 space-y-3">
+          <span class="text-xs font-bold uppercase tracking-widest text-white block" data-i18n="footer.channels">Canales Oficiales</span>
+          <div class="text-xs space-y-1.5 text-slate-300">
+            <p>📍 Frontón Municipal de Alonsotegi, Bizkaia</p>
+            <p>📞 617 72 21 85</p>
+            <p>✉ larrobeltz@bizkaiabasket.com</p>
+            <p>📸 Instagram: @larrobeltz_saskibaloi_taldea</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="mt-8 pt-6 border-t border-white/10 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-slate-400">
+        <div>
+          © 2026/2027 Larrobeltz Saskibaloi Taldea. Todos los derechos reservados.
+        </div>
+        <a href="#inicio" class="text-neutral-300 hover:text-white transition-colors" data-i18n="footer.top">
+          ↑ Volver arriba
+        </a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- SCRIPT MULTIIDIOMA ESTÁTICO (ES / EU) Y LÓGICA DE EQUIPOS -->
+  <script>
+    const teamData = {
+      es: [
+        {
+          id: 'junior',
+          name: 'JUNIOR',
+          badge: 'Federado',
+          age: '2009 - 2010',
+          coaches: 'Aitor · Niko',
+          desc: 'Nuestro equipo referente en competición federada. Exigencia técnica, intensidad de juego y madurez competitiva sin perder el compañerismo.',
+          focus: ['Lectura táctica', 'Toma de decisiones', 'Físico adaptado', 'Cohesión de grupo'],
+          schedule: 'Lunes, Miércoles y Viernes (19:30 - 21:00)'
+        },
+        {
+          id: 'infantil-a',
+          name: 'INFANTIL A',
+          badge: 'Escolar',
+          age: '2011 - 2012',
+          coaches: 'Naia · Jon',
+          desc: 'Consolidación de fundamentos de juego, velocidad de transición ofensiva y defensa en ayudas. Crecimiento deportivo y humano en cada entrenamiento.',
+          focus: ['Fundamentos de tiro', 'Defensa colectiva', 'Velocidad', 'Espíritu competitivo'],
+          schedule: 'Martes (18:30-19:45), Jueves (17:15-18:30), Viernes (18:15-19:30)'
+        },
+        {
+          id: 'infantil-b',
+          name: 'INFANTIL B',
+          badge: 'Escolar',
+          age: '2011 - 2012',
+          coaches: 'Iker · Nahia',
+          desc: 'Evolución técnica progresiva y trabajo en equipo. Priorizamos el aprendizaje continuo, la confianza con el balón y la diversión responsable.',
+          focus: ['Manejo de balón', 'Pase en carrera', 'Solidaridad en pista', 'Confianza'],
+          schedule: 'Lunes (18:00-19:30), Miércoles (18:00-19:30), Viernes (17:00-18:15)'
+        },
+        {
+          id: 'premini',
+          name: 'PREMINI',
+          badge: 'Escolar',
+          age: '2013 - 2014',
+          coaches: 'Elsa · Ekhi',
+          desc: 'Etapa fundamental para enamorarse del baloncesto. Juegos de coordinación motriz, botar con ambas manos y aprender a competir con deportividad.',
+          focus: ['Coordinación motriz', 'Espíritu de equipo', 'Respeto a las reglas', 'Diversión'],
+          schedule: 'Martes (17:15 - 18:30) y Jueves (18:30 - 19:45)'
+        },
+        {
+          id: 'eskola',
+          name: 'ESKOLA',
+          badge: 'Iniciación',
+          age: '2015 - 2018',
+          coaches: 'Esti',
+          desc: 'El primer contacto con la canasta y el balón. Dinámicas lúdicas que fomentan el movimiento, la empatía y la amistad entre txikis de Alonsotegi.',
+          focus: ['Juego psicomotriz', 'Primer bote y canasta', 'Amistad y respeto', 'Hábitos saludables'],
+          schedule: 'Viernes (16:45 - 17:45)'
+        }
+      ],
+      eu: [
+        {
+          id: 'junior',
+          name: 'JUNIOR',
+          badge: 'Federatua',
+          age: '2009 - 2010',
+          coaches: 'Aitor · Niko',
+          desc: 'Gure erreferentziazko taldea txapelketa federatuan. Zorroztasun teknikoa, joko-intentsitatea eta heldutasuna, adiskidetasuna galdu gabe.',
+          focus: ['Irakurketa taktikoa', 'Erabakiak hartzea', 'Egokitutako fisikoa', 'Talde-kohesioa'],
+          schedule: 'Astelehena, Asteazkena eta Ostirala (19:30 - 21:00)'
+        },
+        {
+          id: 'infantil-a',
+          name: 'INFANTIL A',
+          badge: 'Eskolarra',
+          age: '2011 - 2012',
+          coaches: 'Naia · Jon',
+          desc: 'Jokoaren oinarriak finkatzea, eraso trantsizio bizia eta laguntza defentsa. Kirol eta giza hazkundea entrenamendu bakoitzean.',
+          focus: ['Tiroaren oinarriak', 'Defentsa kolektiboa', 'Abiadura', 'Lehia-espiritua'],
+          schedule: 'Asteartea (18:30-19:45), Osteguna (17:15-18:30), Ostirala (18:15-19:30)'
+        },
+        {
+          id: 'infantil-b',
+          name: 'INFANTIL B',
+          badge: 'Eskolarra',
+          age: '2011 - 2012',
+          coaches: 'Iker · Nahia',
+          desc: 'Garapen tekniko progresiboa eta talde-lana. Etengabeko ikaskuntza, pilotarekiko konfiantza eta arduraz gozatzea lehenesten ditugu.',
+          focus: ['Pilotaren kontrola', 'Pasea lasterka', 'Elkartasuna pistan', 'Konfiantza'],
+          schedule: 'Astelehena (18:00-19:30), Asteazkena (18:00-19:30), Ostirala (17:00-18:15)'
+        },
+        {
+          id: 'premini',
+          name: 'PREMINI',
+          badge: 'Eskolarra',
+          age: '2013 - 2014',
+          coaches: 'Elsa · Ekhi',
+          desc: 'Saskibaloiaz maitemintzeko funtsezko etapa. Koordinazio jolasak, bi eskuekin botatzea eta kiroltasunez lehiatzen ikastea.',
+          focus: ['Koordinazio motriza', 'Talde-espiritua', 'Arauak errespetatzea', 'Dibertsioa'],
+          schedule: 'Asteartea (17:15 - 18:30) eta Osteguna (18:30 - 19:45)'
+        },
+        {
+          id: 'eskola',
+          name: 'ESKOLA',
+          badge: 'Hasiera',
+          age: '2015 - 2018',
+          coaches: 'Esti',
+          desc: 'Saskiarekin eta pilotarekin lehen harremana. Alonsotegiko txikien artean mugimendua, enpatia eta laguntasuna bultzatzen dituzten jolasak.',
+          focus: ['Jolas psikomotriza', 'Lehen botea eta saskia', 'Laguntasuna', 'Ohitura osasuntsuak'],
+          schedule: 'Ostirala (16:45 - 17:45)'
+        }
+      ]
+    };
+
+    const i18n = {
+      es: {
+        'nav.home': 'Inicio',
+        'nav.philosophy': 'Filosofía',
+        'nav.history': 'Historia',
+        'nav.teams': 'Equipos',
+        'nav.schedules': 'Horarios',
+        'nav.fees': 'Cuotas',
+        'nav.rules': 'Normas',
+        'nav.contact': 'Contacto',
+        'nav.joinBtn': 'Únete al equipo',
+        'hero.pretitle': 'BALONCESTO · DESDE 2009 EN ALONSOTEGI',
+        'hero.title1': 'DONDE EL',
+        'hero.titleHighlight': 'BALONCESTO',
+        'hero.title2': 'SE CONVIERTE EN',
+        'hero.title3': 'EQUIPO.',
+        'hero.subtitle': 'Fomentando el deporte, la actividad física y el desarrollo personal en Alonsotegi a través del baloncesto.',
+        'hero.ctaSchedule': 'Ver Horarios →',
+        'hero.ctaContact': 'Inscripción / Contacto',
+        'hero.statSeasons': 'Trabajo',
+        'hero.statPlayers': 'Equipo',
+        'hero.statTeams': 'Ilusión',
+        'philo.num': '01 / FILOSOFÍA DEL CLUB',
+        'philo.title1': 'MÁS QUE UN CLUB.',
+        'philo.title2': 'UNA FORMA DE VIVIR.',
+        'philo.lead': 'Desde Alonsotegi construimos un espacio seguro, cercano e integrador para crecer dentro y fuera de la pista.',
+        'philo.mTag': '01 MISIÓN',
+        'philo.mText': 'Fomentar el deporte, la actividad física y el desarrollo personal en Alonsotegi garantizando un espacio formativo, familiar y accesible.',
+        'philo.vTag': '02 VISIÓN',
+        'philo.vText': 'Ser un club capaz de ofrecer una estructura completa en todas las categorías base hasta culminar en un equipo sénior propio.',
+        'val.1.t': 'FAMILIA Y CERCANÍA',
+        'val.1.d': 'Un trato directo y humano donde cada deportista y sus familias son parte esencial del proyecto.',
+        'val.2.t': 'EDUCACIÓN Y FORMACIÓN',
+        'val.2.d': 'El baloncesto como herramienta pedagógica para cultivar hábitos saludables, disciplina y resiliencia.',
+        'val.3.t': 'ILUSIÓN E INCLUSIÓN',
+        'val.3.d': 'Las puertas abiertas para todo el pueblo. Nadie se queda fuera por nivel o procedencia.',
+        'val.4.t': 'RESPETO Y DEPORTIVIDAD',
+        'val.4.d': 'Respeto al árbitro, al rival, a la grada y al propio equipo como norma sagrada e innegociable.',
+        'val.5.t': 'COMPROMISO Y SERIEDAD',
+        'val.5.d': 'Rigor y profesionalidad en cada entrenamiento, gestión transparente y puntualidad.',
+        'hist.num': '02 / NUESTRA HISTORIA',
+        'hist.title1': 'DE AQUÍ.',
+        'hist.title2': 'PARA TODOS.',
+        'hist.lead': 'Casi 17 temporadas manteniendo viva la llama del baloncesto en nuestro pueblo con pasión incombustible.',
+        'hist.p1': 'Desde 2009, ALONSOTEGIKO LARROBELTZ SASKIBALOI TALDEA hace disfrutar del baloncesto al pueblo de Alonsotegi. Tras la marcha del histórico Gorriak Alonsotegi (que llegó a competir con orgullo en la Liga Vasca Femenina), varios aitas, amas y cuatro chalados apasionados por el balón naranja decidimos que el baloncesto no podía morir en nuestras calles.',
+        'hist.p2': 'Así nació Larrobeltz: con un equipo sénior masculino y un cadete femenino. A lo largo de casi 17 temporadas, el sénior masculino se consolidó como eje central, combinándose con equipos de cantera escolar. Mantener las categorías escolares en un municipio pequeño siempre exigió un esfuerzo titánico.',
+        'hist.p3': 'Pero en 2020, tras la pandemia, el rumbo dio un giro decisivo: dijimos adiós al sénior masculino para volcar toda nuestra energía en el deporte base y el baloncesto femenino. La apuesta fue un éxito rotundo: consolidamos 4 y hasta 5 equipos escolares en nuestra temporada más prolífica.',
+        'hist.quoteTitle': 'Palabras del Presidente César:',
+        'hist.quote': '«El baloncesto es la cosa más importante entre las cosas menos importantes». Pero esto a veces no es verdad: en Larrobeltz creemos firmemente en hacer pueblo. Participamos en fiestas locales, Euskaldia, el día del AMPA y colaboramos con la Mancomunidad de las Encartaciones para el impulso del Euskara en el deporte.',
+        'hist.m1.t': 'El Nacimiento',
+        'hist.m1.d': 'Familias unidas para salvar el basket en el pueblo tras la marcha de Gorriak.',
+        'hist.m2.t': 'Revolución Base',
+        'hist.m2.d': 'Apuesta total por el baloncesto femenino y 5 equipos escolares consolidados.',
+        'hist.village': 'Comprometidos con fiestas locales, Euskaraldia, AMPA y Mancomunidad de las Encartaciones.',
+        'teams.num': '03 / EQUIPOS Y CUERPO TÉCNICO',
+        'teams.title': 'LA PISTA ES NUESTRA AULA.',
+        'teams.subtitle': 'Temporada 2026 / 2027 · Cinco equipos, una misma identidad de juego.',
+        'sch.num': '04 / HORARIOS',
+        'sch.title1': 'NOS VEMOS EN',
+        'sch.title2': 'LA PISTA.',
+        'sch.lead': 'Frontón Municipal de Alonsotegi · De Lunes a Viernes',
+        'sch.colTeam': 'Equipo / Categoría',
+        'sch.dayMon': 'Lunes',
+        'sch.dayTue': 'Martes',
+        'sch.dayWed': 'Miércoles',
+        'sch.dayThu': 'Jueves',
+        'sch.dayFri': 'Viernes',
+        'sch.note': 'Los horarios pueden ajustarse durante la temporada según convocatorias oficiales de competición y disponibilidad municipal.',
+        'fees.num': '05 / CUOTAS ANUALES',
+        'fees.title1': 'TU LUGAR',
+        'fees.title2': 'ESTÁ AQUÍ.',
+        'fees.subtitle': 'Temporada 2026 / 2027 · Todo lo que necesitas para disfrutar del baloncesto, con máxima transparencia.',
+        'fees.perSeason': '/ temporada',
+        'fees.c1.freq': '1 día a la semana',
+        'fees.c2.freq': '2 - 3 días a la semana',
+        'fees.c3.freq': '3 días a la semana',
+        'fees.popular': 'MÁS POPULAR',
+        'fees.enroll': 'Inscribirse →',
+        'fees.discountTitle': 'FAMILIA LARROBELTZ',
+        'fees.discountDesc': '25% de descuento en la cuota para la segunda/o hija/o inscrita/o en el club.',
+        'fees.discountBtn': 'Consultar descuento',
+        'rules.num': '06 / NORMAS Y CONVIVENCIA',
+        'rules.title1': 'COMPETIMOS',
+        'rules.title2': 'CON RESPETO.',
+        'rules.lead': 'La mejor afición también juega su partido. Estos compromisos garantizan el orgullo de vestir nuestra camiseta.',
+        'rules.c1.t': 'ENTRENAMIENTOS',
+        'rules.c2.t': 'PARTIDOS',
+        'rules.c3.t': 'EN LA GRADA',
+        'news.num': '07 / NOVEDADES',
+        'news.title': 'LO ÚLTIMO DEL CLUB.',
+        'news.subtitle': 'Actualidad y comunicados oficiales de Larrobeltz Saskibaloi Taldea.',
+        'news.c1.t': 'NUEVA JUNTA DIRECTIVA',
+        'news.c1.d': 'Renovamos energías con el presidente César y un equipo comprometido para asegurar el futuro deportivo y social del club.',
+        'news.c2.t': 'MÁS HORAS DE PISTA',
+        'news.c2.d': 'Ampliamos disponibilidad horaria en el Frontón Municipal de Alonsotegi para garantizar que todos los equipos entrenen en óptimas condiciones.',
+        'news.c3.t': 'IMPULSO AL EUSKARA CON ENKARTERRI',
+        'news.c3.d': 'Colaboramos activamente con la Mancomunidad de las Encartaciones para normalizar e impulsar el uso del euskara en los entrenamientos y torneos.',
+        'contact.num': '08 / CONTACTO Y LOCALIZACIÓN',
+        'contact.title1': 'HABLAMOS DE',
+        'contact.title2': 'BALONCESTO.',
+        'contact.subtitle': '¿Tienes dudas sobre los equipos, los horarios o cómo formar parte? Escríbenos o visítanos en el frontón. ¡Te esperamos!',
+        'contact.formTitle': 'Envíanos un mensaje',
+        'contact.formDesc': 'Para inscripciones, dudas sobre cuotas o entrenamientos, te responderemos en 24-48 horas.',
+        'contact.nameLabel': 'Tu nombre y apellidos *',
+        'contact.emailLabel': 'Correo electrónico *',
+        'contact.phoneLabel': 'Teléfono de contacto',
+        'contact.subjectLabel': 'Asunto',
+        'contact.msgLabel': 'Tu mensaje *',
+        'contact.sendBtn': 'Enviar mensaje →',
+        'contact.successTitle': '¡Mensaje Enviado con Éxito!',
+        'contact.successDesc': 'Eskerrik asko por contactar con Larrobeltz Saskibaloi Taldea. Nos pondremos en contacto contigo pronto.',
+        'footer.desc': 'Club de baloncesto fundado en 2009 en Alonsotegi. Formación deportiva y desarrollo personal en valores.',
+        'footer.slogan': 'TRABAJO · EQUIPO · ILUSIÓN',
+        'footer.navTitle': 'Navegación',
+        'footer.channels': 'Canales Oficiales',
+        'footer.top': '↑ Volver arriba'
+      },
+      eu: {
+        'nav.home': 'Hasiera',
+        'nav.philosophy': 'Filosofia',
+        'nav.history': 'Historia',
+        'nav.teams': 'Taldeak',
+        'nav.schedules': 'Ordutegiak',
+        'nav.fees': 'Kuotak',
+        'nav.rules': 'Arauak',
+        'nav.contact': 'Harremana',
+        'nav.joinBtn': 'Batu zaitez taldera',
+        'hero.pretitle': 'SASKIBALOIA · 2009TIK ALONSOTEGIN',
+        'hero.title1': 'SASKIBALOIA',
+        'hero.titleHighlight': 'TALDE',
+        'hero.title2': 'BIHURTZEN DEN',
+        'hero.title3': 'TOKIA.',
+        'hero.subtitle': 'Alonsotegin kirola, ariketa fisikoa eta garapen pertsonala sustatuz saskibaloiaren bitartez.',
+        'hero.ctaSchedule': 'Ikusi Ordutegiak →',
+        'hero.ctaContact': 'Izen-ematea / Harremana',
+        'hero.statSeasons': 'Lana',
+        'hero.statPlayers': 'Talde',
+        'hero.statTeams': 'Ametsa',
+        'philo.num': '01 / KLUBAREN FILOSOFIA',
+        'philo.title1': 'KLUB BAT BAINO GEHIAGO.',
+        'philo.title2': 'BIZITZEKO MODU BAT.',
+        'philo.lead': 'Alonsotegitik espazio seguru, hurbil eta integratzaile bat eraikitzen dugu kantxan eta kantxatik kanpo hazteko.',
+        'philo.mTag': '01 EGINKIZUNA',
+        'philo.mText': 'Alonsotegin kirola, ariketa fisikoa eta garapen pertsonala sustatzea, prestakuntza, familia eta espazio irisgarria bermatuz.',
+        'philo.vTag': '02 IKUSPEGIA',
+        'philo.vText': 'Oinarrizko kategoria guztietan egitura oso bat eskaintzeko gai den kluba izatea, senior talde propioarekin amaitu arte.',
+        'val.1.t': 'FAMILIA ETA HURBILTASUNA',
+        'val.1.d': 'Harreman zuzena eta gizatiarra, non kirolari bakoitza eta haien familiak proiektuaren funtsezko parte diren.',
+        'val.2.t': 'HEZKUNTZA ETA PRESTAKUNTZA',
+        'val.2.d': 'Saskibaloia tresna pedagogiko gisa, ohitura osasungarriak, diziplina eta erresilientzia lantzeko.',
+        'val.3.t': 'ILUSIOA ETA INKLUSIOA',
+        'val.3.d': 'Ate irekiak herri osoarentzat. Inor ez da kanpoan geratzen mailagatik edo jatorriagatik.',
+        'val.4.t': 'ERRESPETUA ETA KIROLTSUTASUNA',
+        'val.4.d': 'Epaileari, aurkariari, harmailari eta taldeari errespetua, arau sakratu eta negoziaezina.',
+        'val.5.t': 'KONPROMISOA ETA ZORROZTASUNA',
+        'val.5.d': 'Zorroztasuna eta profesionaltasuna entrenamendu bakoitzean, kudeaketa gardena eta puntualtasuna.',
+        'hist.num': '02 / GURE HISTORIA',
+        'hist.title1': 'HEMENGOA.',
+        'hist.title2': 'GUZTIONTZAT.',
+        'hist.lead': 'Ia 17 denboraldi gure herrian saskibaloiaren garra bizirik mantentzen grinaz.',
+        'hist.p1': '2009az geroztik, ALONSOTEGIKO LARROBELTZ SASKIBALOI TALDEAk Alonsotegiko herriari saskibaloiaz gozarazten dio. Gorriak Alonsotegi historikoaren irteeraren ostean (Euskal Ligan harro lehiatzera heldu zena), hainbat aita, ama eta baloiaren zale amorratuek saskibaloia gure kaleetan ezin zela hil erabaki genuen.',
+        'hist.p2': 'Horrela jaio zen Larrobeltz: gizonezkoen senior talde batekin eta emakumezkoen kadete batekin. Ia 17 denboralditan zehar, gizonezkoen seniorra ardatz nagusi gisa finkatu zen, eskola-harrobiko taldeekin batera. Herri txiki batean eskola-kategoriak mantentzeak esfortzu itzela eskatu zuen beti.',
+        'hist.p3': 'Baina 2020an, pandemiaren ostean, norabideak bira erabakigarria eman zuen: gizonezkoen seniorrari agur esan genion gure indar guztia oinarrizko kirolean eta emakumezkoen saskibaloian jartzeko. Apustua arrakastatsua izan zen: 4 eta 5 eskola-talde egonkortu genituen gure denboraldirik emankorrenean.',
+        'hist.quoteTitle': 'César Presidentearen hitzak:',
+        'hist.quote': '«Saskibaloia garrantzi gutxien duten gauzen artean garrantzitsuena da». Baina hau batzuetan ez da egia: Larrobeltzen herrigintzan sinesten dugu. Jaietan, Euskaraldian, IGE egunean parte hartzen dugu eta Enkarterrietako Mankomunitatearekin lankidetzan aritzen gara kirolean Euskara bultzatzeko.',
+        'hist.m1.t': 'Sorkuntza',
+        'hist.m1.d': 'Familia batuak herrian saskibaloia salbatzeko Gorriak taldearen ostean.',
+        'hist.m2.t': 'Oinarriaren Iraultza',
+        'hist.m2.d': 'Emakumezkoen saskibaloiaren aldeko apustua eta 5 eskola-talde egonkortu.',
+        'hist.village': 'Herriko jaiekin, Euskaraldiarekin, IGEarekin eta Enkarterrietako Mankomunitatearekin konprometituta.',
+        'teams.num': '03 / TALDEAK ETA TEKNIKARIAK',
+        'teams.title': 'PISTA GURE GELA DA.',
+        'teams.subtitle': '2026 / 2027 Denboraldia · Bost talde, joko-nortasun bera.',
+        'sch.num': '04 / ORDUTEGIAK',
+        'sch.title1': 'PISTAN',
+        'sch.title2': 'IKUSIKO DUGU ELKAR.',
+        'sch.lead': 'Alonsotegiko Udal Frontoia · Astelehenetik Ostiralera',
+        'sch.colTeam': 'Taldea / Maila',
+        'sch.dayMon': 'Astelehena',
+        'sch.dayTue': 'Asteartea',
+        'sch.dayWed': 'Asteazkena',
+        'sch.dayThu': 'Osteguna',
+        'sch.dayFri': 'Ostirala',
+        'sch.note': 'Ordutegiak denboraldian zehar egokitu daitezke lehiaketa ofizialen eta udal-erabilgarritasunaren arabera.',
+        'fees.num': '05 / URTEKO KUOTAK',
+        'fees.title1': 'ZURE TOKIA',
+        'fees.title2': 'HEMEN DAGO.',
+        'fees.subtitle': '2026 / 2027 Denboraldia · Saskibaloiaz gozatzeko behar duzun guztia, gardentasun osoz.',
+        'fees.perSeason': '/ denboraldia',
+        'fees.c1.freq': 'Astean behin',
+        'fees.c2.freq': 'Astean 2 - 3 egun',
+        'fees.c3.freq': 'Astean 3 egun',
+        'fees.popular': 'EZAGUNENA',
+        'fees.enroll': 'Izena eman →',
+        'fees.discountTitle': 'LARROBELTZ FAMILIA',
+        'fees.discountDesc': '%25eko deskontua klubean izena emandako bigarren seme/alabarentzat.',
+        'fees.discountBtn': 'Eskatu deskontua',
+        'rules.num': '06 / ARAUAK ETA BIZIKIDETZA',
+        'rules.title1': 'ERRESPETUZ',
+        'rules.title2': 'LEHIATZEN GARA.',
+        'rules.lead': 'Zaletu onenek ere beren partida jokatzen dute. Konpromiso hauek gure elastikoa harro janztea bermatzen dute.',
+        'rules.c1.t': 'ENTRENAMENDUAK',
+        'rules.c2.t': 'PARTIDAK',
+        'rules.c3.t': 'HARMAILEAN',
+        'news.num': '07 / BERRIKUNTZAK',
+        'news.title': 'KLUBAREN AZKENAK.',
+        'news.subtitle': 'Larrobeltz Saskibaloi Taldearen albisteak eta ohar ofizialak.',
+        'news.c1.t': 'ZUZENDARITZA BATZORDE BERRIA',
+        'news.c1.d': 'Indarrak berritu ditugu César presidentearekin eta klubaren kirol eta gizarte etorkizuna bermatzeko lantaldearekin.',
+        'news.c2.t': 'PISTA ORDU GEHIAGO',
+        'news.c2.d': 'Alonsotegiko Udal Frontoian ordu-erabilgarritasuna zabaldu dugu talde guztiek baldintza ezin hobeetan entrenatu ahal izateko.',
+        'news.c3.t': 'EUSKARARI BULTZADA ENKARTERRIREKIN',
+        'news.c3.d': 'Enkarterrietako Mankomunitatearekin lankidetzan aritzen gara entrenamenduetan eta txapelketetan euskararen erabilera normalizatzeko.',
+        'contact.num': '08 / HARREMANA ETA KOKAPENA',
+        'contact.title1': 'SASKIBALOIAZ',
+        'contact.title2': 'HITZ EGITEN DUGU.',
+        'contact.subtitle': 'Taldeei, ordutegiei edo parte hartzeari buruzko galderarik baduzu? Idatz iezaguzu edo zatoz frontoira. Zure zain gaude!',
+        'contact.formTitle': 'Bidal iezaguzu mezu bat',
+        'contact.formDesc': 'Izen-emateetarako, kuotei edo entrenamenduei buruzko galderetarako, 24-48 ordutan erantzungo dizugu.',
+        'contact.nameLabel': 'Zure izen-abizenak *',
+        'contact.emailLabel': 'Posta elektronikoa *',
+        'contact.phoneLabel': 'Harremanetarako telefonoa',
+        'contact.subjectLabel': 'Gaia',
+        'contact.msgLabel': 'Zure mezua *',
+        'contact.sendBtn': 'Bidali mezua →',
+        'contact.successTitle': 'Mezua Arrakastaz Bidali Da!',
+        'contact.successDesc': 'Eskerrik asko Larrobeltz Saskibaloi Taldearekin harremanetan jartzeagatik. Laster jarriko gara zurekin harremanetan.',
+        'footer.desc': '2009an Alonsotegin sortutako saskibaloi kluba. Kirol prestakuntza eta garapen pertsonala balioetan.',
+        'footer.slogan': 'LANA · TALDEA · ILUSIOA',
+        'footer.navTitle': 'Nabigazioa',
+        'footer.channels': 'Kanal Ofizialak',
+        'footer.top': '↑ Gora itzuli'
+      }
+    };
+
+    let currentLang = 'es';
+    let currentTeamId = 'junior';
+
+    function setLanguage(lang) {
+      currentLang = lang;
+      document.documentElement.lang = lang;
+
+      // Actualizar botones de idioma
+      const btnEs = document.getElementById('btnLangEs');
+      const btnEu = document.getElementById('btnLangEu');
+      if (lang === 'es') {
+        btnEs.className = 'px-2.5 py-1 text-xs font-bold rounded bg-[#E50914] text-white transition-all shadow-md';
+        btnEu.className = 'px-2.5 py-1 text-xs font-bold rounded text-neutral-400 hover:text-white transition-all';
+      } else {
+        btnEu.className = 'px-2.5 py-1 text-xs font-bold rounded bg-[#E50914] text-white transition-all shadow-md';
+        btnEs.className = 'px-2.5 py-1 text-xs font-bold rounded text-neutral-400 hover:text-white transition-all';
+      }
+
+      // Reemplazar textos con atributo data-i18n
+      document.querySelectorAll('[data-i18n]').forEach(el => {
+        const key = el.getAttribute('data-i18n');
+        if (i18n[lang] && i18n[lang][key]) {
+          el.textContent = i18n[lang][key];
+        }
+      });
+
+      renderTeams();
+    }
+
+    function renderTeams() {
+      const listContainer = document.getElementById('teamsTabList');
+      const detailContainer = document.getElementById('teamDetailCard');
+      const teams = teamData[currentLang];
+      const activeTeam = teams.find(t => t.id === currentTeamId) || teams[0];
+
+      // Render tab buttons
+      listContainer.innerHTML = teams.map(t => {
+        const isActive = t.id === currentTeamId;
+        return `
+          <button type="button" onclick="selectTeam('${t.id}')" class="w-full text-left p-3 sm:p-3.5 rounded-xl transition-all flex items-center justify-between border ${
+            isActive
+              ? 'bg-[#1F242D] border-[#E50914] text-white shadow-md'
+              : 'bg-[#242933] border-slate-500/50 text-slate-200 hover:text-white hover:bg-[#282E39]'
+          }">
+            <div>
+              <div class="flex items-center gap-2">
+                <span class="font-display text-xl sm:text-2xl font-bold tracking-wide text-white">${t.name}</span>
+                <span class="text-[10px] font-bold uppercase px-2 py-0.5 rounded bg-white/10 text-slate-200">${t.badge}</span>
+              </div>
+              <span class="text-xs text-slate-300 block mt-0.5">${t.age}</span>
+            </div>
+            <span class="${isActive ? 'text-[#E50914]' : 'text-slate-400'} font-bold">→</span>
+          </button>
+        `;
+      }).join('');
+
+      // Render team details
+      const focusBullets = activeTeam.focus.map(f => `
+        <div class="flex items-start gap-2 bg-[#2B3240]/80 p-2.5 rounded-lg border border-slate-600/50">
+          <span class="text-[#E50914] font-bold">✓</span>
+          <span class="text-xs text-slate-100 font-medium">${f}</span>
+        </div>
+      `).join('');
+
+      detailContainer.innerHTML = `
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-5 border-b border-slate-600/60 mb-5">
+          <div>
+            <div class="flex items-center gap-2.5 mb-1">
+              <span class="px-2.5 py-0.5 bg-[#E50914] text-white text-[11px] font-black uppercase rounded">${activeTeam.badge}</span>
+              <span class="text-xs text-slate-300 font-semibold">${activeTeam.age}</span>
+            </div>
+            <h3 class="font-display text-3xl sm:text-4xl font-bold text-white tracking-wide">${activeTeam.name}</h3>
+          </div>
+          <div class="bg-[#2B3240] border border-slate-500/60 px-4 py-2.5 rounded-xl">
+            <span class="text-xs font-bold text-[#E50914] uppercase tracking-wider block mb-0.5">${currentLang === 'es' ? 'Cuerpo Técnico' : 'Talde Teknikoa'}</span>
+            <span class="text-sm font-bold text-white">${activeTeam.coaches}</span>
+          </div>
+        </div>
+
+        <div class="space-y-4">
+          <div>
+            <h4 class="text-xs font-bold text-slate-300 uppercase tracking-widest mb-1.5">${currentLang === 'es' ? 'Descripción de la categoría' : 'Mailaren deskribapena'}</h4>
+            <p class="text-sm text-slate-100 leading-relaxed">${activeTeam.desc}</p>
+          </div>
+
+          <div>
+            <h4 class="text-xs font-bold text-[#E50914] uppercase tracking-widest mb-2.5">${currentLang === 'es' ? 'Objetivos formativos' : 'Helburu formatiboak'}</h4>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
+              ${focusBullets}
+            </div>
+          </div>
+
+          <div class="pt-3 border-t border-slate-600/60 flex flex-col sm:flex-row sm:items-center justify-between gap-2.5">
+            <div class="text-xs text-slate-200">
+              <span class="text-white font-semibold">📅 ${activeTeam.schedule}</span>
+            </div>
+            <a href="#horarios" class="text-xs font-bold text-[#E50914] hover:text-white uppercase tracking-wider transition-colors inline-flex items-center gap-1">
+              <span>${currentLang === 'es' ? 'Ver cuadrícula de horarios' : 'Ikusi ordu-koadrantea'}</span> →
+            </a>
+          </div>
+        </div>
+      `;
+    }
+
+    function selectTeam(teamId) {
+      currentTeamId = teamId;
+      renderTeams();
+    }
+
+    function toggleMobileMenu() {
+      const menu = document.getElementById('mobileMenu');
+      menu.classList.toggle('hidden');
+    }
+
+    function handleStaticFormSubmit(e) {
+      e.preventDefault();
+      const btn = document.getElementById('btnSubmitForm');
+      const form = document.getElementById('contactForm');
+      const success = document.getElementById('contactSuccess');
+
+      btn.disabled = true;
+      btn.textContent = currentLang === 'es' ? 'Enviando...' : 'Bidaltzen...';
+
+      setTimeout(() => {
+        form.classList.add('hidden');
+        success.classList.remove('hidden');
+      }, 500);
+    }
+
+    // Inicialización al cargar la página
+    document.addEventListener('DOMContentLoaded', () => {
+      renderTeams();
+    });
+  </script>
+</body>
+</html>

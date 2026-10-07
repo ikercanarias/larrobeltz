@@ -1,0 +1,178 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 600" width="100%" height="100%">
+  <defs>
+    <!-- Top arc for "LARROBELTZ" -->
+    <path id="larroTopArc" d="M 92 300 A 208 208 0 0 1 508 300" fill="none" />
+    
+    <!-- Bottom arc for "ALONSOTEGI" -->
+    <path id="alonsBottomArc" d="M 96 300 A 204 204 0 0 0 504 300" fill="none" />
+
+    <!-- Basketball sphere gradient -->
+    <radialGradient id="ballGlow" cx="42%" cy="38%" r="62%">
+      <stop offset="0%" stop-color="#FFA834" />
+      <stop offset="25%" stop-color="#FF6B00" />
+      <stop offset="60%" stop-color="#D83000" />
+      <stop offset="85%" stop-color="#9E1400" />
+      <stop offset="100%" stop-color="#4E0800" />
+    </radialGradient>
+
+    <!-- Warm highlight on top of ball -->
+    <radialGradient id="brushHighlight" cx="35%" cy="30%" r="40%">
+      <stop offset="0%" stop-color="#FFDD78" stop-opacity="0.8" />
+      <stop offset="50%" stop-color="#FF9020" stop-opacity="0.3" />
+      <stop offset="100%" stop-color="#FF5500" stop-opacity="0" />
+    </radialGradient>
+
+    <!-- Rose shading gradient -->
+    <radialGradient id="roseDarkGrad" cx="30%" cy="30%" r="70%">
+      <stop offset="0%" stop-color="#2D2D32" />
+      <stop offset="40%" stop-color="#18181A" />
+      <stop offset="100%" stop-color="#080809" />
+    </radialGradient>
+
+    <!-- 3D text shadow filter -->
+    <filter id="shadow3D" x="-10%" y="-10%" width="130%" height="130%">
+      <feDropShadow dx="4" dy="5" stdDeviation="1.5" flood-color="#121214" flood-opacity="0.95" />
+    </filter>
+  </defs>
+
+  <!-- Base Badge Structure -->
+  <!-- Outer subtle border -->
+  <circle cx="300" cy="300" r="290" fill="#FFFFFF" stroke="#000000" stroke-width="2.5" />
+  
+  <!-- Outer Red Ring -->
+  <circle cx="300" cy="300" r="278" fill="none" stroke="#E50914" stroke-width="18" />
+  <circle cx="300" cy="300" r="267" fill="none" stroke="#222222" stroke-width="1.8" />
+
+  <!-- Inner white circular canvas -->
+  <circle cx="300" cy="300" r="265" fill="#FFFFFF" />
+
+  <!-- Red energetic brush arcs framing the center aperture -->
+  <path d="M 432 230 C 452 270 450 330 424 372" fill="none" stroke="#E50914" stroke-width="10" stroke-linecap="round" />
+  <path d="M 440 260 C 448 290 446 325 432 355" fill="none" stroke="#E50914" stroke-width="5" stroke-linecap="round" />
+  <path d="M 162 255 C 152 290 156 330 174 362" fill="none" stroke="#E50914" stroke-width="6" stroke-linecap="round" />
+
+  <!-- Jagged Black Torn Shield Border around the basketball -->
+  <path d="M 210 175 Q 230 160 270 155 Q 315 150 355 162 Q 395 178 425 210 Q 448 245 448 290 Q 445 340 420 380 Q 388 418 340 435 Q 295 445 250 430 Q 200 410 172 368 Q 150 325 155 275 Q 165 225 210 175 Z" fill="#0D0D0F" />
+  
+  <!-- Shreds and thorn spurs bursting out -->
+  <polygon points="195,180 180,165 210,170" fill="#0D0D0F" />
+  <polygon points="380,165 410,145 395,175" fill="#0D0D0F" />
+  <polygon points="435,215 465,205 442,235" fill="#0D0D0F" />
+  <polygon points="440,350 468,370 432,375" fill="#0D0D0F" />
+  <polygon points="280,442 275,468 260,438" fill="#0D0D0F" />
+  <polygon points="175,340 148,358 168,368" fill="#0D0D0F" />
+
+  <!-- Main Basketball Body -->
+  <g id="basketballCenter">
+    <!-- Ball sphere -->
+    <circle cx="300" cy="300" r="136" fill="url(#ballGlow)" stroke="#111111" stroke-width="5" />
+
+    <!-- Painterly brush textures inside the ball -->
+    <ellipse cx="270" cy="245" rx="90" ry="55" fill="url(#brushHighlight)" transform="rotate(-15 270 245)" />
+
+    <!-- Curved ribs / seams of the basketball -->
+    <!-- Vertical ribbed seam -->
+    <path d="M 300 164 C 295 230 295 370 300 436" fill="none" stroke="#0D0D0F" stroke-width="8" stroke-linecap="round" />
+    <path d="M 300 164 C 295 230 295 370 300 436" fill="none" stroke="#3A1208" stroke-width="3" stroke-linecap="round" />
+
+    <!-- Horizontal center seam -->
+    <path d="M 164 300 C 230 302 370 302 436 300" fill="none" stroke="#0D0D0F" stroke-width="8" stroke-linecap="round" />
+
+    <!-- Left curved lateral seam -->
+    <path d="M 205 205 C 270 245 270 355 205 395" fill="none" stroke="#0D0D0F" stroke-width="8" stroke-linecap="round" />
+    <path d="M 205 205 C 270 245 270 355 205 395" fill="none" stroke="#FF7B25" stroke-width="2.5" stroke-linecap="round" opacity="0.6" />
+
+    <!-- Right curved lateral seam -->
+    <path d="M 395 205 C 330 245 330 355 395 395" fill="none" stroke="#0D0D0F" stroke-width="8" stroke-linecap="round" />
+    <path d="M 395 205 C 330 245 330 355 395 395" fill="none" stroke="#FF7B25" stroke-width="2.5" stroke-linecap="round" opacity="0.6" />
+
+    <!-- Dynamic black paint splatters on ball -->
+    <path d="M 240 215 C 255 225 285 220 290 205" fill="none" stroke="#0D0D0F" stroke-width="4" stroke-linecap="round" />
+    <path d="M 315 365 C 335 375 365 370 375 355" fill="none" stroke="#0D0D0F" stroke-width="4.5" stroke-linecap="round" />
+  </g>
+
+  <!-- Deep Black Roses ("Larro Beltz") with realistic petals -->
+  
+  <!-- Rose 1: Top-Right (approx 1:30 o'clock) -->
+  <g transform="translate(395, 205) scale(0.95)">
+    <!-- Outer petals -->
+    <path d="M0,0 C-18,-25 22,-32 35,-12 C48,8 25,38 -2,32 C-28,26 -25,-6 0,0 Z" fill="url(#roseDarkGrad)" stroke="#050505" stroke-width="2" />
+    <path d="M-10,-12 C-2,-26 22,-22 25,-8 C28,8 10,22 -8,15 Z" fill="#18181B" stroke="#2C2C30" stroke-width="1.2" />
+    <!-- Core spiral -->
+    <path d="M-4,-6 C3,-15 15,-12 16,-2 C17,8 5,14 -4,8 Z" fill="#26262B" />
+    <path d="M1,-3 C5,-8 11,-6 10,0 C9,5 4,7 1,2 Z" fill="#0A0A0C" />
+    <!-- Thorns -->
+    <path d="M30,-5 Q46,2 38,18" fill="none" stroke="#0D0D0F" stroke-width="4" stroke-linecap="round" />
+  </g>
+
+  <!-- Rose 2: Top-Left (approx 10:30 o'clock) -->
+  <g transform="translate(195, 200) scale(0.9)">
+    <path d="M0,0 C-22,-20 18,-35 32,-15 C45,5 22,35 -5,30 C-30,25 -25,-5 0,0 Z" fill="url(#roseDarkGrad)" stroke="#050505" stroke-width="2" />
+    <path d="M-8,-10 C0,-24 20,-20 22,-6 C24,8 8,20 -6,14 Z" fill="#18181B" stroke="#2C2C30" stroke-width="1.2" />
+    <path d="M-3,-5 C2,-12 12,-10 13,-2 C14,6 4,12 -3,6 Z" fill="#26262B" />
+    <path d="M0,-2 C3,-6 8,-5 8,0 C8,4 3,6 0,2 Z" fill="#0A0A0C" />
+    <!-- Thorn -->
+    <path d="M-18,-8 Q-34,-4 -26,-22" fill="none" stroke="#0D0D0F" stroke-width="4" stroke-linecap="round" />
+  </g>
+
+  <!-- Rose 3: Bottom Center (approx 5:30 o'clock) -->
+  <g transform="translate(290, 410) scale(0.95)">
+    <path d="M0,0 C-20,-22 20,-30 32,-12 C44,6 20,34 -4,28 C-26,22 -22,-5 0,0 Z" fill="url(#roseDarkGrad)" stroke="#050505" stroke-width="2" />
+    <path d="M-6,-8 C0,-20 18,-18 20,-5 C22,7 6,18 -5,12 Z" fill="#18181B" stroke="#2C2C30" stroke-width="1.2" />
+    <path d="M-2,-4 C2,-10 10,-8 11,-2 C12,5 3,10 -2,5 Z" fill="#26262B" />
+    <path d="M0,-1 C2,-4 6,-3 6,1 C6,4 2,5 0,2 Z" fill="#0A0A0C" />
+  </g>
+
+  <!-- Rose 4: Mid-Left (approx 8:30 o'clock) -->
+  <g transform="translate(155, 305) scale(0.8)">
+    <path d="M0,0 C-18,-18 18,-26 28,-10 C38,6 18,30 -3,24 C-22,18 -18,-4 0,0 Z" fill="url(#roseDarkGrad)" stroke="#050505" stroke-width="2" />
+    <path d="M-5,-7 C0,-17 15,-15 17,-4 C19,6 5,15 -4,10 Z" fill="#18181B" stroke="#2C2C30" stroke-width="1.2" />
+    <path d="M-1,-3 C2,-8 8,-6 9,-1 C10,4 2,8 -1,4 Z" fill="#26262B" />
+  </g>
+
+  <!-- Bramble vines weaving through the ball -->
+  <path d="M 215 195 Q 240 230 255 270 Q 270 310 285 390" fill="none" stroke="#0D0D0F" stroke-width="4.5" stroke-linecap="round" />
+  <path d="M 375 220 Q 360 260 345 310 Q 330 360 315 410" fill="none" stroke="#0D0D0F" stroke-width="4.5" stroke-linecap="round" />
+
+  <!-- TOP TEXT: "LARROBELTZ" -->
+  <!-- 3D Extrusion Shadow Layer 1 (Dark outline & drop shadow) -->
+  <text font-family="'Impact', 'Arial Black', sans-serif" font-size="54" font-weight="900" letter-spacing="5" fill="#111111" stroke="#111111" stroke-width="12" stroke-linejoin="round" dx="5" dy="6">
+    <textPath href="#larroTopArc" startOffset="50%" text-anchor="middle">
+      LARROBELTZ
+    </textPath>
+  </text>
+  <!-- 3D Extrusion Shadow Layer 2 (Tight edge) -->
+  <text font-family="'Impact', 'Arial Black', sans-serif" font-size="54" font-weight="900" letter-spacing="5" fill="#1E1E22" stroke="#1E1E22" stroke-width="6" stroke-linejoin="round" dx="2.5" dy="3.5">
+    <textPath href="#larroTopArc" startOffset="50%" text-anchor="middle">
+      LARROBELTZ
+    </textPath>
+  </text>
+  <!-- Pure Crisp White Face Layer with Fine Dark Stroke for high contrast -->
+  <text font-family="'Impact', 'Arial Black', sans-serif" font-size="54" font-weight="900" letter-spacing="5" fill="#FFFFFF" stroke="#222222" stroke-width="2" stroke-linejoin="round">
+    <textPath href="#larroTopArc" startOffset="50%" text-anchor="middle">
+      LARROBELTZ
+    </textPath>
+  </text>
+
+
+  <!-- BOTTOM TEXT: "ALONSOTEGI" -->
+  <!-- 3D Extrusion Shadow Layer 1 -->
+  <text font-family="'Impact', 'Arial Black', sans-serif" font-size="48" font-weight="900" letter-spacing="6" fill="#111111" stroke="#111111" stroke-width="12" stroke-linejoin="round" dx="4" dy="5">
+    <textPath href="#alonsBottomArc" startOffset="50%" text-anchor="middle">
+      ALONSOTEGI
+    </textPath>
+  </text>
+  <!-- 3D Extrusion Shadow Layer 2 -->
+  <text font-family="'Impact', 'Arial Black', sans-serif" font-size="48" font-weight="900" letter-spacing="6" fill="#1E1E22" stroke="#1E1E22" stroke-width="6" stroke-linejoin="round" dx="2" dy="3">
+    <textPath href="#alonsBottomArc" startOffset="50%" text-anchor="middle">
+      ALONSOTEGI
+    </textPath>
+  </text>
+  <!-- Pure Crisp White Face Layer with Fine Dark Stroke -->
+  <text font-family="'Impact', 'Arial Black', sans-serif" font-size="48" font-weight="900" letter-spacing="6" fill="#FFFFFF" stroke="#222222" stroke-width="2" stroke-linejoin="round">
+    <textPath href="#alonsBottomArc" startOffset="50%" text-anchor="middle">
+      ALONSOTEGI
+    </textPath>
+  </text>
+
+</svg>
