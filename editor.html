@@ -1,0 +1,517 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex, nofollow">
+  <title>Editor de temporada | Larrobeltz</title>
+  <link rel="icon" type="image/png" href="Logo Larrobeltz.png">
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    body { font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif; background-color: #f1f0ed; color: #111827; }
+    .font-display { font-family: 'Bebas Neue', sans-serif; letter-spacing: 0.04em; }
+    .fld { width: 100%; border: 1px solid #cbd5e1; border-radius: 0.5rem; padding: 0.5rem 0.75rem; font-size: 0.875rem; background: #fff; }
+    .fld:focus { outline: none; border-color: #E50914; box-shadow: 0 0 0 1px #E50914; }
+    textarea.fld { resize: vertical; }
+    .lbl { display: block; font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; color: #64748b; margin-bottom: 0.25rem; }
+    .hint { font-size: 11px; color: #94a3b8; font-weight: 500; text-transform: none; letter-spacing: 0; }
+    .btn { display: inline-flex; align-items: center; justify-content: center; gap: 0.35rem; padding: 0.45rem 0.85rem; font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; border-radius: 0.5rem; transition: all .15s; }
+    .btn-primary { background: #E50914; color: #fff; }
+    .btn-primary:hover { background: #c40811; }
+    .btn-primary:disabled { background: #94a3b8; cursor: not-allowed; }
+    .btn-ghost { background: rgba(255,255,255,.1); color: #fff; border: 1px solid rgba(255,255,255,.2); }
+    .btn-ghost:hover { background: rgba(255,255,255,.2); }
+    .btn-light { background: #fff; color: #334155; border: 1px solid #cbd5e1; }
+    .btn-light:hover { border-color: #E50914; color: #E50914; }
+    .btn-light:disabled { opacity: .35; cursor: not-allowed; }
+    .btn-green { background: #43d026; color: #fff; }
+    .btn-green:hover { background: #3d812f; }
+    .tag { display: inline-block; font-size: 10px; font-weight: 800; padding: 1px 6px; border-radius: 4px; margin-bottom: 0.25rem; }
+    .tag-es { background: #E50914; color: #fff; }
+    .tag-eu { background: #1F2937; color: #fff; }
+  </style>
+</head>
+<body>
+
+  <header class="sticky top-0 z-40 bg-black text-white border-b border-white/10 shadow-xl">
+    <div class="max-w-6xl mx-auto px-4 py-2.5 flex flex-wrap items-center justify-between gap-3">
+      <div class="flex items-center gap-3">
+        <img src="Logo Larrobeltz.png" alt="" class="w-10 h-10 object-contain rounded-full" onerror="this.style.display='none'">
+        <div>
+          <div class="font-display text-2xl leading-none">EDITOR DE TEMPORADA</div>
+          <div class="text-[10px] tracking-widest text-[#E50914] font-bold uppercase mt-0.5">Larrobeltz · data/temporada.json</div>
+        </div>
+      </div>
+      <div class="flex flex-wrap items-center gap-2">
+        <span id="dirtyBadge" class="hidden text-[11px] font-bold px-2.5 py-1 rounded-full bg-amber-400 text-black">● Cambios sin descargar</span>
+        <button id="btnOpen" type="button" class="btn btn-ghost">📂 Abrir fichero…</button>
+        <button id="btnDownload" type="button" class="btn btn-green" disabled>⬇ Descargar temporada.json</button>
+      </div>
+    </div>
+  </header>
+
+  <input type="file" id="fileInput" accept=".json,application/json" class="hidden">
+
+  <main class="max-w-6xl mx-auto px-4 py-6">
+    <div id="banner" class="mb-4"></div>
+
+    <!-- Pantalla inicial / carga manual -->
+    <section id="welcome" class="bg-white border-2 border-dashed border-slate-300 rounded-2xl p-8 text-center">
+      <div class="font-display text-3xl mb-2">CARGANDO DATOS…</div>
+      <p id="welcomeMsg" class="text-sm text-slate-600 max-w-xl mx-auto mb-4">Buscando data/temporada.json…</p>
+      <button id="btnOpen2" type="button" class="btn btn-primary hidden">📂 Seleccionar temporada.json</button>
+      <p class="text-xs text-slate-400 mt-3">También puedes arrastrar el fichero y soltarlo en esta página.</p>
+    </section>
+
+    <section id="editor" class="hidden">
+      <nav id="tabs" class="sticky top-[68px] z-30 bg-[#f1f0ed] py-2 flex flex-wrap gap-2 border-b border-slate-300 mb-5"></nav>
+      <div id="pane"></div>
+    </section>
+  </main>
+
+<script>
+(() => {
+  const DATA_URL = 'data/temporada.json';
+  const DAYS = [['lunes', 'Lunes'], ['martes', 'Martes'], ['miercoles', 'Miércoles'], ['jueves', 'Jueves'], ['viernes', 'Viernes']];
+  const TABS = [['general', 'General'], ['equipos', 'Equipos'], ['horarios', 'Horarios'], ['cuotas', 'Cuotas'], ['documentos', 'Documentos']];
+
+  let model = null;
+  let tab = 'general';
+  let dirty = false;
+
+  const $ = id => document.getElementById(id);
+  const pane = $('pane'), tabsEl = $('tabs'), bannerEl = $('banner');
+
+  // ---------- utilidades ----------
+  const esc = v => String(v === undefined || v === null ? '' : v)
+    .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;').replace(/'/g, '&#39;');
+  const isObj = v => v && typeof v === 'object' && !Array.isArray(v);
+  const str = v => (v === undefined || v === null) ? '' : String(v);
+  const bi = v => isObj(v) ? { es: str(v.es), eu: str(v.eu) } : { es: str(v), eu: '' };
+  const bil = v => isObj(v)
+    ? { es: Array.isArray(v.es) ? v.es.map(str) : [], eu: Array.isArray(v.eu) ? v.eu.map(str) : [] }
+    : { es: Array.isArray(v) ? v.map(str) : [], eu: [] };
+  const slug = s => str(s).normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase()
+    .replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '');
+  const getPath = (o, p) => p.split('.').reduce((a, k) => (a == null ? a : a[k]), o);
+  const setPath = (o, p, val) => { const ks = p.split('.'); const last = ks.pop(); ks.reduce((a, k) => a[k], o)[last] = val; };
+
+  // ---------- modelo interno <-> JSON ----------
+  function normalize(d) {
+    const c = isObj(d.cuotas) ? d.cuotas : {};
+    return {
+      _extra: d,
+      temporada: str(d.temporada),
+      equipos: (Array.isArray(d.equipos) ? d.equipos : []).map(t => ({
+        ...t, id: str(t.id), nombre: str(t.nombre),
+        categoria: bi(t.categoria), entrenadores: bi(t.entrenadores),
+        descripcion: bi(t.descripcion), objetivos: bil(t.objetivos), _idAuto: false, _ref: str(t.id)
+      })),
+      horarios: (Array.isArray(d.horarios) ? d.horarios : []).map(h => {
+        const r = { ...h, equipo: str(h.equipo) };
+        DAYS.forEach(([k]) => { r[k] = str(h[k]); });
+        return r;
+      }),
+      cuotas: {
+        ...c,
+        tarjetas: (Array.isArray(c.tarjetas) ? c.tarjetas : []).map(t => ({
+          ...t, etiqueta: bi(t.etiqueta), nombre: bi(t.nombre), frecuencia: bi(t.frecuencia),
+          precio: str(t.precio), incluye: bil(t.incluye)
+        })),
+        descuento: { enabled: !!c.descuento, titulo: bi(c.descuento && c.descuento.titulo), texto: bi(c.descuento && c.descuento.texto) }
+      },
+      documentos: (Array.isArray(d.documentos) ? d.documentos : []).map(x => ({
+        ...x, titulo: bi(x.titulo), descripcion: bi(x.descripcion), archivo: str(x.archivo), tipo: str(x.tipo)
+      }))
+    };
+  }
+
+  // Si el texto en euskera está vacío (o igual) se guarda un texto simple, que la web usa en ambos idiomas
+  const collapseText = b => { const es = b.es.trim(), eu = b.eu.trim(); return (!eu || eu === es) ? es : { es, eu }; };
+  const cleanList = a => a.map(s => s.trim()).filter(Boolean);
+  const collapseList = b => { const es = cleanList(b.es), eu = cleanList(b.eu); return eu.length ? { es, eu } : es; };
+
+  function exportData() {
+    const out = { ...model._extra };
+    out.temporada = model.temporada.trim();
+    out.equipos = model.equipos.map(t => {
+      const { _idAuto, _ref, ...r } = t;
+      return { ...r, id: r.id.trim(), nombre: r.nombre.trim(), categoria: collapseText(r.categoria),
+        entrenadores: collapseText(r.entrenadores), descripcion: collapseText(r.descripcion), objetivos: collapseList(r.objetivos) };
+    });
+    out.horarios = model.horarios.map(h => {
+      const r = { equipo: h.equipo.trim() };
+      DAYS.forEach(([k]) => { if (h[k].trim()) r[k] = h[k].trim(); });
+      return r;
+    });
+    const { tarjetas, descuento, ...restC } = model.cuotas;
+    out.cuotas = {
+      ...restC,
+      tarjetas: tarjetas.map(t => ({ ...t, etiqueta: collapseText(t.etiqueta), nombre: collapseText(t.nombre),
+        frecuencia: collapseText(t.frecuencia), precio: t.precio.trim(), incluye: collapseList(t.incluye) }))
+    };
+    if (descuento.enabled) out.cuotas.descuento = { titulo: collapseText(descuento.titulo), texto: collapseText(descuento.texto) };
+    out.documentos = model.documentos.map(d => ({ ...d, titulo: collapseText(d.titulo), descripcion: collapseText(d.descripcion),
+      archivo: d.archivo.trim(), tipo: d.tipo.trim() }));
+    return out;
+  }
+
+  function validate() {
+    const errors = [], warnings = [];
+    const ids = {};
+    model.equipos.forEach((t, i) => {
+      const n = `Equipo ${i + 1}${t.nombre ? ' (' + t.nombre + ')' : ''}`;
+      if (!t.nombre.trim()) errors.push(`${n}: falta el nombre.`);
+      if (!t.id.trim()) errors.push(`${n}: falta el identificador (id).`);
+      else if (ids[t.id.trim()]) errors.push(`${n}: el id «${t.id}» está repetido.`);
+      ids[t.id.trim()] = true;
+      if (/\s/.test(t.id)) errors.push(`${n}: el id no puede tener espacios.`);
+      if (!model.horarios.some(h => h.equipo.trim() === t.id.trim())) warnings.push(`${n}: no tiene fila en Horarios.`);
+    });
+    model.horarios.forEach((h, i) => {
+      if (!ids[h.equipo.trim()]) errors.push(`Horarios, fila ${i + 1}: el equipo «${h.equipo}» no existe.`);
+    });
+    model.cuotas.tarjetas.forEach((t, i) => {
+      if (!t.precio.trim()) warnings.push(`Cuota ${i + 1}: falta el precio.`);
+      if (!t.nombre.es.trim()) warnings.push(`Cuota ${i + 1}: falta el nombre.`);
+    });
+    model.documentos.forEach((d, i) => {
+      if (!d.archivo.trim() || d.archivo.trim() === 'docs/') warnings.push(`Documento ${i + 1}: falta la ruta del archivo.`);
+      if (!d.titulo.es.trim()) warnings.push(`Documento ${i + 1}: falta el título.`);
+    });
+    if (!model.temporada.trim()) warnings.push('General: falta la temporada.');
+    return { errors, warnings };
+  }
+
+  // ---------- avisos ----------
+  function banner(type, title, items) {
+    const colors = { error: 'bg-red-50 border-red-300 text-red-900', warn: 'bg-amber-50 border-amber-300 text-amber-900',
+      ok: 'bg-green-50 border-green-300 text-green-900', info: 'bg-sky-50 border-sky-300 text-sky-900' };
+    bannerEl.innerHTML = `<div class="border rounded-xl px-4 py-3 text-sm ${colors[type]}">
+      <div class="flex justify-between gap-3"><div class="font-bold">${title}</div>
+      <button type="button" data-action="close-banner" class="font-bold opacity-60 hover:opacity-100">✕</button></div>
+      ${items && items.length ? `<ul class="list-disc ml-5 mt-1 space-y-0.5">${items.map(i => `<li>${esc(i)}</li>`).join('')}</ul>` : ''}</div>`;
+  }
+  bannerEl.addEventListener('click', e => { if (e.target.closest('[data-action="close-banner"]')) bannerEl.innerHTML = ''; });
+
+  function markDirty() { dirty = true; $('dirtyBadge').classList.remove('hidden'); }
+  function markClean() { dirty = false; $('dirtyBadge').classList.add('hidden'); }
+
+  // ---------- componentes de formulario ----------
+  const field = (label, path, value, opts = {}) => `
+    <label class="block ${opts.cls || ''}">
+      <span class="lbl">${label}${opts.hint ? ` <span class="hint">· ${opts.hint}</span>` : ''}</span>
+      <input type="text" class="fld" data-path="${path}" value="${esc(value)}" ${opts.placeholder ? `placeholder="${esc(opts.placeholder)}"` : ''}>
+    </label>`;
+
+  function biField(label, path, val, opts = {}) {
+    const one = (lang) => {
+      const p = `${path}.${lang}`;
+      const control = opts.lines
+        ? `<textarea class="fld" rows="${opts.rows || 5}" data-path="${p}" data-kind="lines">${esc(val[lang].join('\n'))}</textarea>`
+        : opts.area
+          ? `<textarea class="fld" rows="${opts.rows || 3}" data-path="${p}">${esc(val[lang])}</textarea>`
+          : `<input type="text" class="fld" data-path="${p}" value="${esc(val[lang])}">`;
+      return `<div><span class="tag tag-${lang}">${lang.toUpperCase()}</span>${control}</div>`;
+    };
+    const hint = opts.lines ? 'un elemento por línea' : '';
+    return `<div class="mb-4"><span class="lbl">${label}${hint ? ` <span class="hint">· ${hint}</span>` : ''}</span>
+      <div class="grid md:grid-cols-2 gap-3">${one('es')}${one('eu')}</div></div>`;
+  }
+
+  const ctl = (list, i, n, label) => `
+    <div class="flex items-center gap-1 whitespace-nowrap">
+      <button type="button" class="btn btn-light !px-2 !py-1" data-action="up" data-list="${list}" data-i="${i}" ${i === 0 ? 'disabled' : ''} title="Subir">↑</button>
+      <button type="button" class="btn btn-light !px-2 !py-1" data-action="down" data-list="${list}" data-i="${i}" ${i === n - 1 ? 'disabled' : ''} title="Bajar">↓</button>
+      <button type="button" class="btn btn-light !px-2 !py-1 hover:!border-red-500" data-action="del" data-list="${list}" data-i="${i}" data-label="${esc(label)}" title="Eliminar">✕</button>
+    </div>`;
+
+  const card = (list, i, n, title, body) => `
+    <div class="bg-white border border-slate-300 rounded-2xl shadow-sm mb-4 overflow-hidden">
+      <div class="flex items-center justify-between gap-3 px-5 py-3 bg-slate-50 border-b border-slate-200">
+        <div class="font-display text-2xl text-slate-800 truncate"><span class="text-[#E50914]">${i + 1}.</span> ${esc(title)}</div>
+        ${ctl(list, i, n, title)}
+      </div>
+      <div class="p-5">${body}</div>
+    </div>`;
+
+  const addBtn = (list, text) => `<button type="button" class="btn btn-primary" data-action="add" data-list="${list}">＋ ${text}</button>`;
+  const note = html => `<div class="bg-white border border-slate-300 rounded-xl p-4 text-sm text-slate-600 mb-4">${html}</div>`;
+
+  // ---------- paneles ----------
+  const panes = {
+    general() {
+      return `
+        <div class="bg-white border border-slate-300 rounded-2xl shadow-sm p-5 mb-4">
+          <div class="font-display text-2xl mb-3">DATOS GENERALES</div>
+          <div class="max-w-xs">${field('Temporada', 'temporada', model.temporada, { hint: 'se muestra en el subtítulo de Cuotas', placeholder: '2027 / 2028' })}</div>
+        </div>
+        ${note(`<div class="font-bold text-slate-800 mb-1">Cómo usar este editor</div>
+          <ol class="list-decimal ml-5 space-y-1">
+            <li>Edita las pestañas <b>Equipos</b>, <b>Horarios</b>, <b>Cuotas</b> y <b>Documentos</b>.</li>
+            <li>Pulsa <b>Descargar temporada.json</b> (arriba a la derecha).</li>
+            <li>Sube el fichero descargado a la carpeta <code class="bg-slate-100 px-1 rounded">data/</code> del servidor, sustituyendo el anterior.</li>
+            <li>Recarga la web (si no ves los cambios, pulsa Ctrl + F5).</li>
+          </ol>
+          <p class="mt-2 text-xs text-slate-500">Los cambios no se guardan en el servidor desde aquí: solo se descargan. Si cierras la pestaña sin descargar, se pierden.</p>
+          <p class="mt-1 text-xs text-slate-500">En los campos con <span class="tag tag-es">ES</span> y <span class="tag tag-eu">EU</span>, si dejas el euskera vacío la web usará el texto en castellano.</p>`)}`;
+    },
+
+    equipos() {
+      const n = model.equipos.length;
+      const cards = model.equipos.map((t, i) => card('equipos', i, n, t.nombre || 'Nuevo equipo', `
+        <div class="grid md:grid-cols-2 gap-4 mb-4">
+          ${field('Nombre', `equipos.${i}.nombre`, t.nombre, { placeholder: 'INFANTIL A' })}
+          ${field('Identificador (id)', `equipos.${i}.id`, t.id, { hint: 'sin espacios; enlaza con Horarios' })}
+        </div>
+        ${biField('Categoría', `equipos.${i}.categoria`, t.categoria)}
+        ${biField('Entrenadores', `equipos.${i}.entrenadores`, t.entrenadores)}
+        ${biField('Descripción', `equipos.${i}.descripcion`, t.descripcion, { area: true, rows: 4 })}
+        ${biField('Objetivos formativos', `equipos.${i}.objetivos`, t.objetivos, { lines: true, rows: 5 })}`)).join('');
+      return `${note('Los horarios de cada equipo se editan en la pestaña <b>Horarios</b>; aquí no hace falta escribirlos.')}${cards}${addBtn('equipos', 'Añadir equipo')}`;
+    },
+
+    horarios() {
+      const teams = model.equipos.map(t => [t.id, t.nombre || t.id]);
+      const opts = sel => {
+        const list = teams.slice();
+        if (!list.some(([id]) => id === sel)) list.unshift([sel, `⚠ ${sel || '(sin equipo)'} — no existe`]);
+        return list.map(([id, nm]) => `<option value="${esc(id)}" ${id === sel ? 'selected' : ''}>${esc(nm)}</option>`).join('');
+      };
+      const n = model.horarios.length;
+      const rows = model.horarios.map((h, i) => `
+        <tr class="border-t border-slate-200 align-middle">
+          <td class="p-2 min-w-[11rem]"><select class="fld" data-path="horarios.${i}.equipo">${opts(h.equipo)}</select></td>
+          ${DAYS.map(([k]) => `<td class="p-2"><input type="text" class="fld min-w-[8rem]" data-path="horarios.${i}.${k}" value="${esc(h[k])}" placeholder="—"></td>`).join('')}
+          <td class="p-2">${ctl('horarios', i, n, teams.find(([id]) => id === h.equipo)?.[1] || h.equipo)}</td>
+        </tr>`).join('');
+      return `
+        ${note('Escribe la franja como <b>17:00 - 18:30</b>. Deja vacío los días sin entrenamiento (la web mostrará «—»). Este horario también aparece en la ficha de cada equipo.')}
+        <div class="bg-white border border-slate-300 rounded-2xl shadow-sm overflow-x-auto mb-4">
+          <table class="w-full text-left text-sm">
+            <thead><tr class="bg-slate-50 text-[11px] uppercase tracking-wider text-slate-500">
+              <th class="p-3">Equipo</th>${DAYS.map(([, l]) => `<th class="p-3">${l}</th>`).join('')}<th class="p-3"></th>
+            </tr></thead>
+            <tbody>${rows || `<tr><td colspan="7" class="p-5 text-center text-slate-400">Sin filas todavía.</td></tr>`}</tbody>
+          </table>
+        </div>
+        ${addBtn('horarios', 'Añadir fila')}`;
+    },
+
+    cuotas() {
+      const c = model.cuotas, n = c.tarjetas.length, d = c.descuento;
+      const cards = c.tarjetas.map((t, i) => card('cuotas.tarjetas', i, n, t.nombre.es || 'Nueva cuota', `
+        <div class="max-w-xs mb-4">${field('Precio', `cuotas.tarjetas.${i}.precio`, t.precio, { placeholder: '160 €' })}</div>
+        ${biField('Etiqueta (texto pequeño sobre el nombre)', `cuotas.tarjetas.${i}.etiqueta`, t.etiqueta)}
+        ${biField('Nombre', `cuotas.tarjetas.${i}.nombre`, t.nombre)}
+        ${biField('Frecuencia', `cuotas.tarjetas.${i}.frecuencia`, t.frecuencia)}
+        ${biField('Qué incluye', `cuotas.tarjetas.${i}.incluye`, t.incluye, { lines: true, rows: 6 })}`)).join('');
+      const discount = `
+        <div class="bg-white border-2 border-[#E50914]/40 rounded-2xl shadow-sm p-5 mt-6">
+          <div class="flex items-center justify-between gap-3 mb-3">
+            <div class="font-display text-2xl">DESCUENTO FAMILIAR</div>
+            <label class="flex items-center gap-2 text-sm font-semibold cursor-pointer">
+              <input type="checkbox" data-path="cuotas.descuento.enabled" ${d.enabled ? 'checked' : ''} class="w-4 h-4 accent-[#E50914]"> Mostrar este bloque
+            </label>
+          </div>
+          ${d.enabled ? `${biField('Título', 'cuotas.descuento.titulo', d.titulo)}${biField('Texto', 'cuotas.descuento.texto', d.texto, { area: true, rows: 2 })}`
+            : '<p class="text-sm text-slate-400">El bloque de descuento no se mostrará en la web.</p>'}
+        </div>`;
+      return `${cards}${addBtn('cuotas.tarjetas', 'Añadir cuota')}${discount}`;
+    },
+
+    documentos() {
+      const n = model.documentos.length;
+      const cards = model.documentos.map((d, i) => card('documentos', i, n, d.titulo.es || 'Nuevo documento', `
+        <div class="grid md:grid-cols-4 gap-4 mb-4">
+          ${field('Ruta del archivo', `documentos.${i}.archivo`, d.archivo, { cls: 'md:col-span-3', hint: 'p. ej. docs/hoja-inscripcion.pdf', placeholder: 'docs/archivo.pdf' })}
+          ${field('Etiqueta', `documentos.${i}.tipo`, d.tipo, { hint: 'PDF, DOC…' })}
+        </div>
+        ${biField('Título', `documentos.${i}.titulo`, d.titulo)}
+        ${biField('Descripción', `documentos.${i}.descripcion`, d.descripcion, { area: true, rows: 2 })}`)).join('');
+      return `${note('Recuerda subir el archivo a la carpeta <code class="bg-slate-100 px-1 rounded">docs/</code> del servidor; este editor solo guarda la ruta.')}${cards}${addBtn('documentos', 'Añadir documento')}`;
+    }
+  };
+
+  // ---------- render ----------
+  function renderTabs() {
+    const counts = { equipos: model.equipos.length, horarios: model.horarios.length, cuotas: model.cuotas.tarjetas.length, documentos: model.documentos.length };
+    tabsEl.innerHTML = TABS.map(([id, label]) => `
+      <button type="button" data-tab="${id}" class="btn ${tab === id ? 'btn-primary' : 'btn-light'}">
+        ${label}${counts[id] !== undefined ? ` <span class="opacity-70">(${counts[id]})</span>` : ''}
+      </button>`).join('');
+  }
+  function render() { renderTabs(); pane.innerHTML = panes[tab](); }
+
+  tabsEl.addEventListener('click', e => {
+    const b = e.target.closest('[data-tab]');
+    if (b) { tab = b.dataset.tab; render(); window.scrollTo({ top: 0 }); }
+  });
+
+  // ---------- edición de campos ----------
+  function uniqueId(base, exceptIndex) {
+    let id = base, n = 2;
+    while (model.equipos.some((t, i) => i !== exceptIndex && t.id === id)) id = `${base}-${n++}`;
+    return id;
+  }
+  // Las filas de Horarios siguen al equipo mientras su id sea válido y único;
+  // así, un id repetido o vacío mientras se escribe no mezcla filas de equipos distintos.
+  function syncRefs(i) {
+    const t = model.equipos[i], v = t.id.trim();
+    if (!v || model.equipos.some((x, j) => j !== i && x.id.trim() === v)) return;
+    model.horarios.forEach(h => { if (h.equipo === t._ref) h.equipo = t.id; });
+    t._ref = t.id;
+  }
+
+  pane.addEventListener('input', e => {
+    const el = e.target, path = el.dataset.path;
+    if (!path) return;
+    let val = el.type === 'checkbox' ? el.checked : el.value;
+    if (el.dataset.kind === 'lines') val = val.split('\n');
+    const prev = getPath(model, path);
+    setPath(model, path, val);
+
+    let m;
+    if ((m = path.match(/^equipos\.(\d+)\.id$/))) {
+      model.equipos[+m[1]]._idAuto = false;
+      syncRefs(+m[1]);
+    } else if ((m = path.match(/^equipos\.(\d+)\.nombre$/))) {
+      const i = +m[1], t = model.equipos[i];
+      const s = slug(val);
+      if (t._idAuto && s) {
+        const newId = uniqueId(s, i);
+        t.id = newId;
+        syncRefs(i);
+        const idInput = pane.querySelector(`[data-path="equipos.${i}.id"]`);
+        if (idInput) idInput.value = newId;
+      }
+    } else if (path === 'cuotas.descuento.enabled') {
+      render();
+    }
+    markDirty();
+  });
+
+  // ---------- altas, bajas y orden ----------
+  const factories = {
+    equipos() {
+      let n = 1; while (model.equipos.some(t => t.id === `nuevo-equipo-${n}`)) n++;
+      const id = `nuevo-equipo-${n}`;
+      model.horarios.push(factories.horarios(id));
+      return { id, nombre: '', categoria: bi(''), entrenadores: bi(''), descripcion: bi(''), objetivos: bil([]), _idAuto: true, _ref: id };
+    },
+    horarios(forId) {
+      const free = model.equipos.find(t => !model.horarios.some(h => h.equipo === t.id));
+      const r = { equipo: forId || (free ? free.id : (model.equipos[0] ? model.equipos[0].id : '')) };
+      DAYS.forEach(([k]) => { r[k] = ''; });
+      return r;
+    },
+    'cuotas.tarjetas': () => ({ etiqueta: bi(''), nombre: bi(''), frecuencia: bi(''), precio: '', incluye: bil([]) }),
+    documentos: () => ({ titulo: bi(''), descripcion: bi(''), archivo: 'docs/', tipo: 'PDF' })
+  };
+
+  pane.addEventListener('click', e => {
+    const b = e.target.closest('[data-action]');
+    if (!b) return;
+    const { action, list } = b.dataset, i = +b.dataset.i;
+    const arr = getPath(model, list);
+    if (action === 'add') {
+      const item = factories[list]();
+      arr.push(item);
+    } else if (action === 'del') {
+      if (!confirm(`¿Eliminar «${b.dataset.label || 'este elemento'}»?`)) return;
+      if (list === 'equipos') {
+        const id = arr[i]._ref;
+        if (model.horarios.some(h => h.equipo === id) && confirm('También se eliminarán sus filas en Horarios. ¿Continuar?') === false) return;
+        model.horarios = model.horarios.filter(h => h.equipo !== id);
+      }
+      arr.splice(i, 1);
+    } else if (action === 'up' && i > 0) {
+      [arr[i - 1], arr[i]] = [arr[i], arr[i - 1]];
+    } else if (action === 'down' && i < arr.length - 1) {
+      [arr[i + 1], arr[i]] = [arr[i], arr[i + 1]];
+    } else return;
+    markDirty();
+    render();
+    if (action === 'add') window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
+  });
+
+  // ---------- carga y descarga ----------
+  function showEditor(data) {
+    model = normalize(data);
+    $('welcome').classList.add('hidden');
+    $('editor').classList.remove('hidden');
+    $('btnDownload').disabled = false;
+    tab = 'general';
+    bannerEl.innerHTML = '';
+    markClean();
+    render();
+  }
+
+  function showWelcomeManual(msg) {
+    $('welcome').querySelector('.font-display').textContent = 'ABRE EL FICHERO DE DATOS';
+    $('welcomeMsg').textContent = msg;
+    $('btnOpen2').classList.remove('hidden');
+  }
+
+  async function loadFile(file) {
+    if (!file) return;
+    if (dirty && !confirm('Tienes cambios sin descargar que se perderán. ¿Abrir otro fichero?')) return;
+    try {
+      const data = JSON.parse(await file.text());
+      if (!isObj(data)) throw new Error('el contenido no es un objeto JSON');
+      showEditor(data);
+    } catch (err) {
+      banner('error', 'No se ha podido abrir el fichero: no es un JSON válido.', [String(err.message || err)]);
+    }
+  }
+
+  async function autoLoad() {
+    try {
+      const res = await fetch(DATA_URL, { cache: 'no-cache' });
+      if (!res.ok) throw new Error('HTTP ' + res.status);
+      showEditor(await res.json());
+    } catch (err) {
+      showWelcomeManual('No se ha podido cargar ' + DATA_URL + ' automáticamente (es normal si has abierto esta página con doble clic). Selecciona el fichero temporada.json de tu ordenador.');
+    }
+  }
+
+  function download() {
+    if (!model) return;
+    const { errors, warnings } = validate();
+    if (errors.length) {
+      banner('error', 'Hay errores que debes corregir antes de descargar:', errors);
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+      return;
+    }
+    if (warnings.length && !confirm('Avisos:\n\n· ' + warnings.join('\n· ') + '\n\n¿Descargar igualmente?')) return;
+    const blob = new Blob([JSON.stringify(exportData(), null, 2) + '\n'], { type: 'application/json' });
+    const a = document.createElement('a');
+    a.href = URL.createObjectURL(blob);
+    a.download = 'temporada.json';
+    document.body.appendChild(a); a.click(); a.remove();
+    setTimeout(() => URL.revokeObjectURL(a.href), 1000);
+    markClean();
+    banner('ok', 'Descargado «temporada.json». Súbelo a la carpeta data/ del servidor sustituyendo el anterior.', warnings);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  $('btnDownload').addEventListener('click', download);
+  ['btnOpen', 'btnOpen2'].forEach(id => $(id).addEventListener('click', () => $('fileInput').click()));
+  $('fileInput').addEventListener('change', e => { loadFile(e.target.files[0]); e.target.value = ''; });
+  window.addEventListener('dragover', e => e.preventDefault());
+  window.addEventListener('drop', e => { e.preventDefault(); loadFile(e.dataTransfer.files[0]); });
+  window.addEventListener('beforeunload', e => { if (dirty) { e.preventDefault(); e.returnValue = ''; } });
+
+  autoLoad();
+
+  // Para pruebas automáticas
+  window.__editor = { exportData, validate, getModel: () => model };
+})();
+</script>
+</body>
+</html>
