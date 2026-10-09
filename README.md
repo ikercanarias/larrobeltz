@@ -28,21 +28,3 @@ Bienvenido/a al repositorio oficial de la página web de **Larrobeltz Saskibaloi
 * **GitHub Pages** para el alojamiento web estático.
 
 ---
-
-## 📍 Ubicación
-
-* **Campo / Frontón:** Frontón Municipal de Alonsotegi
-* **Localidad:** Alonsotegi, Bizkaia
-
----
-
-## 📩 Contacto y Redes
-
-* **Email:** [larrobeltz@bizkaiabasket.com](mailto:larrobeltz@bizkaiabasket.com)
-* **Teléfono:** 617 72 21 85
-* **Instagram:** [@larrobeltz_saskibaloi_taldea](https://www.instagram.com/larrobeltz_saskibaloi_taldea)
-* **Facebook:** Larrobeltz Saskibaloi Taldea
-
----
-
-*Trabajo · Equipo · Ilusión* 🔴🖤
