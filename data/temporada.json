@@ -1,0 +1,192 @@
+{
+  "temporada": "2026 / 2027",
+
+  "equipos": [
+    {
+      "id": "junior",
+      "nombre": "JUNIOR",
+      "categoria": { "es": "Federado", "eu": "Federatua" },
+      "entrenadores": "Aitor · Niko",
+      "descripcion": {
+        "es": "Nuestro equipo referente en competición federada. Exigencia técnica, intensidad de juego y madurez competitiva sin perder el compañerismo.",
+        "eu": "Gure erreferentziazko taldea txapelketa federatuan. Zorroztasun teknikoa, joko-intentsitatea eta heldutasuna, adiskidetasuna galdu gabe."
+      },
+      "objetivos": {
+        "es": ["Lectura táctica", "Toma de decisiones", "Físico adaptado", "Cohesión de grupo"],
+        "eu": ["Irakurketa taktikoa", "Erabakiak hartzea", "Egokitutako fisikoa", "Talde-kohesioa"]
+      }
+    },
+    {
+      "id": "infantil-a",
+      "nombre": "INFANTIL A",
+      "categoria": { "es": "Escolar", "eu": "Eskolarra" },
+      "entrenadores": "Naia · Jon",
+      "descripcion": {
+        "es": "Consolidación de fundamentos de juego, velocidad de transición ofensiva y defensa en ayudas. Crecimiento deportivo y humano en cada entrenamiento.",
+        "eu": "Jokoaren oinarriak finkatzea, eraso trantsizio bizia eta laguntza defentsa. Kirol eta giza hazkundea entrenamendu bakoitzean."
+      },
+      "objetivos": {
+        "es": ["Fundamentos de tiro", "Defensa colectiva", "Velocidad", "Espíritu competitivo"],
+        "eu": ["Tiroaren oinarriak", "Defentsa kolektiboa", "Abiadura", "Lehia-espiritua"]
+      }
+    },
+    {
+      "id": "infantil-b",
+      "nombre": "INFANTIL B",
+      "categoria": { "es": "Escolar", "eu": "Eskolarra" },
+      "entrenadores": { "es": "Jon · Iker", "eu": "Iker · Nahia" },
+      "descripcion": {
+        "es": "Evolución técnica progresiva y trabajo en equipo. Priorizamos el aprendizaje continuo, la confianza con el balón y la diversión responsable.",
+        "eu": "Garapen tekniko progresiboa eta talde-lana. Etengabeko ikaskuntza, pilotarekiko konfiantza eta arduraz gozatzea lehenesten ditugu."
+      },
+      "objetivos": {
+        "es": ["Manejo de balón", "Pase en carrera", "Solidaridad en pista", "Confianza"],
+        "eu": ["Pilotaren kontrola", "Pasea lasterka", "Elkartasuna pistan", "Konfiantza"]
+      }
+    },
+    {
+      "id": "premini",
+      "nombre": "PREMINI",
+      "categoria": { "es": "Escolar", "eu": "Eskolarra" },
+      "entrenadores": { "es": "Nahia · Elsa", "eu": "Elsa · Ekhi" },
+      "descripcion": {
+        "es": "Etapa fundamental para enamorarse del baloncesto. Juegos de coordinación motriz, botar con ambas manos y aprender a competir con deportividad.",
+        "eu": "Saskibaloiaz maitemintzeko funtsezko etapa. Koordinazio jolasak, bi eskuekin botatzea eta kiroltasunez lehiatzen ikastea."
+      },
+      "objetivos": {
+        "es": ["Coordinación motriz", "Espíritu de equipo", "Respeto a las reglas", "Diversión"],
+        "eu": ["Koordinazio motriza", "Talde-espiritua", "Arauak errespetatzea", "Dibertsioa"]
+      }
+    },
+    {
+      "id": "eskola",
+      "nombre": "ESKOLA",
+      "categoria": { "es": "Iniciación", "eu": "Hasiera" },
+      "entrenadores": { "es": "Ekhi · Esti", "eu": "Esti" },
+      "descripcion": {
+        "es": "El primer contacto con la canasta y el balón. Dinámicas lúdicas que fomentan el movimiento, la empatía y la amistad entre txikis de Alonsotegi.",
+        "eu": "Saskiarekin eta pilotarekin lehen harremana. Alonsotegiko txikien artean mugimendua, enpatia eta laguntasuna bultzatzen dituzten jolasak."
+      },
+      "objetivos": {
+        "es": ["Juego psicomotriz", "Primer bote y canasta", "Amistad y respeto", "Hábitos saludables"],
+        "eu": ["Jolas psikomotriza", "Lehen botea eta saskia", "Laguntasuna", "Ohitura osasuntsuak"]
+      }
+    }
+  ],
+  "horarios": [
+    { "equipo": "junior",     "lunes/astelehena": "17:00 - 18:30", "miércoles/asteazkena": "17:00 - 18:30", "viernes/ostirala": "19:00 - 21:00" },
+    { "equipo": "infantil-a", "martes/asteartea": "18:30 - 20:00", "jueves/osteguna": "17:30 - 19:00", "viernes/ostirala": "17:30 - 18:30" },
+    { "equipo": "infantil-b", "lunes/astelehena": "18:30 - 20:00", "miércoles/asteazkena": "18:30 - 20:00", "viernes/ostirala": "17:10 - 18:15" },
+    { "equipo": "premini",    "martes/asteartea": "17:30 - 18:30", "jueves/osteguna": "19:00 - 20:00" },
+    { "equipo": "eskola",     "viernes/ostirala": "16:15 - 17:15" }
+  ],
+
+  "cuotas": {
+    "tarjetas": [
+      {
+        "etiqueta": "Iniciación",
+        "nombre": "ESKOLA",
+        "frecuencia": { "es": "1 día a la semana", "eu": "Astean behin" },
+        "precio": "70 €",
+        "incluye": {
+		  "es": [
+			"1 sesión semanal",
+			"10 meses de actividad",
+			"Material deportivo",
+			"Seguro de actividad escolar"
+		  ],
+		  "eu": [
+			"Asteko saio 1",
+			"10 hilabeteko jarduera",
+			"Kirol materiala",
+			"Eskola jardueraren asegurua"
+		  ]
+		}
+	},
+      {
+        "etiqueta": "Premini, Mini, Infantil y Cadete",
+        "nombre": "DEPORTE ESCOLAR",
+        "frecuencia": { "es": "2 - 3 días a la semana", "eu": "Astean 2 - 3 egun" },
+        "precio": "160 €",
+        "incluye": {
+		  "es": [
+			"2 a 3 entrenamientos semanales",
+			"10 meses de actividad",
+			"Equipación de juego oficial",
+			"Arbitrajes y mesa",
+			"Material deportivo",
+			"Seguro deportivo"
+		  ],
+		  "eu": [
+			"2-3 entrenamendu astean.",
+			"10 hilabeteko jarduera",
+			"Joko ofizialeko ekipazioa.",
+			"Arbitrajeak eta mahaia.",
+			"Kirol materiala",
+			"Kirol asegurua"
+		  ]
+		}
+      },
+      {
+        "etiqueta": "Junior",
+        "nombre": "DEPORTE FEDERADO",
+        "frecuencia": { "es": "3 días a la semana", "eu": "Astean 3 egun" },
+        "precio": "270 €",
+        "incluye": {
+		  "es": [
+			"3 entrenamientos semanales",
+			"10 meses de actividad",
+			"Ficha federativa oficial",
+			"Arbitrajes y oficiales de mesa",
+			"Equipación completa de competición",
+			"Seguro deportivo",
+			"Reconocimientos médicos"
+		  ],
+		  "eu": [
+			"3 entrenamendu astean",
+			"10 hilabeteko jarduera",
+			"Federazioaren fitxa ofiziala",
+			"Mahaiko arbitrajeak eta ofizialak",
+			"Lehiaketako ekipazio osoa",
+			"Kirol-asegurua",
+			"Azterketa medikoak"
+		  ]
+		}
+      }
+    ],
+    "descuento": {
+      "titulo": { "es": "FAMILIA LARROBELTZ", "eu": "LARROBELTZ FAMILIA" },
+      "texto": {
+        "es": "💰 25% de descuento en la cuota para la segunda/o hija/o inscrita/o en el club.",
+        "eu": "💰 %25eko deskontua klubean izena emandako bigarren seme/alabarentzat."
+      }
+    }
+  },
+
+  "documentos": [
+    {
+      "titulo": { "es": "Hoja de inscripción", "eu": "Izena emateko orria" },
+      "descripcion": { "es": "Formulario de inscripción para familias y deportistas.", "eu": "Familia eta kirolarientzako izen-emate formularioa." },
+      "archivo": "docs/hoja-inscripcion.txt",
+      "tipo": "PDF"
+    },
+    {
+      "titulo": { "es": "Presentación del club", "eu": "Klubaren aurkezpena" },
+      "descripcion": { "es": "Información general sobre Larrobeltz, objetivos y actividades.", "eu": "Larrobeltzi buruzko informazio orokorra, helburuak eta jarduerak." },
+      "archivo": "docs/presentacion-club.txt",
+      "tipo": "PDF"
+    },
+    {
+      "titulo": { "es": "Consentimiento para tomar imágenes", "eu": "Irudiak hartzeko baimena" },
+      "descripcion": { "es": "Autorización para uso de fotos y vídeos del club.", "eu": "Klubeko argazkiak eta bideoak erabiltzeko baimena." },
+      "archivo": "docs/consentimiento-imagenes.txt",
+      "tipo": "PDF"
+    },
+    {
+      "titulo": { "es": "Reglamento y convivencia", "eu": "Araudia eta bizikidetza" },
+      "descripcion": { "es": "Normas básicas sobre conducta, respeto y participación.", "eu": "Jokabideari, errespetuari eta parte-hartzeari buruzko oinarrizko arauak." },
+      "archivo": "docs/reglamento-convivencia.txt",
+      "tipo": "PDF"
+    }
+  ]
+}
