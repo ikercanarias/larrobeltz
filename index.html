@@ -82,7 +82,7 @@
       </div>
     </div>
 
-    <!-- Fila 2: Menú Principal Holgado y Bajado (justo debajo de la cabecera, encima de 17 TEMPORADAS) -->
+    <!-- Fila 2: Menú Principal -->
     <div class="hidden lg:block bg-[#0A0A0C] border-t border-white/10">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <nav class="flex items-center justify-center gap-7 xl:gap-8 h-10">
@@ -93,7 +93,8 @@
           <a href="#horarios" data-i18n="nav.schedules" class="text-xs uppercase tracking-widest font-bold text-neutral-300 hover:text-white transition-colors py-1 relative whitespace-nowrap after:absolute after:bottom-0 after:left-0 after:right-0 after:h-[2px] after:bg-[#E50914] after:scale-x-0 hover:after:scale-x-100 after:transition-transform">Horarios</a>
           <a href="#cuotas" data-i18n="nav.fees" class="text-xs uppercase tracking-widest font-bold text-neutral-300 hover:text-white transition-colors py-1 relative whitespace-nowrap after:absolute after:bottom-0 after:left-0 after:right-0 after:h-[2px] after:bg-[#E50914] after:scale-x-0 hover:after:scale-x-100 after:transition-transform">Cuotas</a>
           <a href="#normas" data-i18n="nav.rules" class="text-xs uppercase tracking-widest font-bold text-neutral-300 hover:text-white transition-colors py-1 relative whitespace-nowrap after:absolute after:bottom-0 after:left-0 after:right-0 after:h-[2px] after:bg-[#E50914] after:scale-x-0 hover:after:scale-x-100 after:transition-transform">Normas</a>
-          <a href="#contacto" data-i18n="nav.contact" class="text-xs uppercase tracking-widest font-bold text-neutral-300 hover:text-white transition-colors py-1 relative whitespace-nowrap after:absolute after:bottom-0 after:left-0 after:right-0 after:h-[2px] after:bg-[#E50914] after:scale-x-0 hover:after:scale-x-100 after:transition-transform">Contacto</a>
+          <a href="#documentos" data-i18n="nav.documents" class="text-xs uppercase tracking-widest font-bold text-neutral-300 hover:text-white transition-colors py-1 relative after:absolute after:bottom-0 after:left-0 after:h-[2px] after:w-full after:scale-x-0 hover:after:scale-x-100 after:bg-[#E50914] after:transition-transform">Documentos</a>
+		  <a href="#contacto" data-i18n="nav.contact" class="text-xs uppercase tracking-widest font-bold text-neutral-300 hover:text-white transition-colors py-1 relative whitespace-nowrap after:absolute after:bottom-0 after:left-0 after:right-0 after:h-[2px] after:bg-[#E50914] after:scale-x-0 hover:after:scale-x-100 after:transition-transform">Contacto</a>
         </nav>
       </div>
     </div>
@@ -108,8 +109,9 @@
         <a href="#horarios" onclick="toggleMobileMenu()" data-i18n="nav.schedules" class="text-sm uppercase tracking-wider font-bold text-neutral-300 hover:text-white hover:bg-white/5 px-3 py-2 rounded-lg transition-colors">Horarios</a>
         <a href="#cuotas" onclick="toggleMobileMenu()" data-i18n="nav.fees" class="text-sm uppercase tracking-wider font-bold text-neutral-300 hover:text-white hover:bg-white/5 px-3 py-2 rounded-lg transition-colors">Cuotas</a>
         <a href="#normas" onclick="toggleMobileMenu()" data-i18n="nav.rules" class="text-sm uppercase tracking-wider font-bold text-neutral-300 hover:text-white hover:bg-white/5 px-3 py-2 rounded-lg transition-colors">Normas</a>
-        <a href="#contacto" onclick="toggleMobileMenu()" data-i18n="nav.contact" class="text-sm uppercase tracking-wider font-bold text-neutral-300 hover:text-white hover:bg-white/5 px-3 py-2 rounded-lg transition-colors">Contacto</a>
-      </nav>
+        <a href="#documentos" onclick="toggleMobileMenu()" data-i18n="nav.documents" class="text-sm uppercase tracking-wider font-bold text-neutral-300 hover:text-white hover:bg-white/5 px-3 py-2 rounded-lg transition-colors">Documentos</a>
+		<a href="#contacto" onclick="toggleMobileMenu()" data-i18n="nav.contact" class="text-sm uppercase tracking-wider font-bold text-neutral-300 hover:text-white hover:bg-white/5 px-3 py-2 rounded-lg transition-colors">Contacto</a>		
+	  </nav>
       <div class="pt-2 border-t border-white/10">
         <a href="#contacto" onclick="toggleMobileMenu()" data-i18n="nav.joinBtn" class="block w-full text-center py-2 text-xs font-bold uppercase tracking-wider text-white bg-[#E50914] rounded-lg">
           Únete al equipo
@@ -174,9 +176,7 @@
             <div class="relative z-10 p-5 sm:p-7 bg-[#1F2937]/95 backdrop-blur-sm border border-slate-500/60 rounded-3xl shadow-2xl flex flex-col items-center">
               <img src="Logo Larrobeltz.png" alt="Logo Oficial Larrobeltz" class="w-60 h-60 md:w-72 md:h-72 object-contain rounded-full drop-shadow-md">
               <div class="mt-4 flex items-center gap-2.5">
-                <span class="font-display text-2xl sm:text-3xl tracking-widest text-[#E50914] font-bold">26/27</span>
-                <span class="text-slate-400">|</span>
-                <span class="text-xs font-semibold uppercase tracking-wider text-slate-100">Alonsotegi Saskibaloia</span>
+                <span class="text-xs font-semibold uppercase tracking-wider text-slate-100">Alonsotegi Saskibaloi Taldea</span>
               </div>
               <div class="mt-2 inline-flex items-center gap-2 px-3 py-1 bg-[#E50914]/20 border border-[#E50914]/40 rounded-full text-[11px] font-bold text-white tracking-wider">
                 <span>🏆 AUPA LARROBELTZ 🏀</span>
@@ -200,7 +200,7 @@
             <span class="text-slate-400" data-i18n="philo.title2">UNA FORMA DE VIVIR.</span>
           </h2>
         </div>
-        <p class="max-w-md text-slate-400 text-sm leading-relaxed" data-i18n="philo.lead">
+        <p class="max-w-md text-sm leading-relaxed" data-i18n="philo.lead">
           Desde Alonsotegi construimos un espacio seguro, cercano e integrador para crecer dentro y fuera de la pista.
         </p>
       </div>
@@ -266,32 +266,32 @@
         <div class="space-y-1.5">
           <span class="text-xs font-bold tracking-widest text-[#E50914] uppercase block" data-i18n="hist.num">02 / NUESTRA HISTORIA</span>
           <h2 class="font-display text-3xl sm:text-4xl lg:text-5xl font-black tracking-tight text-black leading-none">
-            <span data-i18n="hist.title1">DE AQUÍ.</span> <br>
+            <span data-i18n="hist.title1">DE AQUÍ</span> <br>
             <span class="text-[#E50914]" data-i18n="hist.title2">PARA TODOS.</span>
           </h2>
         </div>
         <p class="max-w-md  text-sm leading-relaxed" data-i18n="hist.lead">
-          Casi 17 temporadas manteniendo viva la llama del baloncesto en nuestro pueblo con pasión incombustible.
+          Manteniendo viva la llama del baloncesto en nuestro pueblo.
         </p>
       </div>
 
       <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 items-start">
         <div class="lg:col-span-7 space-y-4  text-sm sm:text-base leading-relaxed font-normal">
           <p data-i18n="hist.p1">
-            Desde 2009, ALONSOTEGIKO LARROBELTZ SASKIBALOI TALDEA hace disfrutar del baloncesto al pueblo de Alonsotegi. Tras la marcha del histórico Gorriak Alonsotegi (que llegó a competir con orgullo en la Liga Vasca Femenina), varios aitas, amas y cuatro chalados apasionados por el balón naranja decidimos que el baloncesto no podía morir en nuestras calles.
+            Desde 2009 ALONSOTEGIKO LARROBELTZ SKT hace disfrutar del Baloncesto al pueblo de Alonsotegi. Tras la partida del Gorriak Alonsotegi (que llegó a participar en Liga Vasca Femenina) varias familias y amigos/as que queríamos jugar al Baloncesto en nuestro pueblo nos pusimos a crear y hacer crecer este proyecto. Desde la desaparición del senior masculino, después de la temporada 19/20, el proyecto está enfocado fundamentalmente en el deporte femenino, aunque en nuestro club hay espacio para todos/as.
           </p>
           <p data-i18n="hist.p2">
-            Así nació Larrobeltz: con un equipo sénior masculino y un cadete femenino. A lo largo de casi 17 temporadas, el sénior masculino se consolidó como eje central, combinándose con equipos de cantera escolar. Mantener las categorías escolares en un municipio pequeño siempre exigió un esfuerzo titánico.
+            Son muchas experiencias y cientos de recuerdos los que estamos atesorando. El proyecto nació con un senior masculino y un cadete femenino. Poco a poco el senior masculino fue el eje central de nuestro club, aunque en ocasiones contábamos con un par de equipos de categorías escolares. No era fácil mantener esas categorías escolares, pero tras el COVID todo cambió. Después del 2020 dijimos adiós al senior masculino y nos centramos en las categorías base del baloncesto.
           </p>
           <p data-i18n="hist.p3">
-            Pero en 2020, tras la pandemia, el rumbo dio un giro decisivo: dijimos adiós al sénior masculino para volcar toda nuestra energía en el deporte base y el baloncesto femenino. La apuesta fue un éxito rotundo: consolidamos 4 y hasta 5 equipos escolares en nuestra temporada más prolífica.
+            El 2026 fue un año de cambio. Después de todos estos años de esfuerzo, sacrificio y dedicación, nuestro presidente César da relevo a una nueva directiva que llega con muchas ganas e ilusión de seguir trabajando por mejorar y seguir ofreciendo a nuestras/s jóvenes la posibilidad de disfrutar de este maravilloso deporte.
           </p>
 
           <!-- Frase célebre de César -->
           <div class="mt-4 bg-[#1F2937] border border-slate-500/70 rounded-xl p-5 relative shadow-md">
-            <span class="text-xs font-bold uppercase tracking-wider text-[#E50914] block mb-1" data-i18n="hist.quoteTitle">Palabras del Presidente César:</span>
+            <span class="text-xs font-bold uppercase tracking-wider text-[#E50914] block mb-1" data-i18n="hist.quoteTitle">Palabras de nuestro Expresidente César:</span>
             <blockquote class="text-white font-medium text-sm sm:text-base italic leading-relaxed" data-i18n="hist.quote">
-              «El baloncesto es la cosa más importante entre las cosas menos importantes». Pero esto a veces no es verdad: en Larrobeltz creemos firmemente en hacer pueblo. Participamos en fiestas locales, Euskaldia, el día del AMPA y colaboramos con la Mancomunidad de las Encartaciones para el impulso del Euskara en el deporte.
+              «El baloncesto es la cosa más importante entre las cosas menos importantes». En Larrobeltz creemos firmemente en hacer pueblo. Participamos en fiestas locales, Euskaldia, el día del AMPA y colaboramos con la Mancomunidad de las Encartaciones para el impulso del Euskara en el deporte.
             </blockquote>
           </div>
         </div>
@@ -304,15 +304,22 @@
               <p class="text-xs text-slate-400" data-i18n="hist.m1.d">Familias unidas para salvar el basket en el pueblo tras la marcha de Gorriak.</p>
             </div>
             <div class="bg-[#1F2937] border border-slate-500/60 p-4 rounded-xl shadow-sm">
-              <span class="font-display text-xl font-bold tracking-wider text-white">2020 - Hoy</span>
+              <span class="font-display text-xl font-bold tracking-wider text-white">2020 - 2026</span>
               <h4 class="text-xs font-bold  uppercase mb-1 text-white" data-i18n="hist.m2.t">Revolución Base</h4>
-              <p class="text-xs text-slate-400" data-i18n="hist.m2.d">Apuesta total por el baloncesto femenino y 5 equipos escolares consolidados.</p>
+              <p class="text-xs text-slate-400" data-i18n="hist.m2.d">Apuesta total por el baloncesto femenino y equipos escolares consolidados.</p>
             </div>
+			
+			<div class="bg-[#1F2937] border border-slate-500/60 p-4 rounded-xl shadow-sm">
+              <span class="font-display text-xl font-bold tracking-wider text-white">2026 - Hoy</span>
+              <h4 class="text-xs font-bold  uppercase mb-1 text-white" data-i18n="hist.m2.t">Nueva directiva</h4>
+              <p class="text-xs text-slate-400" data-i18n="hist.m3.d">Nuestro presidente César da paso a una nueva directiva.</p>
+            </div>
+			
           </div>
 
           <div class="bg-[#2B3240] border border-slate-500/60 p-3.5 rounded-xl flex items-center gap-3">
             <p class="text-xs text-slate-400 font-medium leading-snug" data-i18n="hist.village">
-              Comprometidos con fiestas locales, Euskaraldia, AMPA y Mancomunidad de las Encartaciones.
+              Comprometidos con el pueblo apoyando las fiestas locales, Euskaraldia, AMPA y Mancomunidad de las Encartaciones.
             </p>
           </div>
         </div>
@@ -326,12 +333,13 @@
       <div class="flex flex-col md:flex-row md:items-end justify-between gap-3 mb-8">
         <div class="space-y-1.5">
           <span class="text-xs font-bold tracking-widest text-[#E50914] uppercase block" data-i18n="teams.num">03 / EQUIPOS Y CUERPO TÉCNICO</span>
-          <h2 class="font-display text-3xl sm:text-4xl lg:text-5xl font-black tracking-tight text-black leading-none" data-i18n="teams.title">
-            NUESTROS EQUIPOS.
+          <h2 class="font-display text-3xl sm:text-4xl lg:text-5xl font-black tracking-tight text-black leading-none">
+            <span data-i18n="teams.title1">NUESTROS EQUIPOS</span> <br>
+            <span class="text-[#E50914]" data-i18n="teams.title2">NUESTRO ORGULLO.</span>
           </h2>
         </div>
-        <p class="max-w-md text-slate-400 text-sm leading-relaxed" data-i18n="teams.subtitle">
-          Temporada 2026 / 2027 · Cinco equipos, una misma identidad de juego.
+        <p class="max-w-md text-sm leading-relaxed" data-i18n="teams.subtitle">
+          Larrobeltz · Varias categorías, una misma identidad de juego.
         </p>
       </div>
 
@@ -444,7 +452,7 @@
             <span class="text-[#E50914]" data-i18n="fees.title2">ESTÁ AQUÍ.</span>
           </h2>
         </div>
-        <p class="max-w-md text-slate-400 text-sm leading-relaxed" data-i18n="fees.subtitle">
+        <p class="max-w-md text-sm leading-relaxed" data-i18n="fees.subtitle">
           Temporada 2026 / 2027 · Todo lo que necesitas para disfrutar del baloncesto, con máxima transparencia.
         </p>
       </div>
@@ -583,40 +591,58 @@
     </div>
   </section>
 
-  <!-- 07 NOVEDADES (Gris grafito #2F3642) -->
-  <section id="novedades" class="py-10 sm:py-12 bg-[#f1f0ed] border-b border-slate-600/60 relative">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="flex flex-col md:flex-row md:items-end justify-between gap-3 mb-6">
+  <!-- 07 DOCUMENTOS (Gris grafito #2F3642) -->
+<section id="documentos" class="py-10 sm:py-12 bg-[#f1f0ed] border-b border-slate-600/60 relative">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex flex-col md:flex-row md:items-end justify-between gap-3 mb-8">
         <div class="space-y-1.5">
-          <span class="text-xs font-bold tracking-widest text-[#E50914] uppercase block" data-i18n="news.num">07 / NOVEDADES</span>
-          <h2 class="font-display text-3xl sm:text-4xl lg:text-5xl font-black tracking-tight text-black leading-none" data-i18n="news.title">
-            LO ÚLTIMO DEL CLUB.
+          <span class="text-xs font-bold tracking-widest text-[#E50914] uppercase block" data-i18n="documentos.num">07 / DOCUMENTOS</span>
+          <h2 class="font-display text-3xl sm:text-4xl lg:text-5xl font-black tracking-tight text-black leading-none">
+            <span data-i18n="documentos.title1">TODOS LOS</span> <br>
+            <span class="text-[#E50914]" data-i18n="documentos.title2">DOCUMENTOS.</span>
           </h2>
         </div>
-        <p class="max-w-md text-slate-400 text-sm leading-relaxed" data-i18n="news.subtitle">
-          Actualidad y comunicados oficiales de Larrobeltz Saskibaloi Taldea.
-        </p>
       </div>
 
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
-        <article class="bg-[#1F242D] border border-slate-500/60 rounded-xl p-5 shadow-sm">
-          <span class="text-[10px] uppercase font-bold text-[#E50914] block mb-1">TEMPORADA 2026/2027</span>
-          <h3 class="font-display text-xl sm:text-2xl font-bold text-white mb-2" data-i18n="news.c1.t">NUEVA JUNTA DIRECTIVA</h3>
-          <p class="text-xs text-white" data-i18n="news.c1.d">Renovamos energías con el presidente César y un equipo comprometido para asegurar el futuro deportivo y social del club.</p>
-        </article>
-        <article class="bg-[#1F242D] border border-slate-500/60 rounded-xl p-5 shadow-sm">
-          <span class="text-[10px] uppercase font-bold text-[#E50914] block mb-1">INSTALACIONES</span>
-          <h3 class="font-display text-xl sm:text-2xl font-bold text-white mb-2" data-i18n="news.c2.t">MÁS HORAS DE PISTA</h3>
-          <p class="text-xs text-white" data-i18n="news.c2.d">Ampliamos disponibilidad horaria en el Frontón Municipal de Alonsotegi para garantizar que todos los equipos entrenen en óptimas condiciones.</p>
-        </article>
-        <article class="bg-[#1F242D] border border-slate-500/60 rounded-xl p-5 shadow-sm">
-          <span class="text-[10px] uppercase font-bold text-[#E50914] block mb-1">EUSKARA ETA KIROLA</span>
-          <h3 class="font-display text-xl sm:text-2xl font-bold text-white mb-2" data-i18n="news.c3.t">IMPULSO AL EUSKARA CON ENKARTERRI</h3>
-          <p class="text-xs text-white" data-i18n="news.c3.d">Colaboramos activamente con la Mancomunidad de las Encartaciones para normalizar e impulsar el uso del euskara en los entrenamientos y torneos.</p>
-        </article>
-      </div>
+    <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-6">
+      <a href="docs/hoja-inscripcion.txt" class="group block bg-white border border-slate-200 rounded-2xl p-5 shadow-sm hover:shadow-md transition-all duration-200">
+        <div class="flex items-center justify-between mb-4">
+          <span class="inline-flex items-center justify-center w-12 h-12 rounded-xl bg-[#E50914] text-white text-lg font-bold">PDF</span>
+          <span class="text-[10px] uppercase tracking-[0.2em] text-slate-500">Descargar</span>
+        </div>
+        <h3 class="text-xl font-bold text-black mb-2">Hoja de inscripción</h3>
+        <p class="text-sm text-slate-600 leading-relaxed">Formulario de inscripción para familias y deportistas.</p>
+      </a>
+
+      <a href="docs/presentacion-club.txt" class="group block bg-white border border-slate-200 rounded-2xl p-5 shadow-sm hover:shadow-md transition-all duration-200">
+        <div class="flex items-center justify-between mb-4">
+          <span class="inline-flex items-center justify-center w-12 h-12 rounded-xl bg-[#E50914] text-white text-lg font-bold">PDF</span>
+          <span class="text-[10px] uppercase tracking-[0.2em] text-slate-500">Descargar</span>
+        </div>
+        <h3 class="text-xl font-bold text-black mb-2">Presentación del club</h3>
+        <p class="text-sm text-slate-600 leading-relaxed">Información general sobre Larrobeltz, objetivos y actividades.</p>
+      </a>
+
+      <a href="docs/consentimiento-imagenes.txt" class="group block bg-white border border-slate-200 rounded-2xl p-5 shadow-sm hover:shadow-md transition-all duration-200">
+        <div class="flex items-center justify-between mb-4">
+          <span class="inline-flex items-center justify-center w-12 h-12 rounded-xl bg-[#E50914] text-white text-lg font-bold">PDF</span>
+          <span class="text-[10px] uppercase tracking-[0.2em] text-slate-500">Descargar</span>
+        </div>
+        <h3 class="text-xl font-bold text-black mb-2">Consentimiento para tomar imágenes</h3>
+        <p class="text-sm text-slate-600 leading-relaxed">Autorización para uso de fotos y vídeos del club.</p>
+      </a>
+
+      <a href="docs/reglamento-convivencia.txt" class="group block bg-white border border-slate-200 rounded-2xl p-5 shadow-sm hover:shadow-md transition-all duration-200">
+        <div class="flex items-center justify-between mb-4">
+          <span class="inline-flex items-center justify-center w-12 h-12 rounded-xl bg-[#E50914] text-white text-lg font-bold">PDF</span>
+          <span class="text-[10px] uppercase tracking-[0.2em] text-slate-500">Descargar</span>
+        </div>
+        <h3 class="text-xl font-bold text-black mb-2">Reglamento y convivencia</h3>
+        <p class="text-sm text-slate-600 leading-relaxed">Normas básicas sobre conducta, respeto y participación.</p>
+      </a>
     </div>
-  </section>
+  </div>
+</section>
 
   <!-- 08 CONTACTO Y LOCALIZACIÓN (Gris pizarra #374151, formulario y mapa del Frontón de Alonsotegi) -->
   <section id="contacto" class="py-10 sm:py-12 bg-[#f1f0ed] relative">
@@ -641,12 +667,12 @@
             <a href="mailto:larrobeltz@bizkaiabasket.com" class="bg-[#1F2937] border border-slate-500/60 p-3.5 rounded-xl flex items-center gap-3 hover:border-[#E50914] transition-all block">
               <span class="text-sm font-bold text-white">✉ larrobeltz@bizkaiabasket.com</span>
             </a>
-            <a href="tel:617722185" class="bg-[#1F2937] border border-slate-500/60 p-3.5 rounded-xl flex items-center gap-3 hover:border-[#E50914] transition-all block">
-              <span class="text-sm font-bold text-white">📞 617 72 21 85</span>
-            </a>
             <a href="https://www.instagram.com/larrobeltz_saskibaloi_taldea/" target="_blank" rel="noreferrer" class="bg-[#1F2937] border border-slate-500/60 p-3.5 rounded-xl flex items-center gap-3 hover:border-[#E50914] transition-all block">
               <span class="text-sm font-bold text-white">📸 @larrobeltz_saskibaloi_taldea</span>
             </a>
+			<a href="https://www.facebook.com/p/Larrobeltz-Saskibaloi-Taldea-100069734629502/" class="bg-[#1F2937] border border-slate-500/60 p-3.5 rounded-xl flex items-center gap-3 hover:border-[#E50914] transition-all block">
+              <span class="text-sm font-bold text-white">💬 Facebook: larrobeltz saskibaloi taldea</span>
+            </a>			
           </div>
 
           <div class="bg-[#1F2937] border border-slate-500/60 rounded-xl p-3 shadow-md">
@@ -669,7 +695,7 @@
         <!-- Formulario Funcional -->
         <div class="lg:col-span-7 bg-[#1F2937] border border-slate-500/70 rounded-2xl p-6 sm:p-7 shadow-lg">
           <h3 class="font-display text-2xl sm:text-3xl font-bold text-white mb-1" data-i18n="contact.formTitle">Envíanos un mensaje</h3>
-          <p class="text-xs text-slate-400 mb-5" data-i18n="contact.formDesc">Para inscripciones, dudas sobre cuotas o entrenamientos, te responderemos en 24-48 horas.</p>
+          <p class="text-xs mb-5" data-i18n="contact.formDesc">Para inscripciones, dudas sobre cuotas o entrenamientos, te responderemos en 24-48 horas.</p>
 
           <form id="contactForm" onsubmit="handleStaticFormSubmit(event)" class="space-y-4">
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
@@ -757,9 +783,9 @@
           <span class="text-xs font-bold uppercase tracking-widest text-black block" data-i18n="footer.channels">Canales Oficiales</span>
           <div class="text-xs space-y-1.5 text-slate-300">
             <p>📍 Frontón Municipal de Alonsotegi, Bizkaia</p>
-            <p>📞 617 72 21 85</p>
             <p>✉ larrobeltz@bizkaiabasket.com</p>
             <p>📸 Instagram: @larrobeltz_saskibaloi_taldea</p>
+			<p>💬 Facebook: larrobeltz saskibaloi taldea</p>
           </div>
         </div>
       </div>
@@ -888,6 +914,7 @@
         'nav.schedules': 'Horarios',
         'nav.fees': 'Cuotas',
         'nav.rules': 'Normas',
+		'nav.documents': 'Documentos',
         'nav.contact': 'Contacto',
         'nav.joinBtn': 'Únete al equipo',
         'hero.pretitle': 'VIVIENDO EL BALONCESTO · DESDE 2009 EN ALONSOTEGI',
@@ -920,22 +947,25 @@
         'val.5.t': 'COMPROMISO Y SERIEDAD',
         'val.5.d': 'Rigor y profesionalidad en cada entrenamiento, gestión transparente y puntualidad.',
         'hist.num': '02 / NUESTRA HISTORIA',
-        'hist.title1': 'DE AQUÍ.',
+        'hist.title1': 'DE AQUÍ',
         'hist.title2': 'PARA TODOS.',
-        'hist.lead': 'Casi 17 temporadas manteniendo viva la llama del baloncesto en nuestro pueblo con pasión incombustible.',
-        'hist.p1': 'Desde 2009, ALONSOTEGIKO LARROBELTZ SASKIBALOI TALDEA hace disfrutar del baloncesto al pueblo de Alonsotegi. Tras la marcha del histórico Gorriak Alonsotegi (que llegó a competir con orgullo en la Liga Vasca Femenina), varios aitas, amas y cuatro chalados apasionados por el balón naranja decidimos que el baloncesto no podía morir en nuestras calles.',
-        'hist.p2': 'Así nació Larrobeltz: con un equipo sénior masculino y un cadete femenino. A lo largo de casi 17 temporadas, el sénior masculino se consolidó como eje central, combinándose con equipos de cantera escolar. Mantener las categorías escolares en un municipio pequeño siempre exigió un esfuerzo titánico.',
-        'hist.p3': 'Pero en 2020, tras la pandemia, el rumbo dio un giro decisivo: dijimos adiós al sénior masculino para volcar toda nuestra energía en el deporte base y el baloncesto femenino. La apuesta fue un éxito rotundo: consolidamos 4 y hasta 5 equipos escolares en nuestra temporada más prolífica.',
+        'hist.lead': 'Manteniendo viva la llama del baloncesto en nuestro pueblo con pasión incombustible.',
+        'hist.p1': 'Desde 2009 ALONSOTEGIKO LARROBELTZ SKT hace disfrutar del Baloncesto al pueblo de Alonsotegi. Tras la partida del Gorriak Alonsotegi (que llegó a participar en Liga Vasca Femenina) varias familias y amigos/as que queríamos jugar al Baloncesto en nuestro pueblo nos pusimos a crear y hacer crecer este proyecto. Desde la desaparición del senior masculino, después de la temporada 19/20, el proyecto está enfocado fundamentalmente en el deporte femenino, aunque en nuestro club hay espacio para todos/as.',
+        'hist.p2': 'Son muchas experiencias y cientos de recuerdos los que estamos atesorando. El proyecto nació con un senior masculino y un cadete femenino. Poco a poco el senior masculino fue el eje central de nuestro club, aunque en ocasiones contábamos con un par de equipos de categorías escolares. No era fácil mantener esas categorías escolares, pero tras el COVID todo cambió. Después del 2020 dijimos adiós al senior masculino y nos centramos en las categorías base del baloncesto.',
+        'hist.p3': 'El 2026 fue un año de cambio. Después de todos estos años de esfuerzo, sacrificio y dedicación, nuestro presidente César da relevo a una nueva directiva que llega con muchas ganas e ilusión de seguir trabajando por mejorar y seguir ofreciendo a nuestras/s jóvenes la posibilidad de disfrutar de este maravilloso deporte.',
         'hist.quoteTitle': 'Palabras del Presidente César:',
-        'hist.quote': '«El baloncesto es la cosa más importante entre las cosas menos importantes». Pero esto a veces no es verdad: en Larrobeltz creemos firmemente en hacer pueblo. Participamos en fiestas locales, Euskaldia, el día del AMPA y colaboramos con la Mancomunidad de las Encartaciones para el impulso del Euskara en el deporte.',
+        'hist.quote': '«El baloncesto es la cosa más importante entre las cosas menos importantes». En Larrobeltz creemos firmemente en hacer pueblo. Participamos en fiestas locales, Euskaldia, el día del AMPA y colaboramos con la Mancomunidad de las Encartaciones para el impulso del Euskara en el deporte.',
         'hist.m1.t': 'El Nacimiento',
         'hist.m1.d': 'Familias unidas para salvar el basket en el pueblo tras la marcha de Gorriak.',
         'hist.m2.t': 'Revolución Base',
-        'hist.m2.d': 'Apuesta total por el baloncesto femenino y 5 equipos escolares consolidados.',
-        'hist.village': 'Comprometidos con fiestas locales, Euskaraldia, AMPA y Mancomunidad de las Encartaciones.',
+        'hist.m2.d': 'Apuesta total por el baloncesto femenino y equipos escolares consolidados.',
+		'hist.m3.t': 'Nueva directiva',
+        'hist.m3.d': 'Nuestro presidente César da paso a una nueva directiva.',
+        'hist.village': 'Comprometidos con el pueblo apoyando las fiestas locales, Euskaraldia, AMPA y Mancomunidad de las Encartaciones.',
         'teams.num': '03 / EQUIPOS Y CUERPO TÉCNICO',
-        'teams.title': 'NUESTROS EQUIPOS.',
-        'teams.subtitle': 'Temporada 2026 / 2027 · Cinco equipos, una misma identidad de juego.',
+        'teams.title1': 'NUESTROS EQUIPOS',
+		'teams.title2': 'NUESTRO ORGULLO.',
+        'teams.subtitle': 'Larrobeltz · Varias categorías, una misma identidad de juego.',
         'sch.num': '04 / HORARIOS',
         'sch.title1': 'NOS VEMOS EN',
         'sch.title2': 'LA CANCHA.',
@@ -976,7 +1006,10 @@
         'news.c2.d': 'Ampliamos disponibilidad horaria en el Frontón Municipal de Alonsotegi para garantizar que todos los equipos entrenen en óptimas condiciones.',
         'news.c3.t': 'IMPULSO AL EUSKARA CON ENKARTERRI',
         'news.c3.d': 'Colaboramos activamente con la Mancomunidad de las Encartaciones para normalizar e impulsar el uso del euskara en los entrenamientos y torneos.',
-        'contact.num': '08 / CONTACTO Y LOCALIZACIÓN',
+        'documentos.num': '07 / DOCUMENTOS',
+        'documentos.title1': 'TODOS LOS',
+        'documentos.title2': 'DOCUMENTOS.',
+		'contact.num': '08 / CONTACTO Y LOCALIZACIÓN',
         'contact.title1': 'TE',
         'contact.title2': 'ESCUCHAMOS.',
         'contact.subtitle': '¿Tienes dudas sobre los equipos, los horarios o cómo formar parte? Escríbenos o visítanos en el frontón. ¡Te esperamos!',
@@ -1004,6 +1037,7 @@
         'nav.schedules': 'Ordutegiak',
         'nav.fees': 'Kuotak',
         'nav.rules': 'Arauak',
+		'nav.documents': 'Dokumentuak',
         'nav.contact': 'Harremana',
         'nav.joinBtn': 'Batu zaitez taldera',
         'hero.pretitle': 'SASKIBALOIA BIZITZEN · 2009TIK ALONSOTEGIN',
@@ -1036,22 +1070,25 @@
         'val.5.t': 'KONPROMISOA ETA ZORROZTASUNA',
         'val.5.d': 'Zorroztasuna eta profesionaltasuna entrenamendu bakoitzean, kudeaketa gardena eta puntualtasuna.',
         'hist.num': '02 / GURE HISTORIA',
-        'hist.title1': 'HEMENGOA.',
+        'hist.title1': 'HEMENGOA',
         'hist.title2': 'GUZTIONTZAT.',
-        'hist.lead': 'Ia 17 denboraldi gure herrian saskibaloiaren garra bizirik mantentzen grinaz.',
-        'hist.p1': '2009az geroztik, ALONSOTEGIKO LARROBELTZ SASKIBALOI TALDEAk Alonsotegiko herriari saskibaloiaz gozarazten dio. Gorriak Alonsotegi historikoaren irteeraren ostean (Euskal Ligan harro lehiatzera heldu zena), hainbat aita, ama eta baloiaren zale amorratuek saskibaloia gure kaleetan ezin zela hil erabaki genuen.',
-        'hist.p2': 'Horrela jaio zen Larrobeltz: gizonezkoen senior talde batekin eta emakumezkoen kadete batekin. Ia 17 denboralditan zehar, gizonezkoen seniorra ardatz nagusi gisa finkatu zen, eskola-harrobiko taldeekin batera. Herri txiki batean eskola-kategoriak mantentzeak esfortzu itzela eskatu zuen beti.',
-        'hist.p3': 'Baina 2020an, pandemiaren ostean, norabideak bira erabakigarria eman zuen: gizonezkoen seniorrari agur esan genion gure indar guztia oinarrizko kirolean eta emakumezkoen saskibaloian jartzeko. Apustua arrakastatsua izan zen: 4 eta 5 eskola-talde egonkortu genituen gure denboraldirik emankorrenean.',
-        'hist.quoteTitle': 'César Presidentearen hitzak:',
-        'hist.quote': '«Saskibaloia garrantzi gutxien duten gauzen artean garrantzitsuena da». Baina hau batzuetan ez da egia: Larrobeltzen herrigintzan sinesten dugu. Jaietan, Euskaraldian, IGE egunean parte hartzen dugu eta Enkarterrietako Mankomunitatearekin lankidetzan aritzen gara kirolean Euskara bultzatzeko.',
+        'hist.lead': 'Gure herrian saskibaloiaren garra bizirik mantentzen grinaz.',
+        'hist.p1': '2009tik ALONSOTEGIKO LARROBELTZ SKTk saskibaloiaz gozatzen du Alonsotegiko herria. Gorriak Alonsotegiko partidaren ondoren (Emakumezkoen Euskal Ligan parte hartzera iritsi zena) gure herrian saskibaloian jokatu nahi genuen hainbat familia eta lagun proiektu hau sortzen eta hazten hasi ginen. Senior maskulinoa desagertu zenetik, 19/20 denboraldiaren ondoren, proiektua batez ere emakumezkoen kirolera bideratuta dago, nahiz eta gure klubean guztientzako lekua dagoen.',
+        'hist.p2': 'Esperientzia asko eta ehunka oroitzapen gordetzen ari gara. Proiektua gizonezko senior batekin eta emakumezko kadete batekin jaio zen. Pixkanaka-pixkanaka gizonezkoen seniorra izan zen gure klubaren ardatz nagusia, nahiz eta batzuetan eskola mailako talde pare bat izan. Ez zen erraza eskola-kategoria horiei eustea, baina COVIDaren ondoren dena aldatu zen. 2020aren ondoren, agur esan genion gizonezko seniorrari, eta saskibaloiaren oinarrizko mailetan jarri genuen arreta.',
+        'hist.p3': '2026a aldaketa urtea izan zen. Ahalegin, sakrifizio eta dedikazio urte guzti hauen ondoren, gure presidente Zesarrek zuzendaritza berriari erreleboa eman dio, hobetzeko lanean jarraitzeko gogo eta ilusio handiarekin, gure gazteei kirol zoragarri honetaz gozatzeko aukera eskainiz.',
+        'hist.quoteTitle': 'Gure presidente ohi Cesarren hitzak.:',
+        'hist.quote': '«Saskibaloia garrantzi gutxien duten gauzen artean garrantzitsuena da». Larrobeltzen herrigintzan sinesten dugu. Jaietan, Euskaraldian, IGE egunean parte hartzen dugu eta Enkarterrietako Mankomunitatearekin lankidetzan aritzen gara kirolean Euskara bultzatzeko.',
         'hist.m1.t': 'Sorkuntza',
         'hist.m1.d': 'Familia batuak herrian saskibaloia salbatzeko Gorriak taldearen ostean.',
         'hist.m2.t': 'Oinarriaren Iraultza',
-        'hist.m2.d': 'Emakumezkoen saskibaloiaren aldeko apustua eta 5 eskola-talde egonkortu.',
-        'hist.village': 'Herriko jaiekin, Euskaraldiarekin, IGEarekin eta Enkarterrietako Mankomunitatearekin konprometituta.',
+        'hist.m2.d': 'Emakumezkoen saskibaloiaren aldeko apustua eta eskola-talde egonkortu.',
+        'hist.m3.t': 'Zuzentarau berria',
+        'hist.m3.d': 'Gure presidente Cesarrek zuzendaritza berri bati bide eman dio.',
+		'hist.village': 'Herriarekin konprometituak herriko jaiak babestuz, Euskaraldia, IGE eta Enkarterrietako Mankomunitatea.',
         'teams.num': '03 / TALDEAK ETA TEKNIKARIAK',
-        'teams.title': 'GURE TALDEAK.',
-        'teams.subtitle': '2026 / 2027 Denboraldia · Bost talde, joko-nortasun bera.',
+		'teams.title1': 'GURE TALDEAK',
+		'teams.title2': 'GURE HARROTASUNA.',
+        'teams.subtitle': 'Larrobeltz · Hainbat kategoria, joko identitate bera..',
         'sch.num': '04 / ORDUTEGIAK',
         'sch.title1': 'PISTAN',
         'sch.title2': 'IKUSIKO DUGU ELKAR.',
@@ -1092,7 +1129,10 @@
         'news.c2.d': 'Alonsotegiko Udal Frontoian ordu-erabilgarritasuna zabaldu dugu talde guztiek baldintza ezin hobeetan entrenatu ahal izateko.',
         'news.c3.t': 'EUSKARARI BULTZADA ENKARTERRIREKIN',
         'news.c3.d': 'Enkarterrietako Mankomunitatearekin lankidetzan aritzen gara entrenamenduetan eta txapelketetan euskararen erabilera normalizatzeko.',
-        'contact.num': '08 / HARREMANA ETA KOKAPENA',
+		'documentos.num': '07 / DOCUMENTUAK',
+        'documentos.title1': 'DOKUMENTU',
+        'documentos.title2': 'GUZTIAK.',
+		'contact.num': '08 / HARREMANA ETA KOKAPENA',
         'contact.title1': 'ENTZUTEN',
         'contact.title2': 'DIZUGU.',
         'contact.subtitle': 'Taldeei, ordutegiei edo parte hartzeari buruzko galderarik baduzu? Idatz iezaguzu edo zatoz frontoira. Zure zain gaude!',
