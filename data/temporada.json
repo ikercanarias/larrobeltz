@@ -34,7 +34,7 @@
       "id": "infantil-b",
       "nombre": "INFANTIL B",
       "categoria": { "es": "Escolar", "eu": "Eskolarra" },
-      "entrenadores": { "es": "Jon · Iker", "eu": "Iker · Nahia" },
+      "entrenadores": { "es": "Jon · Iker", "eu": "Jon · Iker" },
       "descripcion": {
         "es": "Evolución técnica progresiva y trabajo en equipo. Priorizamos el aprendizaje continuo, la confianza con el balón y la diversión responsable.",
         "eu": "Garapen tekniko progresiboa eta talde-lana. Etengabeko ikaskuntza, pilotarekiko konfiantza eta arduraz gozatzea lehenesten ditugu."
@@ -48,7 +48,7 @@
       "id": "premini",
       "nombre": "PREMINI",
       "categoria": { "es": "Escolar", "eu": "Eskolarra" },
-      "entrenadores": { "es": "Nahia · Elsa", "eu": "Elsa · Ekhi" },
+      "entrenadores": { "es": "Nahia · Elsa", "eu": "Nahia · Elsa" },
       "descripcion": {
         "es": "Etapa fundamental para enamorarse del baloncesto. Juegos de coordinación motriz, botar con ambas manos y aprender a competir con deportividad.",
         "eu": "Saskibaloiaz maitemintzeko funtsezko etapa. Koordinazio jolasak, bi eskuekin botatzea eta kiroltasunez lehiatzen ikastea."
@@ -62,9 +62,9 @@
       "id": "eskola",
       "nombre": "ESKOLA",
       "categoria": { "es": "Iniciación", "eu": "Hasiera" },
-      "entrenadores": { "es": "Ekhi · Esti", "eu": "Esti" },
+      "entrenadores": { "es": "Ekhi · Esti", "eu": "Ekhi · Esti" },
       "descripcion": {
-        "es": "El primer contacto con la canasta y el balón. Dinámicas lúdicas que fomentan el movimiento, la empatía y la amistad entre txikis de Alonsotegi.",
+        "es": "El primer contacto con la canasta y el balón. Dinámicas lúdicas que fomentan el movimiento, la empatía y la amistad entre las/os txikis de Alonsotegi.",
         "eu": "Saskiarekin eta pilotarekin lehen harremana. Alonsotegiko txikien artean mugimendua, enpatia eta laguntasuna bultzatzen dituzten jolasak."
       },
       "objetivos": {
@@ -74,11 +74,11 @@
     }
   ],
   "horarios": [
-    { "equipo": "junior",     "lunes/astelehena": "17:00 - 18:30", "miércoles/asteazkena": "17:00 - 18:30", "viernes/ostirala": "19:00 - 21:00" },
-    { "equipo": "infantil-a", "martes/asteartea": "18:30 - 20:00", "jueves/osteguna": "17:30 - 19:00", "viernes/ostirala": "17:30 - 18:30" },
-    { "equipo": "infantil-b", "lunes/astelehena": "18:30 - 20:00", "miércoles/asteazkena": "18:30 - 20:00", "viernes/ostirala": "17:10 - 18:15" },
-    { "equipo": "premini",    "martes/asteartea": "17:30 - 18:30", "jueves/osteguna": "19:00 - 20:00" },
-    { "equipo": "eskola",     "viernes/ostirala": "16:15 - 17:15" }
+    { "equipo": "junior",     "lunes": "17:00 - 18:30", "miércoles": "17:00 - 18:30", "viernes": "19:00 - 21:00" },
+    { "equipo": "infantil-a", "martes": "18:30 - 20:00", "jueves": "17:30 - 19:00", "viernes": "17:30 - 18:30" },
+    { "equipo": "infantil-b", "lunes": "18:30 - 20:00", "miércoles": "18:30 - 20:00", "viernes": "17:10 - 18:15" },
+    { "equipo": "premini",    "martes": "17:30 - 18:30", "jueves": "19:00 - 20:00" },
+    { "equipo": "eskola",     "viernes": "16:15 - 17:15" }
   ],
 
   "cuotas": {
