@@ -189,6 +189,14 @@
     </div>
   </section>
 
+  <!-- PATROCINADORES: franja de logos. Se rellena desde "patrocinadores" en data/temporada.json; si no hay ninguno, la franja no se muestra. -->
+  <section id="patrocinadores" class="hidden py-8 sm:py-10 bg-white border-t border-slate-600/60" aria-labelledby="sponsorsTitle">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <h2 id="sponsorsTitle" class="text-[11px] font-bold uppercase tracking-[0.25em] text-slate-400 mb-6" data-i18n="sponsors.title">Con el apoyo de nuestros patrocinadores/colaboradores</h2>
+      <div id="sponsorsBox" class="space-y-6"></div>
+    </div>
+  </section>
+  
   <!-- 01 FILOSOFÍA DEL CLUB (Gris grafito #2F3642, compacto) -->
   <section id="filosofia" class="py-10 sm:py-12 bg-[#f1f0ed] border-b border-slate-600/60 relative">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -774,6 +782,7 @@
         'documentos.title1': 'TODOS LOS',
         'documentos.title2': 'DOCUMENTOS',
 		'documentos.lead' : 'Todos los documentos organizados en un único punto.',
+        'sponsors.title': 'Con el apoyo de',
 		'contact.num': '08 / CONTACTO Y LOCALIZACIÓN',
         'contact.title1': 'TE',
         'contact.title2': 'ESCUCHAMOS',
@@ -855,7 +864,7 @@
 		'teams.title2': 'GURE HARROTASUNA',
         'teams.subtitle': 'Larrobeltz · Hainbat kategoria, joko identitate bera.',
         'sch.num': '04 / ORDUTEGIAK',
-        'sch.title1': 'KANTXAN',
+        'sch.title1': 'PISTAN',
         'sch.title2': 'IKUSIKO DUGU ELKAR',
         'sch.lead': 'Alonsotegiko Udal Frontoia · Astelehenetik Ostiralera',
         'sch.colTeam': 'Taldea / Maila',
@@ -894,6 +903,7 @@
         'documentos.title1': 'DOKUMENTU',
         'documentos.title2': 'GUZTIAK',
 		'documentos.lead' : 'Dokumentu guztiak puntu bakar batean antolatuta.',
+        'sponsors.title': 'Gure babesleak',
 		'contact.num': '08 / HARREMANA ETA KOKAPENA',
         'contact.title1': 'ENTZUTEN',
         'contact.title2': 'DIZUGU',
@@ -1138,14 +1148,57 @@
       `).join('');
     }
 
-    // Pinta las cuatro secciones dinámicas; si una falla, las demás siguen funcionando
+    // Franja de patrocinadores: los marcados como "destacado" van primero, más grandes y a todo color;
+    // el resto en una fila más pequeña y en gris (recuperan el color al pasar el ratón).
+    // Si un logo falta o no carga, se muestra el nombre del patrocinador como texto.
+    function renderSponsors() {
+      const section = document.getElementById('patrocinadores');
+      const all = (Array.isArray(siteData.patrocinadores) ? siteData.patrocinadores : [])
+        .filter(p => p && (p.nombre || p.logo));
+      if (!all.length) { section.classList.add('hidden'); return; }
+
+      const isMain = p => p.destacado === true || p.destacado === 'true';
+      const textCls = main => 'font-display tracking-wide whitespace-nowrap ' +
+        (main ? 'text-2xl sm:text-3xl text-slate-800' : 'text-xl sm:text-2xl text-slate-500');
+
+      const tile = (p, main) => {
+        const name = p.nombre || '';
+        const inner = p.logo
+          ? `<img src="${esc(p.logo)}" alt="${esc(name)}" loading="lazy" data-main="${main ? '1' : ''}" class="${main ? 'h-20 sm:h-24' : 'h-8 sm:h-10'} w-auto max-w-[8rem] sm:max-w-[10rem] object-contain">`
+          : `<span class="${textCls(main)}">${esc(name)}</span>`;
+        const cls = main
+          ? 'flex items-center justify-center h-28 sm:h-36 px-8 sm:px-12 rounded-2xl border border-slate-200 bg-white shadow-sm hover:shadow-md hover:border-[#E50914]/40 transition-all'
+          : 'flex items-center justify-center opacity-70 grayscale hover:opacity-100 hover:grayscale-0 transition-all';
+        return p.enlace
+          ? `<a href="${esc(p.enlace)}" target="_blank" rel="noopener noreferrer" title="${esc(name)}" class="${cls}">${inner}</a>`
+          : `<div class="${cls}">${inner}</div>`;
+      };
+      const row = (list, main, gap) => list.length
+        ? `<div class="flex flex-wrap items-center justify-center ${gap}">${list.map(p => tile(p, main)).join('')}</div>` : '';
+
+      const box = document.getElementById('sponsorsBox');
+      box.innerHTML =
+        row(all.filter(isMain), true, 'gap-4 sm:gap-6') +
+        row(all.filter(p => !isMain(p)), false, 'gap-x-8 sm:gap-x-12 gap-y-4');
+
+      box.querySelectorAll('img').forEach(img => img.addEventListener('error', () => {
+        const span = document.createElement('span');
+        span.className = textCls(!!img.dataset.main);
+        span.textContent = img.alt;
+        img.replaceWith(span);
+      }));
+      section.classList.remove('hidden');
+    }
+
+    // Pinta las secciones dinámicas; si una falla, las demás siguen funcionando
     function renderDynamic() {
       if (!siteData) return;
       [
         ['teamDetailCard', renderTeams],
         ['scheduleBody', renderSchedule],
         ['feesGrid', renderFees],
-        ['docsGrid', renderDocs]
+        ['docsGrid', renderDocs],
+        ['sponsorsBox', renderSponsors]
       ].forEach(([id, fn]) => {
         try { fn(); } catch (err) {
           console.error('Error en la sección "' + id + '" de ' + DATA_URL + ':', err);
@@ -1155,6 +1208,8 @@
     }
 
     function showSectionError(id) {
+      // La franja de patrocinadores es opcional: si falla, simplemente no se muestra
+      if (id === 'sponsorsBox') { document.getElementById('patrocinadores').classList.add('hidden'); return; }
       const msg = currentLang === 'es'
         ? 'No se ha podido cargar esta información. Inténtalo de nuevo más tarde.'
         : 'Ezin izan da informazio hau kargatu. Saiatu berriro geroago.';

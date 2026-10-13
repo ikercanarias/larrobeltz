@@ -173,7 +173,7 @@
     {
       "titulo": { "es": "Presentación del club", "eu": "Klubaren aurkezpena" },
       "descripcion": { "es": "Información general sobre Larrobeltz, objetivos y actividades.", "eu": "Larrobeltzi buruzko informazio orokorra, helburuak eta jarduerak." },
-      "archivo": "docs/Larrobeltz 20262027.pdf",
+      "archivo": "docs/presentacion-club.txt",
       "tipo": "PDF"
     },
     {
@@ -188,5 +188,12 @@
       "archivo": "docs/reglamento-convivencia.txt",
       "tipo": "PDF"
     }
+  ],
+  
+  "patrocinadores": [
+	{ "nombre": "Ayuntamiento de Alonsotegi", "logo": "img/patrocinadores/alonsotegi.png", "enlace": "https://www.alonsotegi.eus/", "destacado": true },
+	{ "nombre": "P4Q", "logo": "img/patrocinadores/p4q.png", "enlace": "https://www.p4q.com/es/", "destacado": true },
+	{ "nombre": "Bar Arake", "logo": "img/patrocinadores/arake.png", "enlace": "https://share.google/clRPC5TMxgoddMivB", "destacado": true },
+	{ "nombre": "Bar Aritzmendi", "logo": "img/patrocinadores/aritzmendi.png", "enlace": "", "destacado": true }
   ]
 }

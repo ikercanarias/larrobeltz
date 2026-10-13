@@ -78,7 +78,7 @@
 (() => {
   const DATA_URL = 'data/temporada.json';
   const DAYS = [['lunes', 'Lunes'], ['martes', 'Martes'], ['miercoles', 'Miércoles'], ['jueves', 'Jueves'], ['viernes', 'Viernes']];
-  const TABS = [['general', 'General'], ['equipos', 'Equipos'], ['horarios', 'Horarios'], ['cuotas', 'Cuotas'], ['documentos', 'Documentos']];
+  const TABS = [['general', 'General'], ['equipos', 'Equipos'], ['horarios', 'Horarios'], ['cuotas', 'Cuotas'], ['documentos', 'Documentos'], ['patrocinadores', 'Patrocinadores']];
 
   let model = null;
   let tab = 'general';
@@ -127,6 +127,10 @@
       },
       documentos: (Array.isArray(d.documentos) ? d.documentos : []).map(x => ({
         ...x, titulo: bi(x.titulo), descripcion: bi(x.descripcion), archivo: str(x.archivo), tipo: str(x.tipo)
+      })),
+      patrocinadores: (Array.isArray(d.patrocinadores) ? d.patrocinadores : []).map(x => ({
+        ...x, nombre: str(x.nombre), logo: str(x.logo), enlace: str(x.enlace),
+        destacado: x.destacado === true || x.destacado === 'true'
       }))
     };
   }
@@ -158,6 +162,8 @@
     if (descuento.enabled) out.cuotas.descuento = { titulo: collapseText(descuento.titulo), texto: collapseText(descuento.texto) };
     out.documentos = model.documentos.map(d => ({ ...d, titulo: collapseText(d.titulo), descripcion: collapseText(d.descripcion),
       archivo: d.archivo.trim(), tipo: d.tipo.trim() }));
+    out.patrocinadores = model.patrocinadores.map(x => ({ ...x, nombre: x.nombre.trim(), logo: x.logo.trim(),
+      enlace: x.enlace.trim(), destacado: !!x.destacado }));
     return out;
   }
 
@@ -183,6 +189,12 @@
     model.documentos.forEach((d, i) => {
       if (!d.archivo.trim() || d.archivo.trim() === 'docs/') warnings.push(`Documento ${i + 1}: falta la ruta del archivo.`);
       if (!d.titulo.es.trim()) warnings.push(`Documento ${i + 1}: falta el título.`);
+    });
+    model.patrocinadores.forEach((x, i) => {
+      const n = `Patrocinador ${i + 1}${x.nombre.trim() ? ' (' + x.nombre.trim() + ')' : ''}`;
+      if (!x.nombre.trim()) warnings.push(`${n}: falta el nombre (se usa como texto alternativo del logo).`);
+      if (!x.nombre.trim() && !x.logo.trim()) warnings.push(`${n}: sin nombre ni logo, no se mostrará.`);
+      if (x.enlace.trim() && !/^https?:\/\//i.test(x.enlace.trim())) warnings.push(`${n}: el enlace debería empezar por http:// o https://.`);
     });
     if (!model.temporada.trim()) warnings.push('General: falta la temporada.');
     return { errors, warnings };
@@ -335,12 +347,36 @@
         ${biField('Título', `documentos.${i}.titulo`, d.titulo)}
         ${biField('Descripción', `documentos.${i}.descripcion`, d.descripcion, { area: true, rows: 2 })}`)).join('');
       return `${note('Recuerda subir el archivo a la carpeta <code class="bg-slate-100 px-1 rounded">docs/</code> del servidor; este editor solo guarda la ruta.')}${cards}${addBtn('documentos', 'Añadir documento')}`;
+    },
+
+    patrocinadores() {
+      const n = model.patrocinadores.length;
+      const cards = model.patrocinadores.map((p, i) => card('patrocinadores', i, n, (p.destacado ? '★ ' : '') + (p.nombre || 'Nuevo patrocinador'), `
+        <div class="grid md:grid-cols-2 gap-4 mb-4">
+          ${field('Nombre', `patrocinadores.${i}.nombre`, p.nombre, { hint: 'texto alternativo y respaldo si falta el logo' })}
+          ${field('Enlace web', `patrocinadores.${i}.enlace`, p.enlace, { hint: 'opcional', placeholder: 'https://www.ejemplo.com' })}
+        </div>
+        <div class="grid md:grid-cols-[1fr_auto] gap-4 items-end mb-4">
+          ${field('Logo (ruta del archivo)', `patrocinadores.${i}.logo`, p.logo, { hint: 'p. ej. img/patrocinadores/ejemplo.png', placeholder: 'img/patrocinadores/ejemplo.png' })}
+          <div class="h-12 min-w-[8rem] flex items-center justify-center border border-dashed border-slate-300 rounded-lg bg-slate-50 px-3">
+            <img data-preview="patrocinadores.${i}.logo" ${p.logo ? `src="${esc(p.logo)}"` : ''} alt="" class="max-h-10 max-w-[10rem] object-contain"
+              style="visibility:${p.logo ? 'visible' : 'hidden'}" onload="this.style.visibility='visible'" onerror="this.style.visibility='hidden'">
+          </div>
+        </div>
+        <label class="flex items-center gap-2 text-sm font-semibold cursor-pointer">
+          <input type="checkbox" data-path="patrocinadores.${i}.destacado" ${p.destacado ? 'checked' : ''} class="w-4 h-4 accent-[#E50914]">
+          Patrocinador destacado <span class="hint font-normal">· más grande y a todo color, en la primera fila</span>
+        </label>`)).join('');
+      return `${note(`Los patrocinadores <b>destacados</b> se muestran primero, más grandes y a todo color; el resto, en una fila más pequeña y en gris. El orden de cada grupo es el de esta lista.
+        Si no hay logo (o no carga) se muestra el nombre. Si la lista queda vacía, la franja no aparece en la web.
+        Sube los logos a la carpeta <code class="bg-slate-100 px-1 rounded">img/patrocinadores/</code> del servidor (mejor PNG o SVG con fondo transparente); este editor solo guarda la ruta.`)}
+        ${cards}${addBtn('patrocinadores', 'Añadir patrocinador')}`;
     }
   };
 
   // ---------- render ----------
   function renderTabs() {
-    const counts = { equipos: model.equipos.length, horarios: model.horarios.length, cuotas: model.cuotas.tarjetas.length, documentos: model.documentos.length };
+    const counts = { equipos: model.equipos.length, horarios: model.horarios.length, cuotas: model.cuotas.tarjetas.length, documentos: model.documentos.length, patrocinadores: model.patrocinadores.length };
     tabsEl.innerHTML = TABS.map(([id, label]) => `
       <button type="button" data-tab="${id}" class="btn ${tab === id ? 'btn-primary' : 'btn-light'}">
         ${label}${counts[id] !== undefined ? ` <span class="opacity-70">(${counts[id]})</span>` : ''}
@@ -390,8 +426,11 @@
         const idInput = pane.querySelector(`[data-path="equipos.${i}.id"]`);
         if (idInput) idInput.value = newId;
       }
-    } else if (path === 'cuotas.descuento.enabled') {
+    } else if (path === 'cuotas.descuento.enabled' || /^patrocinadores\.\d+\.destacado$/.test(path)) {
       render();
+    } else if (/^patrocinadores\.\d+\.logo$/.test(path)) {
+      const img = pane.querySelector(`[data-preview="${path}"]`);
+      if (img) { if (val.trim()) img.src = val.trim(); else { img.removeAttribute('src'); img.style.visibility = 'hidden'; } }
     }
     markDirty();
   });
@@ -411,7 +450,8 @@
       return r;
     },
     'cuotas.tarjetas': () => ({ etiqueta: bi(''), nombre: bi(''), frecuencia: bi(''), precio: '', incluye: bil([]) }),
-    documentos: () => ({ titulo: bi(''), descripcion: bi(''), archivo: 'docs/', tipo: 'PDF' })
+    documentos: () => ({ titulo: bi(''), descripcion: bi(''), archivo: 'docs/', tipo: 'PDF' }),
+    patrocinadores: () => ({ nombre: '', logo: '', enlace: '', destacado: false })
   };
 
   pane.addEventListener('click', e => {
