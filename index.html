@@ -1167,7 +1167,7 @@
           ? `<img src="${esc(p.logo)}" alt="${esc(name)}" loading="lazy" data-main="${main ? '1' : ''}" class="${main ? 'h-20 sm:h-24' : 'h-8 sm:h-10'} w-auto max-w-[8rem] sm:max-w-[10rem] object-contain">`
           : `<span class="${textCls(main)}">${esc(name)}</span>`;
         const cls = main
-          ? 'flex items-center justify-center h-28 sm:h-36 px-8 sm:px-12 rounded-2xl border border-slate-200 bg-white shadow-sm hover:shadow-md hover:border-[#E50914]/40 transition-all'
+          ? 'flex items-center justify-center h-28 sm:h-36 px-4 sm:px-8 rounded-2xl border border-slate-200 bg-white shadow-sm hover:shadow-md hover:border-[#E50914]/40 transition-all'
           : 'flex items-center justify-center opacity-70 grayscale hover:opacity-100 hover:grayscale-0 transition-all';
         return p.enlace
           ? `<a href="${esc(p.enlace)}" target="_blank" rel="noopener noreferrer" title="${esc(name)}" class="${cls}">${inner}</a>`

@@ -194,6 +194,6 @@
 	{ "nombre": "Ayuntamiento de Alonsotegi", "logo": "img/patrocinadores/alonsotegi.png", "enlace": "https://www.alonsotegi.eus/", "destacado": true },
 	{ "nombre": "P4Q", "logo": "img/patrocinadores/p4q.png", "enlace": "https://www.p4q.com/es/", "destacado": true },
 	{ "nombre": "Bar Arake", "logo": "img/patrocinadores/arake.png", "enlace": "https://share.google/clRPC5TMxgoddMivB", "destacado": true },
-	{ "nombre": "Bar Aritzmendi", "logo": "img/patrocinadores/aritzmendi.png", "enlace": "", "destacado": true }
+	{ "nombre": "Eroski", "logo": "img/patrocinadores/eroski.png", "enlace": "https://www.eroski.es/localizador-de-tiendas/supermercado/bizkaia/alonsotegi/eroskicity-alonsotegi/", "destacado": true }
   ]
 }
