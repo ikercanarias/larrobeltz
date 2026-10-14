@@ -78,6 +78,8 @@
 (() => {
   const DATA_URL = 'data/temporada.json';
   const DAYS = [['lunes', 'Lunes'], ['martes', 'Martes'], ['miercoles', 'Miércoles'], ['jueves', 'Jueves'], ['viernes', 'Viernes']];
+  // Acciones disponibles al pulsar un documento (se guardan tal cual en el JSON)
+  const ACCIONES = ['Descargar', 'Rellenar'];
   const TABS = [['general', 'General'], ['equipos', 'Equipos'], ['horarios', 'Horarios'], ['cuotas', 'Cuotas'], ['documentos', 'Documentos'], ['patrocinadores', 'Patrocinadores']];
 
   let model = null;
@@ -126,7 +128,8 @@
         descuento: { enabled: !!c.descuento, titulo: bi(c.descuento && c.descuento.titulo), texto: bi(c.descuento && c.descuento.texto) }
       },
       documentos: (Array.isArray(d.documentos) ? d.documentos : []).map(x => ({
-        ...x, titulo: bi(x.titulo), descripcion: bi(x.descripcion), archivo: str(x.archivo), tipo: str(x.tipo)
+        ...x, titulo: bi(x.titulo), descripcion: bi(x.descripcion), archivo: str(x.archivo), tipo: str(x.tipo),
+        accion: str(x.accion).trim() || ACCIONES[0]
       })),
       patrocinadores: (Array.isArray(d.patrocinadores) ? d.patrocinadores : []).map(x => ({
         ...x, nombre: str(x.nombre), logo: str(x.logo), enlace: str(x.enlace),
@@ -161,7 +164,7 @@
     };
     if (descuento.enabled) out.cuotas.descuento = { titulo: collapseText(descuento.titulo), texto: collapseText(descuento.texto) };
     out.documentos = model.documentos.map(d => ({ ...d, titulo: collapseText(d.titulo), descripcion: collapseText(d.descripcion),
-      archivo: d.archivo.trim(), tipo: d.tipo.trim() }));
+      archivo: d.archivo.trim(), tipo: d.tipo.trim(), accion: d.accion.trim() || ACCIONES[0] }));
     out.patrocinadores = model.patrocinadores.map(x => ({ ...x, nombre: x.nombre.trim(), logo: x.logo.trim(),
       enlace: x.enlace.trim(), destacado: !!x.destacado }));
     return out;
@@ -187,7 +190,8 @@
       if (!t.nombre.es.trim()) warnings.push(`Cuota ${i + 1}: falta el nombre.`);
     });
     model.documentos.forEach((d, i) => {
-      if (!d.archivo.trim() || d.archivo.trim() === 'docs/') warnings.push(`Documento ${i + 1}: falta la ruta del archivo.`);
+      if (!d.archivo.trim() || d.archivo.trim() === 'docs/') warnings.push(`Documento ${i + 1}: falta la ruta del archivo o el enlace.`);
+      else if (d.accion.trim().toLowerCase() === 'rellenar' && !/^https?:\/\//i.test(d.archivo.trim())) warnings.push(`Documento ${i + 1}: con la acción «Rellenar» el enlace debería empezar por http:// o https://.`);
       if (!d.titulo.es.trim()) warnings.push(`Documento ${i + 1}: falta el título.`);
     });
     model.patrocinadores.forEach((x, i) => {
@@ -220,6 +224,16 @@
       <span class="lbl">${label}${opts.hint ? ` <span class="hint">· ${opts.hint}</span>` : ''}</span>
       <input type="text" class="fld" data-path="${path}" value="${esc(value)}" ${opts.placeholder ? `placeholder="${esc(opts.placeholder)}"` : ''}>
     </label>`;
+
+  const selectField = (label, path, value, options, opts = {}) => {
+    const list = options.slice();
+    if (value && !list.includes(value)) list.push(value); // conserva valores no previstos
+    return `
+    <label class="block ${opts.cls || ''}">
+      <span class="lbl">${label}${opts.hint ? ` <span class="hint">· ${opts.hint}</span>` : ''}</span>
+      <select class="fld" data-path="${path}">${list.map(o => `<option value="${esc(o)}" ${o === value ? 'selected' : ''}>${esc(o)}</option>`).join('')}</select>
+    </label>`;
+  };
 
   function biField(label, path, val, opts = {}) {
     const one = (lang) => {
@@ -341,12 +355,13 @@
       const n = model.documentos.length;
       const cards = model.documentos.map((d, i) => card('documentos', i, n, d.titulo.es || 'Nuevo documento', `
         <div class="grid md:grid-cols-4 gap-4 mb-4">
-          ${field('Ruta del archivo', `documentos.${i}.archivo`, d.archivo, { cls: 'md:col-span-3', hint: 'p. ej. docs/hoja-inscripcion.pdf', placeholder: 'docs/archivo.pdf' })}
-          ${field('Etiqueta', `documentos.${i}.tipo`, d.tipo, { hint: 'PDF, DOC…' })}
+          ${selectField('Acción al pulsar', `documentos.${i}.accion`, d.accion, ACCIONES, { hint: 'descargar o rellenar' })}
+          ${field('Archivo o enlace (URL)', `documentos.${i}.archivo`, d.archivo, { cls: 'md:col-span-2', hint: 'docs/inscripcion.pdf o https://forms.gle/…', placeholder: 'docs/archivo.pdf  ·  https://…' })}
+          ${field('Etiqueta', `documentos.${i}.tipo`, d.tipo, { hint: 'PDF, DOC, FORM…' })}
         </div>
         ${biField('Título', `documentos.${i}.titulo`, d.titulo)}
         ${biField('Descripción', `documentos.${i}.descripcion`, d.descripcion, { area: true, rows: 2 })}`)).join('');
-      return `${note('Recuerda subir el archivo a la carpeta <code class="bg-slate-100 px-1 rounded">docs/</code> del servidor; este editor solo guarda la ruta.')}${cards}${addBtn('documentos', 'Añadir documento')}`;
+      return `${note('Con la acción <b>Descargar</b>, sube el archivo a la carpeta <code class="bg-slate-100 px-1 rounded">docs/</code> del servidor y escribe su ruta. Con <b>Rellenar</b>, escribe la URL del formulario. Este editor solo guarda la ruta o el enlace.')}${cards}${addBtn('documentos', 'Añadir documento')}`;
     },
 
     patrocinadores() {
@@ -450,7 +465,7 @@
       return r;
     },
     'cuotas.tarjetas': () => ({ etiqueta: bi(''), nombre: bi(''), frecuencia: bi(''), precio: '', incluye: bil([]) }),
-    documentos: () => ({ titulo: bi(''), descripcion: bi(''), archivo: 'docs/', tipo: 'PDF' }),
+    documentos: () => ({ titulo: bi(''), descripcion: bi(''), archivo: 'docs/', tipo: 'PDF', accion: ACCIONES[0] }),
     patrocinadores: () => ({ nombre: '', logo: '', enlace: '', destacado: false })
   };
 
