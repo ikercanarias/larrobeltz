@@ -173,14 +173,14 @@
     {
       "titulo": { "es": "Presentación del club", "eu": "Klubaren aurkezpena" },
       "descripcion": { "es": "Información general sobre Larrobeltz, objetivos y actividades.", "eu": "Larrobeltzi buruzko informazio orokorra, helburuak eta jarduerak." },
-      "archivo": "docs/presentacion-club.txt",
+      "archivo": "docs/Larrobeltz 20262027.pdf",
       "tipo": "PDF"
     },
     {
-      "titulo": { "es": "Consentimiento para tomar imágenes", "eu": "Irudiak hartzeko baimena" },
+      "titulo": { "es": "Consentimiento para tomar imágenes", "eu": "Argazkiak hartzeko baimena" },
       "descripcion": { "es": "Autorización para uso de fotos y vídeos del club.", "eu": "Klubeko argazkiak eta bideoak erabiltzeko baimena." },
-      "archivo": "docs/consentimiento-imagenes.txt",
-      "tipo": "PDF"
+      "archivo": "https://forms.gle/sEvLb8d9H7qvSudCA",
+      "tipo": "Formulario"
     },
     {
       "titulo": { "es": "Reglamento y convivencia", "eu": "Araudia eta bizikidetza" },
