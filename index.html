@@ -1139,7 +1139,7 @@
       document.getElementById('docsGrid').innerHTML = siteData.documentos.map(d => `
       <a href="${esc(d.archivo)}" class="group block bg-white border border-slate-200 rounded-2xl p-5 shadow-sm hover:shadow-md transition-all duration-200">
         <div class="flex items-center justify-between mb-4">
-          <span class="inline-flex items-center justify-center w-12 h-12 rounded-xl bg-[#E50914] text-white text-lg font-bold">${esc(d.tipo || 'PDF')}</span>
+          <span class="inline-flex items-center justify-center w-16 h-12 rounded-xl bg-[#E50914] text-white text-lg font-bold">${esc(d.tipo || 'PDF')}</span>
           <span class="text-[10px] uppercase tracking-[0.2em] text-slate-500">Descargar</span>
         </div>
         <h3 class="text-xl font-bold text-black mb-2">${esc(tr(d.titulo))}</h3>
