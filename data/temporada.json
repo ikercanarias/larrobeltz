@@ -165,10 +165,10 @@
 
   "documentos": [
     {
-      "titulo": { "es": "Hoja de inscripción", "eu": "Izena emateko orria" },
+      "titulo": { "es": "Formulario de inscripción", "eu": "Izena emateko formularioa" },
       "descripcion": { "es": "Formulario de inscripción para familias y deportistas.", "eu": "Familia eta kirolarientzako izen-emate formularioa." },
-      "archivo": "docs/hoja-inscripcion.txt",
-      "tipo": "PDF"
+      "archivo": "https://forms.gle/vufvKqayoBRrvPjM8",
+      "tipo": "FORM"
     },
     {
       "titulo": { "es": "Presentación del club", "eu": "Klubaren aurkezpena" },
@@ -180,7 +180,7 @@
       "titulo": { "es": "Consentimiento para tomar imágenes", "eu": "Argazkiak hartzeko baimena" },
       "descripcion": { "es": "Autorización para uso de fotos y vídeos del club.", "eu": "Klubeko argazkiak eta bideoak erabiltzeko baimena." },
       "archivo": "https://forms.gle/sEvLb8d9H7qvSudCA",
-      "tipo": "Formulario"
+      "tipo": "FORM"
     },
     {
       "titulo": { "es": "Reglamento y convivencia", "eu": "Araudia eta bizikidetza" },
