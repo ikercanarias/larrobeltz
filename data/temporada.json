@@ -168,25 +168,29 @@
       "titulo": { "es": "Formulario de inscripción", "eu": "Izena emateko formularioa" },
       "descripcion": { "es": "Formulario de inscripción para familias y deportistas.", "eu": "Familia eta kirolarientzako izen-emate formularioa." },
       "archivo": "https://forms.gle/vufvKqayoBRrvPjM8",
-      "tipo": "FORM"
+      "tipo": "FORM",
+	  "accion": "Rellenar"
     },
     {
       "titulo": { "es": "Presentación del club", "eu": "Klubaren aurkezpena" },
       "descripcion": { "es": "Información general sobre Larrobeltz, objetivos y actividades.", "eu": "Larrobeltzi buruzko informazio orokorra, helburuak eta jarduerak." },
       "archivo": "docs/Larrobeltz 20262027.pdf",
-      "tipo": "PDF"
+      "tipo": "PDF",
+	  "accion": "Descargar"
     },
     {
       "titulo": { "es": "Consentimiento para tomar imágenes", "eu": "Argazkiak hartzeko baimena" },
       "descripcion": { "es": "Autorización para uso de fotos y vídeos del club.", "eu": "Klubeko argazkiak eta bideoak erabiltzeko baimena." },
       "archivo": "https://forms.gle/sEvLb8d9H7qvSudCA",
-      "tipo": "FORM"
+      "tipo": "FORM",
+	  "accion": "Rellenar"		
     },
     {
       "titulo": { "es": "Reglamento y convivencia", "eu": "Araudia eta bizikidetza" },
       "descripcion": { "es": "Normas básicas sobre conducta, respeto y participación.", "eu": "Jokabideari, errespetuari eta parte-hartzeari buruzko oinarrizko arauak." },
       "archivo": "docs/reglamento-convivencia.txt",
-      "tipo": "PDF"
+      "tipo": "PDF",
+	  "accion": "Descargar"
     }
   ],
   
