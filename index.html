@@ -559,28 +559,32 @@
         <!-- Formulario Funcional -->
         <div class="lg:col-span-7 bg-[#1F2937] border border-slate-500/70 rounded-2xl p-6 sm:p-7 shadow-lg">
           <h3 class="font-display text-2xl sm:text-3xl font-bold text-white mb-1" data-i18n="contact.formTitle">Envíanos un mensaje</h3>
-          <p class="text-xs mb-5" data-i18n="contact.formDesc">Para inscripciones, dudas sobre cuotas o entrenamientos, te responderemos en 24-48 horas.</p>
-
+          <p class="text-xs mb-5 text-white" data-i18n="contact.formDesc">Para inscripciones, dudas sobre cuotas o entrenamientos, te responderemos en 24-48 horas.</p>
+		
           <form id="contactForm" onsubmit="handleStaticFormSubmit(event)" class="space-y-4">
+			<!-- Campo trampa antispam: no debe verse ni rellenarse -->
+			<div aria-hidden="true" style="position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden">
+				<label>Web <input type="text" name="website" tabindex="-1" autocomplete="off"></label>
+			</div>
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <div>
                 <label class="block text-xs font-bold text-slate-400 uppercase mb-1" data-i18n="contact.nameLabel">Tu nombre y apellidos *</label>
-                <input type="text" required class="w-full bg-[#2B3240] border border-slate-500/60 rounded-lg px-3.5 py-2 text-sm text-white placeholder-slate-400 focus:outline-none focus:border-[#E50914]">
+                <input name="nombre" autocomplete="name" maxlength="100" type="text" required class="w-full bg-[#2B3240] border border-slate-500/60 rounded-lg px-3.5 py-2 text-sm text-white placeholder-slate-400 focus:outline-none focus:border-[#E50914]">
               </div>
               <div>
                 <label class="block text-xs font-bold text-slate-400 uppercase mb-1" data-i18n="contact.emailLabel">Correo electrónico *</label>
-                <input type="email" required class="w-full bg-[#2B3240] border border-slate-500/60 rounded-lg px-3.5 py-2 text-sm text-white placeholder-slate-400 focus:outline-none focus:border-[#E50914]">
+                <input name="email" autocomplete="email" maxlength="120" type="email" required class="w-full bg-[#2B3240] border border-slate-500/60 rounded-lg px-3.5 py-2 text-sm text-white placeholder-slate-400 focus:outline-none focus:border-[#E50914]">
               </div>
             </div>
 
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <div>
                 <label class="block text-xs font-bold text-slate-400 uppercase mb-1" data-i18n="contact.phoneLabel">Teléfono de contacto</label>
-                <input type="tel" class="w-full bg-[#2B3240] border border-slate-500/60 rounded-lg px-3.5 py-2 text-sm text-white placeholder-slate-400 focus:outline-none focus:border-[#E50914]">
+                <input name="telefono" autocomplete="tel" maxlength="30" type="tel" class="w-full bg-[#2B3240] border border-slate-500/60 rounded-lg px-3.5 py-2 text-sm text-white placeholder-slate-400 focus:outline-none focus:border-[#E50914]">
               </div>
               <div>
                 <label class="block text-xs font-bold text-slate-400 uppercase mb-1" data-i18n="contact.subjectLabel">Asunto</label>
-                <select class="w-full bg-[#2B3240] border border-slate-500/60 rounded-lg px-3.5 py-2 text-sm text-white focus:outline-none focus:border-[#E50914]">
+                <select name="asunto" class="w-full bg-[#2B3240] border border-slate-500/60 rounded-lg px-3.5 py-2 text-sm text-white focus:outline-none focus:border-[#E50914]">
                   <option value="Inscripción de jugador/a">Inscripción de jugador/a</option>
                   <option value="Información sobre horarios y cuotas">Información sobre horarios y cuotas</option>
                   <option value="Duda o propuesta general">Duda o propuesta general</option>
@@ -590,9 +594,12 @@
 
             <div>
               <label class="block text-xs font-bold text-slate-400 uppercase mb-1" data-i18n="contact.msgLabel">Tu mensaje *</label>
-              <textarea rows="4" required class="w-full bg-[#2B3240] border border-slate-500/60 rounded-lg px-3.5 py-2 text-sm text-white placeholder-slate-400 focus:outline-none focus:border-[#E50914] resize-none"></textarea>
+              <textarea name="mensaje" maxlength="2000" rows="4" required class="w-full bg-[#2B3240] border border-slate-500/60 rounded-lg px-3.5 py-2 text-sm text-white placeholder-slate-400 focus:outline-none focus:border-[#E50914] resize-none"></textarea>
             </div>
-
+			
+			<p id="contactError" role="alert" class="hidden text-xs font-semibold text-red-300 bg-red-500/10 border border-red-400/40 rounded-lg px-3 py-2" data-i18n="contact.errorMsg">
+				No se ha podido enviar el mensaje. Inténtalo de nuevo o escríbenos un correo a larrobeltz@bizkaiabasket.com.
+			</p>
             <button type="submit" id="btnSubmitForm" class="px-6 py-2.5 bg-[#E50914] hover:bg-[#c40811] text-white font-bold text-xs uppercase tracking-wider rounded-lg transition-all shadow-md" data-i18n="contact.sendBtn">
               Enviar mensaje →
             </button>
@@ -600,7 +607,7 @@
 
           <div id="contactSuccess" class="hidden bg-[#2B3240] border border-[#E50914] rounded-xl p-6 text-center space-y-3">
             <h4 class="font-display text-2xl font-bold text-white" data-i18n="contact.successTitle">¡Mensaje Enviado con Éxito!</h4>
-            <p class="text-xs text-slate-400" data-i18n="contact.successDesc">Eskerrik asko por contactar con Larrobeltz Saskibaloi Taldea. Nos pondremos en contacto contigo pronto.</p>
+            <p class="text-xs text-slate-400" data-i18n="contact.successDesc">Eskerrik asko por contactar con Larrobeltz Saskibaloi Taldea. Nos pondremos en contacto contigo lo antes posible..</p>
           </div>
         </div>
       </div>
@@ -796,8 +803,9 @@
         'contact.msgLabel': 'Tu mensaje *',
         'contact.sendBtn': 'Enviar mensaje →',
         'contact.successTitle': '¡Mensaje Enviado con Éxito!',
-        'contact.successDesc': 'Eskerrik asko por contactar con Larrobeltz Saskibaloi Taldea. Nos pondremos en contacto contigo pronto.',
-        'footer.desc': 'Club de baloncesto fundado en 2009 en Alonsotegi. Formación deportiva y desarrollo personal en valores.',
+        'contact.successDesc': 'Muchas gracias por contactar con Larrobeltz Saskibaloi Taldea. Nos pondremos en contacto contigo lo antes posible.',
+        'contact.errorMsg': 'No se ha podido enviar el mensaje. Inténtalo de nuevo o escríbenos a larrobeltz@bizkaiabasket.com.',
+		'footer.desc': 'Club de baloncesto fundado en 2009 en Alonsotegi. Formación deportiva y desarrollo personal en valores.',
         'footer.slogan': 'TRABAJO · EQUIPO · ILUSIÓN',
         'footer.navTitle': 'Navegación',
         'footer.channels': 'Canales Oficiales',
@@ -918,7 +926,8 @@
         'contact.sendBtn': 'Bidali mezua →',
         'contact.successTitle': 'Mezua Arrakastaz Bidali Da!',
         'contact.successDesc': 'Eskerrik asko Larrobeltz Saskibaloi Taldearekin harremanetan jartzeagatik. Laster jarriko gara zurekin harremanetan.',
-        'footer.desc': '2009an Alonsotegin sortutako saskibaloi kluba. Kirol prestakuntza eta garapen pertsonala balioetan.',
+        'contact.errorMsg': 'Ezin izan da mezua bidali. Saiatu berriro edo idatzi iezaguzu larrobeltz@bizkaiabasket.com helbidera.',
+		'footer.desc': '2009an Alonsotegin sortutako saskibaloi kluba. Kirol prestakuntza eta garapen pertsonala balioetan.',
         'footer.slogan': 'LANA · TALDEA · ILUSIOA',
         'footer.navTitle': 'Nabigazioa',
         'footer.channels': 'Kanal Ofizialak',
@@ -1248,20 +1257,46 @@
       menu.classList.toggle('hidden');
     }
 
-    function handleStaticFormSubmit(e) {
-      e.preventDefault();
-      const btn = document.getElementById('btnSubmitForm');
-      const form = document.getElementById('contactForm');
-      const success = document.getElementById('contactSuccess');
+    // URL de la aplicación web de Google Apps Script que recibe los mensajes (ver formulario-contacto.gs)
+	const CONTACT_FORM_URL = 'https://script.google.com/macros/s/AKfycbziVFateDbZ4skGAyyrFYQXp21kc3Y8Jr8tERAHaYFduuYve4DG_WA7jpxMKfobaFwI7w/exec';
 
-      btn.disabled = true;
-      btn.textContent = currentLang === 'es' ? 'Enviando...' : 'Bidaltzen...';
+	async function handleStaticFormSubmit(e) {
+	  e.preventDefault();
+	  const btn = document.getElementById('btnSubmitForm');
+	  const form = document.getElementById('contactForm');
+	  const success = document.getElementById('contactSuccess');
+	  const errorBox = document.getElementById('contactError');
 
-      setTimeout(() => {
-        form.classList.add('hidden');
-        success.classList.remove('hidden');
-      }, 500);
-    }
+	  errorBox.classList.add('hidden');
+	  btn.disabled = true;
+	  btn.textContent = currentLang === 'es' ? 'Enviando...' : 'Bidaltzen...';
+
+	  const showSuccess = () => { form.classList.add('hidden'); success.classList.remove('hidden'); };
+
+	  // Campo trampa relleno = bot: se simula el éxito sin enviar nada
+	  if (form.elements['website'].value) { showSuccess(); return; }
+
+	  const controller = new AbortController();
+	  const timer = setTimeout(() => controller.abort(), 20000);
+	  try {
+		if (!CONTACT_FORM_URL || CONTACT_FORM_URL.indexOf('PEGA_AQUI') === 0) {
+		  throw new Error('CONTACT_FORM_URL no está configurada en index.html');
+		}
+		const data = new URLSearchParams(new FormData(form));
+		data.set('idioma', currentLang);
+		const res = await fetch(CONTACT_FORM_URL, { method: 'POST', body: data, signal: controller.signal });
+		const result = await res.json();
+		if (!result.ok) throw new Error(result.error || 'Respuesta no válida del servidor');
+		showSuccess();
+	  } catch (err) {
+		console.error('No se pudo enviar el formulario de contacto:', err);
+		errorBox.classList.remove('hidden');
+		btn.disabled = false;
+		btn.textContent = i18n[currentLang]['contact.sendBtn'];
+	  } finally {
+		clearTimeout(timer);
+	  }
+	}
 
     // Inicialización al cargar la página
     document.addEventListener('DOMContentLoaded', loadSiteData);
